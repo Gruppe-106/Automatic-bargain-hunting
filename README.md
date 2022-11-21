@@ -36,3 +36,20 @@ struct item {
 ```
 Store -> Category -> ? Items[]
 ```
+## Examples
+cmake is stupid right now and wont build the folder with data. Therefore GCC is needed
+First check if already installed
+```
+gcc -v
+```
+### Installing GCC
+Goto https://www.mingw-w64.org/downloads/ and install the latest version
+### Building
+```
+gcc -g -w -Wall examples/example_1.c -o example_1 -lm 
+```
+### Running
+In root open CMD and run
+```
+example_1.exe "./data/salling.json" 
+```
