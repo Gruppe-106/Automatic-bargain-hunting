@@ -1,6 +1,4 @@
-int main(void) {
-    int test = 1;
-    int test2 = 2;
-    int test5 = 4;
+void main(int) {
+    int shit = 112222221;
     return 0;
 }
