@@ -2,9 +2,7 @@
 #include "../libs/parson/parson.c"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-#define path "./data/salling.json"
 
 typedef struct item{
     char*       name;
@@ -18,7 +16,6 @@ void example       (char *file);
 void free_products (item **products, int num_of_products);
 void print_products(item **products, int num_of_products);
 item *create_item  (const char *name,const char *store, double newPrice, double originalPrice, double percentDiscount);
-
 
 
 int main(int argc, char *argv[])
@@ -58,10 +55,10 @@ item *create_item(const char *name, const char *store, double newPrice, double o
  * @brief example function
  *
  */
-void example(char *file)
+void example(char *file_name)
 {
     /* Parses the file*/
-    JSON_Value *salling = json_parse_file(path);
+    JSON_Value *salling = json_parse_file(file_name);
 
     JSON_Array *clearences, *product_list;
     JSON_Object *current_clearence, *current_offer, *current_store;
@@ -185,7 +182,7 @@ void free_products(item **products, int num_of_products){
 void print_products(item **products, int num_of_products){
 
     for (int i = 0; i < num_of_products; i++){
-        printf("Product name: %s\n\t- Store: %s\n\t- New price: %lf\n\t- Original price: %lf\n\t- Percent off: %lf\n",
+        printf("Product name: %s\n\t- Store: %s\n\t- New price: %.2lf\n\t- Original price: %.2lf\n\t- Percent off: %.2lf\n",
             products[i]->name,
             products[i]->store,
             products[i]->newPrice,
