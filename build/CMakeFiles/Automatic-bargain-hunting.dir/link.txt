@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\Automatic-bargain-hunting.dir/objects.a
-C:\Programs\mingw-w64\mingw32\bin\ar.exe qc CMakeFiles\Automatic-bargain-hunting.dir/objects.a @CMakeFiles\Automatic-bargain-hunting.dir\objects1
-C:\Programs\mingw-w64\mingw32\bin\i686-w64-mingw32-g++.exe -g -Wl,--whole-archive CMakeFiles\Automatic-bargain-hunting.dir/objects.a -Wl,--no-whole-archive -o Automatic-bargain-hunting.exe -Wl,--out-implib,libAutomatic-bargain-hunting.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Automatic-bargain-hunting.dir\linkLibs.rsp
