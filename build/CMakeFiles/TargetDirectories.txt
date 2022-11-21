@@ -1,4 +1,0 @@
-C:/Users/Andreas Hummelmose/OneDrive/Skrivebord/Git/Automatic-bargain-hunting/build/CMakeFiles/package.dir
-C:/Users/Andreas Hummelmose/OneDrive/Skrivebord/Git/Automatic-bargain-hunting/build/CMakeFiles/package_source.dir
-C:/Users/Andreas Hummelmose/OneDrive/Skrivebord/Git/Automatic-bargain-hunting/build/CMakeFiles/edit_cache.dir
-C:/Users/Andreas Hummelmose/OneDrive/Skrivebord/Git/Automatic-bargain-hunting/build/CMakeFiles/rebuild_cache.dir
