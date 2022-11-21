@@ -9,9 +9,10 @@ int main(void){
     return 0;
 }
 
+
 void persistence_example(void) {
-    JSON_Value *bargins = json_parse_file("./data/salling.json");
-    char *nenene = json_serialize_to_string_pretty(bargins);
-    puts(nenene);
+    JSON_Value  *salling = json_parse_file("./data/salling.json");
+    JSON_Array  *clearences;
+
 
 }
