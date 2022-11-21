@@ -1,5 +1,5 @@
 # Automatic Bargain Hunting
-Very good yes
+Very good, yes
 ```
 char* getShop() {
     return 'Lidl';
