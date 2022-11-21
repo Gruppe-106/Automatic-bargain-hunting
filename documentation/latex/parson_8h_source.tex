@@ -1,0 +1,280 @@
+\hypertarget{parson_8h_source}{}\doxysection{parson.\+h}
+\label{parson_8h_source}\index{parson/parson.h@{parson/parson.h}}
+\mbox{\hyperlink{parson_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ SPDX-\/License-\/Identifier: MIT}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ Parson 1.5.0 (https://github.com/kgabis/parson)}}
+\DoxyCodeLine{5 \textcolor{comment}{ Copyright (c) 2012 -\/ 2022 Krzysztof Gabis}}
+\DoxyCodeLine{6 \textcolor{comment}{}}
+\DoxyCodeLine{7 \textcolor{comment}{ Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{8 \textcolor{comment}{ of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{9 \textcolor{comment}{ in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{10 \textcolor{comment}{ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{11 \textcolor{comment}{ copies of the Software, and to permit persons to whom the Software is}}
+\DoxyCodeLine{12 \textcolor{comment}{ furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{13 \textcolor{comment}{}}
+\DoxyCodeLine{14 \textcolor{comment}{ The above copyright notice and this permission notice shall be included in}}
+\DoxyCodeLine{15 \textcolor{comment}{ all copies or substantial portions of the Software.}}
+\DoxyCodeLine{16 \textcolor{comment}{}}
+\DoxyCodeLine{17 \textcolor{comment}{ THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR}}
+\DoxyCodeLine{18 \textcolor{comment}{ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,}}
+\DoxyCodeLine{19 \textcolor{comment}{ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE}}
+\DoxyCodeLine{20 \textcolor{comment}{ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER}}
+\DoxyCodeLine{21 \textcolor{comment}{ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,}}
+\DoxyCodeLine{22 \textcolor{comment}{ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN}}
+\DoxyCodeLine{23 \textcolor{comment}{ THE SOFTWARE.}}
+\DoxyCodeLine{24 \textcolor{comment}{*/}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef parson\_parson\_h}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define parson\_parson\_h}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{30 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}}}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{34 \} \textcolor{comment}{/* unconfuse xcode */}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define PARSON\_VERSION\_MAJOR 1}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define PARSON\_VERSION\_MINOR 5}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define PARSON\_VERSION\_PATCH 0}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define PARSON\_VERSION\_STRING "{}1.5.0"{}}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include <stddef.h>}   \textcolor{comment}{/* size\_t */}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/* Types and enums */}}
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjson__object__t}{json\_object\_t}} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}};}
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjson__array__t}{json\_array\_t}}  \mbox{\hyperlink{structjson__array__t}{JSON\_Array}};}
+\DoxyCodeLine{48 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjson__value__t}{json\_value\_t}}  \mbox{\hyperlink{structjson__value__t}{JSON\_Value}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{enum} \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850}{json\_value\_type}} \{}
+\DoxyCodeLine{51     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a1b37abbc1195494ce7fd3a469f45912f}{JSONError}}   = -\/1,}
+\DoxyCodeLine{52     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a2be3130ff4fda556d345e4ac90267bed}{JSONNull}}    = 1,}
+\DoxyCodeLine{53     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a8564601104ed8e533c081049adbe27af}{JSONString}}  = 2,}
+\DoxyCodeLine{54     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a5ca5f2586a794838072e4b047dc922f2}{JSONNumber}}  = 3,}
+\DoxyCodeLine{55     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a1d957a852e0969b2839082414860b85c}{JSONObject}}  = 4,}
+\DoxyCodeLine{56     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a9e2a41c9b40c722fb4e6106289a2e870}{JSONArray}}   = 5,}
+\DoxyCodeLine{57     \mbox{\hyperlink{parson_8h_a1ee1fe8e5c3c800acbda6467e12c8850a5ee18eb8f975f45782d4ccb7035e0a6e}{JSONBoolean}} = 6}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\_Value\_Type}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{enum} \mbox{\hyperlink{parson_8h_a3dceac6cdf3d02a782357f1e495bc585}{json\_result\_t}} \{}
+\DoxyCodeLine{62     \mbox{\hyperlink{parson_8h_a3dceac6cdf3d02a782357f1e495bc585a6b579c45491843ff8dbc535fb17a0402}{JSONSuccess}} = 0,}
+\DoxyCodeLine{63     \mbox{\hyperlink{parson_8h_a3dceac6cdf3d02a782357f1e495bc585abdd02c6971087970d34b0496fc21a339}{JSONFailure}} = -\/1}
+\DoxyCodeLine{64 \};}
+\DoxyCodeLine{65 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void} * (*JSON\_Malloc\_Function)(size\_t);}
+\DoxyCodeLine{68 \textcolor{keyword}{typedef} void   (*\mbox{\hyperlink{parson_8h_aa6d9986e9dc8c0fb1a330f635f508b5a}{JSON\_Free\_Function}})(\textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/* A function used for serializing numbers (see json\_set\_number\_serialization\_function).}}
+\DoxyCodeLine{71 \textcolor{comment}{   If 'buf' is null then it should return number of bytes that would've been written }}
+\DoxyCodeLine{72 \textcolor{comment}{   (but not more than PARSON\_NUM\_BUF\_SIZE).}}
+\DoxyCodeLine{73 \textcolor{comment}{*/}}
+\DoxyCodeLine{74 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{parson_8h_a47d5ac083bdd761036550045c105a3e5}{JSON\_Number\_Serialization\_Function}})(\textcolor{keywordtype}{double} num, \textcolor{keywordtype}{char} *buf);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{comment}{/* Call only once, before calling any other function from parson API. If not called, malloc and free}}
+\DoxyCodeLine{77 \textcolor{comment}{   from stdlib will be used for all allocations */}}
+\DoxyCodeLine{78 \textcolor{keywordtype}{void} \mbox{\hyperlink{parson_8h_aeb589bd96b2d28a7724d29f9ef50a338}{json\_set\_allocation\_functions}}(\mbox{\hyperlink{parson_8h_ab66583112bdc39a4309a4aa49d6d4159}{JSON\_Malloc\_Function}} malloc\_fun, \mbox{\hyperlink{parson_8h_aa6d9986e9dc8c0fb1a330f635f508b5a}{JSON\_Free\_Function}} free\_fun);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{/* Sets if slashes should be escaped or not when serializing JSON. By default slashes are escaped.}}
+\DoxyCodeLine{81 \textcolor{comment}{ This function sets a global setting and is not thread safe. */}}
+\DoxyCodeLine{82 \textcolor{keywordtype}{void} \mbox{\hyperlink{parson_8h_a60e0704a3ac10a42e00cc570bce5daff}{json\_set\_escape\_slashes}}(\textcolor{keywordtype}{int} escape\_slashes);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{comment}{/* Sets float format used for serialization of numbers.}}
+\DoxyCodeLine{85 \textcolor{comment}{   Make sure it can't serialize to a string longer than PARSON\_NUM\_BUF\_SIZE.}}
+\DoxyCodeLine{86 \textcolor{comment}{   If format is null then the default format is used. */}}
+\DoxyCodeLine{87 \textcolor{keywordtype}{void} \mbox{\hyperlink{parson_8h_a3b7bafa4f174b5e6dd8ac9e972d36c39}{json\_set\_float\_serialization\_format}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *format);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{/* Sets a function that will be used for serialization of numbers.}}
+\DoxyCodeLine{90 \textcolor{comment}{   If function is null then the default serialization function is used. */}}
+\DoxyCodeLine{91 \textcolor{keywordtype}{void} \mbox{\hyperlink{parson_8h_a89fb292adc1ec2e41e23aa6a994fc5e8}{json\_set\_number\_serialization\_function}}(\mbox{\hyperlink{parson_8h_a47d5ac083bdd761036550045c105a3e5}{JSON\_Number\_Serialization\_Function}} fun);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{comment}{/* Parses first JSON value in a file, returns NULL in case of error */}}
+\DoxyCodeLine{94 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_ab46574724afc3f8bb047b73a9d477179}{json\_parse\_file}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{/* Parses first JSON value in a file and ignores comments (/ * * / and //),}}
+\DoxyCodeLine{97 \textcolor{comment}{   returns NULL in case of error */}}
+\DoxyCodeLine{98 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_aee8713749d8917080c20477d048c2b6c}{json\_parse\_file\_with\_comments}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{/*  Parses first JSON value in a string, returns NULL in case of error */}}
+\DoxyCodeLine{101 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_a7e811c5276660cba5fa1758ff8dd86df}{json\_parse\_string}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{comment}{/*  Parses first JSON value in a string and ignores comments (/ * * / and //),}}
+\DoxyCodeLine{104 \textcolor{comment}{    returns NULL in case of error */}}
+\DoxyCodeLine{105 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_a918fc6c895cfed0e075a03e48c96dd75}{json\_parse\_string\_with\_comments}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{/* Serialization */}}
+\DoxyCodeLine{108 \textcolor{keywordtype}{size\_t}      \mbox{\hyperlink{parson_8h_ab6501025c8270219bb522ea169fc8ac7}{json\_serialization\_size}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}); \textcolor{comment}{/* returns 0 on fail */}}
+\DoxyCodeLine{109 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_afa0950abfa2559f9ffc7f778a461ae52}{json\_serialize\_to\_buffer}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}, \textcolor{keywordtype}{char} *buf, \textcolor{keywordtype}{size\_t} buf\_size\_in\_bytes);}
+\DoxyCodeLine{110 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a5501d255adc5040d420bcf7a257de999}{json\_serialize\_to\_file}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{111 \textcolor{keywordtype}{char} *      \mbox{\hyperlink{parson_8h_aa3525f651580d8c66d446ffc950413ac}{json\_serialize\_to\_string}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{/* Pretty serialization */}}
+\DoxyCodeLine{114 \textcolor{keywordtype}{size\_t}      \mbox{\hyperlink{parson_8h_a1c9e7442e7e0e065abd4fd9b836c17aa}{json\_serialization\_size\_pretty}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}); \textcolor{comment}{/* returns 0 on fail */}}
+\DoxyCodeLine{115 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a11ba2d6dcf15cb9c2905cc56d610ddd7}{json\_serialize\_to\_buffer\_pretty}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}, \textcolor{keywordtype}{char} *buf, \textcolor{keywordtype}{size\_t} buf\_size\_in\_bytes);}
+\DoxyCodeLine{116 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_ab41c46f3b13268ae103e8b1d2afb99c5}{json\_serialize\_to\_file\_pretty}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{117 \textcolor{keywordtype}{char} *      \mbox{\hyperlink{parson_8h_adc914c37e3ab3be348336ba6910b009c}{json\_serialize\_to\_string\_pretty}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keywordtype}{void}        \mbox{\hyperlink{parson_8h_a4b32b8273c00bdcdb3fb9b04062c8084}{json\_free\_serialized\_string}}(\textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}); \textcolor{comment}{/* frees string from json\_serialize\_to\_string and json\_serialize\_to\_string\_pretty */}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{comment}{/* Comparing */}}
+\DoxyCodeLine{122 \textcolor{keywordtype}{int}  \mbox{\hyperlink{parson_8h_a4d940749adc93761c25e3730271677c8}{json\_value\_equals}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *a, \textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *b);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{comment}{/* Validation}}
+\DoxyCodeLine{125 \textcolor{comment}{   This is *NOT* JSON Schema. It validates json by checking if object have identically}}
+\DoxyCodeLine{126 \textcolor{comment}{   named fields with matching types.}}
+\DoxyCodeLine{127 \textcolor{comment}{   For example schema \{"{}name"{}:"{}"{}, "{}age"{}:0\} will validate}}
+\DoxyCodeLine{128 \textcolor{comment}{   \{"{}name"{}:"{}Joe"{}, "{}age"{}:25\} and \{"{}name"{}:"{}Joe"{}, "{}age"{}:25, "{}gender"{}:"{}m"{}\},}}
+\DoxyCodeLine{129 \textcolor{comment}{   but not \{"{}name"{}:"{}Joe"{}\} or \{"{}name"{}:"{}Joe"{}, "{}age"{}:"{}Cucumber"{}\}.}}
+\DoxyCodeLine{130 \textcolor{comment}{   In case of arrays, only first value in schema is checked against all values in tested array.}}
+\DoxyCodeLine{131 \textcolor{comment}{   Empty objects (\{\}) validate all objects, empty arrays ([]) validate all arrays,}}
+\DoxyCodeLine{132 \textcolor{comment}{   null validates values of every type.}}
+\DoxyCodeLine{133 \textcolor{comment}{ */}}
+\DoxyCodeLine{134 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a50dfef020cb9a9d82eaa2a540a5dd724}{json\_validate}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *schema, \textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{comment}{/*}}
+\DoxyCodeLine{137 \textcolor{comment}{ * JSON Object}}
+\DoxyCodeLine{138 \textcolor{comment}{ */}}
+\DoxyCodeLine{139 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_a925da100f918bb5a4dd65e810ea77f78}{json\_object\_get\_value}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{140 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  * \mbox{\hyperlink{parson_8h_a9e2d3e4d25595d394585cb11300bf53c}{json\_object\_get\_string}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{141 \textcolor{keywordtype}{size\_t}        \mbox{\hyperlink{parson_8h_a02901433c0f0b48d3968d5b1c92e8821}{json\_object\_get\_string\_len}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* doesn't account for last null character */}}
+\DoxyCodeLine{142 \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} * \mbox{\hyperlink{parson_8h_a3a911a7c1b3328aa9d93923c07e8a641}{json\_object\_get\_object}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{143 \mbox{\hyperlink{structjson__array__t}{JSON\_Array}}  * \mbox{\hyperlink{parson_8h_a86c3aeabd94f51e6c04c3ef1468bc870}{json\_object\_get\_array}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{144 \textcolor{keywordtype}{double}        \mbox{\hyperlink{parson_8h_ac6d8779c183fb9cd58e3c57ba8d7ee21}{json\_object\_get\_number}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* returns 0 on fail */}}
+\DoxyCodeLine{145 \textcolor{keywordtype}{int}           \mbox{\hyperlink{parson_8h_a080a1fb2f95ac9ba3995c096a5339406}{json\_object\_get\_boolean}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* returns -\/1 on fail */}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{comment}{/* dotget functions enable addressing values with dot notation in nested objects,}}
+\DoxyCodeLine{148 \textcolor{comment}{ just like in structs or c++/java/c\# objects (e.g. objectA.objectB.value).}}
+\DoxyCodeLine{149 \textcolor{comment}{ Because valid names in JSON can contain dots, some values may be inaccessible}}
+\DoxyCodeLine{150 \textcolor{comment}{ this way. */}}
+\DoxyCodeLine{151 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_a414a589c689b5733b0d983d6e9410663}{json\_object\_dotget\_value}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{152 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  * \mbox{\hyperlink{parson_8h_a36f910ea5423925fd93de7c373dc0b32}{json\_object\_dotget\_string}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{153 \textcolor{keywordtype}{size\_t}        \mbox{\hyperlink{parson_8h_ac5c417d48ed3d1503026e0967c69cfa0}{json\_object\_dotget\_string\_len}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* doesn't account for last null character */}}
+\DoxyCodeLine{154 \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} * \mbox{\hyperlink{parson_8h_a7385a0b985367c4ab3d2d2b49643ec19}{json\_object\_dotget\_object}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{155 \mbox{\hyperlink{structjson__array__t}{JSON\_Array}}  * \mbox{\hyperlink{parson_8h_a5e5c8b5e2ae7b587be17496277c69317}{json\_object\_dotget\_array}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{156 \textcolor{keywordtype}{double}        \mbox{\hyperlink{parson_8h_ac782225cbe9293782d006140f78daac2}{json\_object\_dotget\_number}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* returns 0 on fail */}}
+\DoxyCodeLine{157 \textcolor{keywordtype}{int}           \mbox{\hyperlink{parson_8h_a2ffd2a8e2e14b24d7a2d02a700507748}{json\_object\_dotget\_boolean}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name); \textcolor{comment}{/* returns -\/1 on fail */}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{comment}{/* Functions to get available names */}}
+\DoxyCodeLine{160 \textcolor{keywordtype}{size\_t}        \mbox{\hyperlink{parson_8h_a6e804d8e5c9e273fbb1b04cee885fb4d}{json\_object\_get\_count}}   (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object});}
+\DoxyCodeLine{161 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  * \mbox{\hyperlink{parson_8h_a316a15d78ae9d5e93b626dc5eb1b751a}{json\_object\_get\_name}}    (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{162 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_a76f96eda6679a83b8ac29274dc044be9}{json\_object\_get\_value\_at}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{163 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_a700522442034a6277db8caf8822a8744}{json\_object\_get\_wrapping\_value}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object});}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{comment}{/* Functions to check if object has a value with a specific name. Returned value is 1 if object has}}
+\DoxyCodeLine{166 \textcolor{comment}{ * a value and 0 if it doesn't. dothas functions behave exactly like dotget functions. */}}
+\DoxyCodeLine{167 \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a8cbdedc509113a21f3c348f4b1f1f7f8}{json\_object\_has\_value}}        (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{168 \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a39e904c031cd65a901ecf27dd3a856d4}{json\_object\_has\_value\_of\_type}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\_Value\_Type}} \mbox{\hyperlink{structjson__value__t_a374a05c01497eb7769eec2ab26cd95b6}{type}});}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a8180fb05845003341554fae35c1d85d2}{json\_object\_dothas\_value}}        (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{171 \textcolor{keywordtype}{int} \mbox{\hyperlink{parson_8h_a603ccdeef1b2dd19c56850b8ec25774e}{json\_object\_dothas\_value\_of\_type}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\_Value\_Type}} \mbox{\hyperlink{structjson__value__t_a374a05c01497eb7769eec2ab26cd95b6}{type}});}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{comment}{/* Creates new name-\/value pair or frees and replaces old value with a new one.}}
+\DoxyCodeLine{174 \textcolor{comment}{ * json\_object\_set\_value does not copy passed value so it shouldn't be freed afterwards. */}}
+\DoxyCodeLine{175 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_aa407a58f390b497a6396d20d7c3c7bfd}{json\_object\_set\_value}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{176 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a4894ebaa8673c6dbc69519b6c1573c99}{json\_object\_set\_string}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{177 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a38be152968fdc545be58356f8e44aefd}{json\_object\_set\_string\_with\_len}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \textcolor{keywordtype}{size\_t} len);  \textcolor{comment}{/* length shouldn't include last null character */}}
+\DoxyCodeLine{178 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a39e19ea718c221389fc991c22d39777d}{json\_object\_set\_number}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{double} number);}
+\DoxyCodeLine{179 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a4b25ed7adda736fabdae1dee7c5f6dc9}{json\_object\_set\_boolean}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{int} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{180 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_ab27d5079abe1331df55f0b806ae7b574}{json\_object\_set\_null}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{/* Works like dotget functions, but creates whole hierarchy if necessary.}}
+\DoxyCodeLine{183 \textcolor{comment}{ * json\_object\_dotset\_value does not copy passed value so it shouldn't be freed afterwards. */}}
+\DoxyCodeLine{184 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a639e70952e2bffab866303ef528367a4}{json\_object\_dotset\_value}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{185 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a0069c12155c176511ea091a6471cbe49}{json\_object\_dotset\_string}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{186 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_aa5cb83701146c7a54a91f3f6961a2dab}{json\_object\_dotset\_string\_with\_len}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \textcolor{keywordtype}{size\_t} len); \textcolor{comment}{/* length shouldn't include last null character */}}
+\DoxyCodeLine{187 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_ae3fafcf7fc27c8a0b08e517ebad87037}{json\_object\_dotset\_number}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{double} number);}
+\DoxyCodeLine{188 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a0dbd83d15003b246782f0f75659b3f3d}{json\_object\_dotset\_boolean}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{int} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{189 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a386ab4593c8f46ddcb907207ffeea1d7}{json\_object\_dotset\_null}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 \textcolor{comment}{/* Frees and removes name-\/value pair */}}
+\DoxyCodeLine{192 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a1051dd0b0e301046529d5f9550c7bd3a}{json\_object\_remove}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{comment}{/* Works like dotget function, but removes name-\/value pair only on exact match. */}}
+\DoxyCodeLine{195 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_ae56f8bd65f8ea1205f7428ff4515d943}{json\_object\_dotremove}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *key);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{comment}{/* Removes all name-\/value pairs in object */}}
+\DoxyCodeLine{198 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a9874cd6712b28250a2abe3186ba569e9}{json\_object\_clear}}(\mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *\textcolor{keywordtype}{object});}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{/*}}
+\DoxyCodeLine{201 \textcolor{comment}{ *JSON Array}}
+\DoxyCodeLine{202 \textcolor{comment}{ */}}
+\DoxyCodeLine{203 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_a2a304296ce6689afbdd6ccea34d05621}{json\_array\_get\_value}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{204 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  * \mbox{\hyperlink{parson_8h_a2b61099a67dd7a9293985f4565d5dd38}{json\_array\_get\_string}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{205 \textcolor{keywordtype}{size\_t}        \mbox{\hyperlink{parson_8h_aaffc3561d9d4912f546a906a65404a18}{json\_array\_get\_string\_len}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index); \textcolor{comment}{/* doesn't account for last null character */}}
+\DoxyCodeLine{206 \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} * \mbox{\hyperlink{parson_8h_a702d7e9cc3aa91a031f50b52030d0558}{json\_array\_get\_object}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{207 \mbox{\hyperlink{structjson__array__t}{JSON\_Array}}  * \mbox{\hyperlink{parson_8h_ac2eb54ad0791798822512574301c71cf}{json\_array\_get\_array}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{208 \textcolor{keywordtype}{double}        \mbox{\hyperlink{parson_8h_a3d712bcec84295ecc5c391dbcd20ba6e}{json\_array\_get\_number}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index); \textcolor{comment}{/* returns 0 on fail */}}
+\DoxyCodeLine{209 \textcolor{keywordtype}{int}           \mbox{\hyperlink{parson_8h_aa2e74bca6589f73ab3bfb7ab502f44af}{json\_array\_get\_boolean}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} index); \textcolor{comment}{/* returns -\/1 on fail */}}
+\DoxyCodeLine{210 \textcolor{keywordtype}{size\_t}        \mbox{\hyperlink{parson_8h_a3cdef5191eb478cae45757377e3e48f5}{json\_array\_get\_count}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array);}
+\DoxyCodeLine{211 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  * \mbox{\hyperlink{parson_8h_aaf5df5c9b9dc652bbdff0789616bc8cd}{json\_array\_get\_wrapping\_value}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{comment}{/* Frees and removes value at given index, does nothing and returns JSONFailure if index doesn't exist.}}
+\DoxyCodeLine{214 \textcolor{comment}{ * Order of values in array may change during execution.  */}}
+\DoxyCodeLine{215 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a511efdf48efa9b115df50ef4f8fb13ff}{json\_array\_remove}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{comment}{/* Frees and removes from array value at given index and replaces it with given one.}}
+\DoxyCodeLine{218 \textcolor{comment}{ * Does nothing and returns JSONFailure if index doesn't exist.}}
+\DoxyCodeLine{219 \textcolor{comment}{ * json\_array\_replace\_value does not copy passed value so it shouldn't be freed afterwards. */}}
+\DoxyCodeLine{220 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_acba34bc512c312f91f51a19cabb22e4b}{json\_array\_replace\_value}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i, \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{221 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_af865e93d395d11c52a18ff10164a2a1c}{json\_array\_replace\_string}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{222 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a33d41c30195dfd30b1bc5db8a2763842}{json\_array\_replace\_string\_with\_len}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \textcolor{keywordtype}{size\_t} len); \textcolor{comment}{/* length shouldn't include last null character */}}
+\DoxyCodeLine{223 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a4035432816f6e455cc533c15cba51ddf}{json\_array\_replace\_number}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i, \textcolor{keywordtype}{double} number);}
+\DoxyCodeLine{224 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a101fa1f9a3ce32034a8a7f89bc13bb89}{json\_array\_replace\_boolean}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i, \textcolor{keywordtype}{int} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{225 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a03da91aa1986b3b97963a843bdad06da}{json\_array\_replace\_null}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{size\_t} i);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227 \textcolor{comment}{/* Frees and removes all values from array */}}
+\DoxyCodeLine{228 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a468f06ad47dfcf4b5188196a279da692}{json\_array\_clear}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array);}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{/* Appends new value at the end of array.}}
+\DoxyCodeLine{231 \textcolor{comment}{ * json\_array\_append\_value does not copy passed value so it shouldn't be freed afterwards. */}}
+\DoxyCodeLine{232 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a7fb23d000865c375cc956ef9352d1768}{json\_array\_append\_value}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{233 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_abdd2d9c2fd47a9dcd3cba7368fb1ea89}{json\_array\_append\_string}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{234 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a576d1a8fe8a29aa0f9341fa51c680172}{json\_array\_append\_string\_with\_len}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \textcolor{keywordtype}{size\_t} len); \textcolor{comment}{/* length shouldn't include last null character */}}
+\DoxyCodeLine{235 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_af7d32bd24e85ba8adc82dda2bb977f05}{json\_array\_append\_number}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{double} number);}
+\DoxyCodeLine{236 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a2d6d3c1aa0f5544e2cec007c8ae2f36d}{json\_array\_append\_boolean}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array, \textcolor{keywordtype}{int} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{237 \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\_Status}} \mbox{\hyperlink{parson_8h_a10046fe3bd949d389bbda6c120721efe}{json\_array\_append\_null}}(\mbox{\hyperlink{structjson__array__t}{JSON\_Array}} *array);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{comment}{/*}}
+\DoxyCodeLine{240 \textcolor{comment}{ *JSON Value}}
+\DoxyCodeLine{241 \textcolor{comment}{ */}}
+\DoxyCodeLine{242 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_ad445f559e84d8dccaabcb048fe16e840}{json\_value\_init\_object}} (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{243 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_a6722c82c17186694b8b6fc7d3ad70a7c}{json\_value\_init\_array}}  (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{244 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_add84f0e29e09212fad5f43a79ce3b66b}{json\_value\_init\_string}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}); \textcolor{comment}{/* copies passed string */}}
+\DoxyCodeLine{245 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_ac514a289993c17951481a4ba16c29cdb}{json\_value\_init\_string\_with\_len}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \textcolor{keywordtype}{size\_t} length); \textcolor{comment}{/* copies passed string, length shouldn't include last null character */}}
+\DoxyCodeLine{246 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_a84630678b0d7e419a7e0e00c339f2039}{json\_value\_init\_number}} (\textcolor{keywordtype}{double} number);}
+\DoxyCodeLine{247 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_ac5ce42251b8b818708f88011b5909fee}{json\_value\_init\_boolean}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{248 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_aa657e710e01bb10b3a0bde88870ebccb}{json\_value\_init\_null}}   (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{249 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} * \mbox{\hyperlink{parson_8h_a8e00bc34b23b3266c5e7415bc424ecec}{json\_value\_deep\_copy}}   (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{250 \textcolor{keywordtype}{void}         \mbox{\hyperlink{parson_8h_ab2422931b5eea3c2401a86dea9c06b8c}{json\_value\_free}}        (\mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\_Value\_Type}} \mbox{\hyperlink{parson_8h_ac9afd8b1fc34493d5dfddd84540818eb}{json\_value\_get\_type}}   (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{253 \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *   \mbox{\hyperlink{parson_8h_ad1965490be7fedbbc836f3c077cb0db2}{json\_value\_get\_object}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{254 \mbox{\hyperlink{structjson__array__t}{JSON\_Array}}  *   \mbox{\hyperlink{parson_8h_a3576591e51f5e56527218979b21fd659}{json\_value\_get\_array}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{255 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  *   \mbox{\hyperlink{parson_8h_a03dd61a3b9f51c0734619fd5bf567bba}{json\_value\_get\_string}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{256 \textcolor{keywordtype}{size\_t}          \mbox{\hyperlink{parson_8h_a086dc40ce963c1a447dff77df4356fcb}{json\_value\_get\_string\_len}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}); \textcolor{comment}{/* doesn't account for last null character */}}
+\DoxyCodeLine{257 \textcolor{keywordtype}{double}          \mbox{\hyperlink{parson_8h_ac66b65fac26ad83b9b90b3a40030e669}{json\_value\_get\_number}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{258 \textcolor{keywordtype}{int}             \mbox{\hyperlink{parson_8h_a8dbc1a82a4ec68592d3654543505244e}{json\_value\_get\_boolean}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{259 \mbox{\hyperlink{structjson__value__t}{JSON\_Value}}  *   \mbox{\hyperlink{parson_8h_af99d1af3a832cc46bbba6199046ab4cb}{json\_value\_get\_parent}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \textcolor{comment}{/* Same as above, but shorter */}}
+\DoxyCodeLine{262 \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\_Value\_Type}} \mbox{\hyperlink{parson_8h_a2e9f04113d64e986c8b1e3fa7dc0b2e8}{json\_type}}   (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{263 \mbox{\hyperlink{structjson__object__t}{JSON\_Object}} *   \mbox{\hyperlink{parson_8h_ad1a6df9a743eaa95a38637b6adebaa2f}{json\_object}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{264 \mbox{\hyperlink{structjson__array__t}{JSON\_Array}}  *   \mbox{\hyperlink{parson_8h_a85ed43df4109463799be9467de3fad7b}{json\_array}}  (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{265 \textcolor{keyword}{const} \textcolor{keywordtype}{char}  *   \mbox{\hyperlink{structjson__string}{json\_string}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{266 \textcolor{keywordtype}{size\_t}          \mbox{\hyperlink{parson_8h_a0981c49381d7b5afbd4d99faf185cd06}{json\_string\_len}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}}); \textcolor{comment}{/* doesn't account for last null character */}}
+\DoxyCodeLine{267 \textcolor{keywordtype}{double}          \mbox{\hyperlink{parson_8h_a70d61224267692217c2907097e209be0}{json\_number}} (\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{268 \textcolor{keywordtype}{int}             \mbox{\hyperlink{parson_8h_a7083e59d4970797c4b0c4b630d4aa078}{json\_boolean}}(\textcolor{keyword}{const} \mbox{\hyperlink{structjson__value__t}{JSON\_Value}} *\mbox{\hyperlink{structjson__value__t_a96135d87b37e477357e5d43811aaa3f1}{value}});}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{271 \}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

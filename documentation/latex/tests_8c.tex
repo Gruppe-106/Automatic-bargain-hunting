@@ -1,0 +1,259 @@
+\hypertarget{tests_8c}{}\doxysection{parson/tests.c File Reference}
+\label{tests_8c}\index{parson/tests.c@{parson/tests.c}}
+{\ttfamily \#include \char`\"{}parson.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfailing__alloc}{failing\+\_\+alloc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tests_8c_a2c62004faf7ba7c7d0acf52422593f96}{TEST}}(A)
+\item 
+\#define \mbox{\hyperlink{tests_8c_acbb003157ff29c06d9f6375801b58947}{STREQ}}(A,  B)~((A) \&\& (B) ? strcmp((A), (B)) == 0 \+: 0)
+\item 
+\#define \mbox{\hyperlink{tests_8c_ab701824136346377b44fc3adb8050b29}{DBL\+\_\+\+EPSILON}}~2.\+2204460492503131e-\/16
+\item 
+\#define \mbox{\hyperlink{tests_8c_a73bb37e65dd591509faee8a5a9d9a6a3}{DBL\+\_\+\+EQ}}(a,  b)~(fabs((a) -\/ (b)) $<$ \mbox{\hyperlink{tests_8c_ab701824136346377b44fc3adb8050b29}{DBL\+\_\+\+EPSILON}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structfailing__alloc}{failing\+\_\+alloc}} \mbox{\hyperlink{tests_8c_a30872dd3db8716947670c9f177514c6c}{failing\+\_\+alloc\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tests_8c_abd913f592247efdb06795988ed709425}{test\+\_\+suite\+\_\+1}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a7f0aa00358108c1ebcdde73bb4599c56}{test\+\_\+suite\+\_\+2}} (\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+void \mbox{\hyperlink{tests_8c_a8f6c5fa3dc58896e2170b28e9cc45dfc}{test\+\_\+suite\+\_\+2\+\_\+no\+\_\+comments}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a6becdbd5089375066a690d54dad67d0f}{test\+\_\+suite\+\_\+2\+\_\+with\+\_\+comments}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a2889caf2f134f98d478fad07a1a5e476}{test\+\_\+suite\+\_\+3}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a960f6759a5fbda1a4fe7fe3cd536fe8c}{test\+\_\+suite\+\_\+4}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_abc526d7057387e0766626b22ea384d1c}{test\+\_\+suite\+\_\+5}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_ae6982a3d13c7ec61656ba5bcc176f95b}{test\+\_\+suite\+\_\+6}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a3675bd6781b21af107d37a46e3522862}{test\+\_\+suite\+\_\+7}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a383bd1c4adf3954d3aaf34ff3dd44903}{test\+\_\+suite\+\_\+8}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a423772f77d56e3b3ce8306bfd3f68a3d}{test\+\_\+suite\+\_\+9}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a3fe69fc96b6698048ab21be83d53860c}{test\+\_\+suite\+\_\+10}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a303aa42499966628722a1d75185da39e}{test\+\_\+suite\+\_\+11}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a75e2071c4dfd4e23a3a5c10fe9a84cdf}{test\+\_\+memory\+\_\+leaks}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_ae58525f5284b8924f6b4aad013af87d0}{test\+\_\+failing\+\_\+allocations}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_affd3f45bf955a2c98362e0fe068e70b1}{test\+\_\+custom\+\_\+number\+\_\+format}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_aaaa5b97c67670bae126ea2b2317ba014}{test\+\_\+custom\+\_\+number\+\_\+serialization\+\_\+function}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a2e53a072e95e141351fa4c8238236c64}{print\+\_\+commits\+\_\+info}} (const char $\ast$username, const char $\ast$repo)
+\item 
+void \mbox{\hyperlink{tests_8c_a5116be375e8941f77e39b9202e09807a}{persistence\+\_\+example}} (void)
+\item 
+void \mbox{\hyperlink{tests_8c_a527670e4b67b1b1232aaee12ef92e8ff}{serialization\+\_\+example}} (void)
+\item 
+const char $\ast$ \mbox{\hyperlink{tests_8c_a5057490230a1cece9e1603ca95107ad2}{get\+\_\+file\+\_\+path}} (const char $\ast$filename)
+\item 
+int \mbox{\hyperlink{tests_8c_a3215dc07c918a3c7e8caef67a308b322}{tests\+\_\+main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tests_8c_ab701824136346377b44fc3adb8050b29}\label{tests_8c_ab701824136346377b44fc3adb8050b29}} 
+\index{tests.c@{tests.c}!DBL\_EPSILON@{DBL\_EPSILON}}
+\index{DBL\_EPSILON@{DBL\_EPSILON}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{DBL\_EPSILON}{DBL\_EPSILON}}
+{\footnotesize\ttfamily \#define DBL\+\_\+\+EPSILON~2.\+2204460492503131e-\/16}
+
+\mbox{\Hypertarget{tests_8c_a73bb37e65dd591509faee8a5a9d9a6a3}\label{tests_8c_a73bb37e65dd591509faee8a5a9d9a6a3}} 
+\index{tests.c@{tests.c}!DBL\_EQ@{DBL\_EQ}}
+\index{DBL\_EQ@{DBL\_EQ}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{DBL\_EQ}{DBL\_EQ}}
+{\footnotesize\ttfamily \#define DBL\+\_\+\+EQ(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(fabs((a) -\/ (b)) $<$ \mbox{\hyperlink{tests_8c_ab701824136346377b44fc3adb8050b29}{DBL\+\_\+\+EPSILON}})}
+
+\mbox{\Hypertarget{tests_8c_acbb003157ff29c06d9f6375801b58947}\label{tests_8c_acbb003157ff29c06d9f6375801b58947}} 
+\index{tests.c@{tests.c}!STREQ@{STREQ}}
+\index{STREQ@{STREQ}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{STREQ}{STREQ}}
+{\footnotesize\ttfamily \#define STREQ(\begin{DoxyParamCaption}\item[{}]{A,  }\item[{}]{B }\end{DoxyParamCaption})~((A) \&\& (B) ? strcmp((A), (B)) == 0 \+: 0)}
+
+\mbox{\Hypertarget{tests_8c_a2c62004faf7ba7c7d0acf52422593f96}\label{tests_8c_a2c62004faf7ba7c7d0acf52422593f96}} 
+\index{tests.c@{tests.c}!TEST@{TEST}}
+\index{TEST@{TEST}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{TEST}{TEST}}
+{\footnotesize\ttfamily \#define TEST(\begin{DoxyParamCaption}\item[{}]{A }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{if (A) \{\(\backslash\)}
+\DoxyCodeLine{    g\_tests\_passed++;\(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{else} \{\(\backslash\)}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}\%d \%-\/72s -\/ FAILED\(\backslash\)n"{}}, \_\_LINE\_\_, \#A);\(\backslash\)}
+\DoxyCodeLine{    g\_tests\_failed++;\(\backslash\)}
+\DoxyCodeLine{\}\(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{tests_8c_a30872dd3db8716947670c9f177514c6c}\label{tests_8c_a30872dd3db8716947670c9f177514c6c}} 
+\index{tests.c@{tests.c}!failing\_alloc\_t@{failing\_alloc\_t}}
+\index{failing\_alloc\_t@{failing\_alloc\_t}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{failing\_alloc\_t}{failing\_alloc\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structfailing__alloc}{failing\+\_\+alloc}} \mbox{\hyperlink{tests_8c_a30872dd3db8716947670c9f177514c6c}{failing\+\_\+alloc\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tests_8c_a5057490230a1cece9e1603ca95107ad2}\label{tests_8c_a5057490230a1cece9e1603ca95107ad2}} 
+\index{tests.c@{tests.c}!get\_file\_path@{get\_file\_path}}
+\index{get\_file\_path@{get\_file\_path}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{get\_file\_path()}{get\_file\_path()}}
+{\footnotesize\ttfamily const char $\ast$ get\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a5116be375e8941f77e39b9202e09807a}\label{tests_8c_a5116be375e8941f77e39b9202e09807a}} 
+\index{tests.c@{tests.c}!persistence\_example@{persistence\_example}}
+\index{persistence\_example@{persistence\_example}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{persistence\_example()}{persistence\_example()}}
+{\footnotesize\ttfamily void persistence\+\_\+example (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a2e53a072e95e141351fa4c8238236c64}\label{tests_8c_a2e53a072e95e141351fa4c8238236c64}} 
+\index{tests.c@{tests.c}!print\_commits\_info@{print\_commits\_info}}
+\index{print\_commits\_info@{print\_commits\_info}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{print\_commits\_info()}{print\_commits\_info()}}
+{\footnotesize\ttfamily void print\+\_\+commits\+\_\+info (\begin{DoxyParamCaption}\item[{const char $\ast$}]{username,  }\item[{const char $\ast$}]{repo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a527670e4b67b1b1232aaee12ef92e8ff}\label{tests_8c_a527670e4b67b1b1232aaee12ef92e8ff}} 
+\index{tests.c@{tests.c}!serialization\_example@{serialization\_example}}
+\index{serialization\_example@{serialization\_example}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{serialization\_example()}{serialization\_example()}}
+{\footnotesize\ttfamily void serialization\+\_\+example (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_affd3f45bf955a2c98362e0fe068e70b1}\label{tests_8c_affd3f45bf955a2c98362e0fe068e70b1}} 
+\index{tests.c@{tests.c}!test\_custom\_number\_format@{test\_custom\_number\_format}}
+\index{test\_custom\_number\_format@{test\_custom\_number\_format}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_custom\_number\_format()}{test\_custom\_number\_format()}}
+{\footnotesize\ttfamily void test\+\_\+custom\+\_\+number\+\_\+format (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_aaaa5b97c67670bae126ea2b2317ba014}\label{tests_8c_aaaa5b97c67670bae126ea2b2317ba014}} 
+\index{tests.c@{tests.c}!test\_custom\_number\_serialization\_function@{test\_custom\_number\_serialization\_function}}
+\index{test\_custom\_number\_serialization\_function@{test\_custom\_number\_serialization\_function}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_custom\_number\_serialization\_function()}{test\_custom\_number\_serialization\_function()}}
+{\footnotesize\ttfamily void test\+\_\+custom\+\_\+number\+\_\+serialization\+\_\+function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_ae58525f5284b8924f6b4aad013af87d0}\label{tests_8c_ae58525f5284b8924f6b4aad013af87d0}} 
+\index{tests.c@{tests.c}!test\_failing\_allocations@{test\_failing\_allocations}}
+\index{test\_failing\_allocations@{test\_failing\_allocations}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_failing\_allocations()}{test\_failing\_allocations()}}
+{\footnotesize\ttfamily void test\+\_\+failing\+\_\+allocations (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a75e2071c4dfd4e23a3a5c10fe9a84cdf}\label{tests_8c_a75e2071c4dfd4e23a3a5c10fe9a84cdf}} 
+\index{tests.c@{tests.c}!test\_memory\_leaks@{test\_memory\_leaks}}
+\index{test\_memory\_leaks@{test\_memory\_leaks}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_memory\_leaks()}{test\_memory\_leaks()}}
+{\footnotesize\ttfamily void test\+\_\+memory\+\_\+leaks (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_abd913f592247efdb06795988ed709425}\label{tests_8c_abd913f592247efdb06795988ed709425}} 
+\index{tests.c@{tests.c}!test\_suite\_1@{test\_suite\_1}}
+\index{test\_suite\_1@{test\_suite\_1}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_1()}{test\_suite\_1()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+1 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a3fe69fc96b6698048ab21be83d53860c}\label{tests_8c_a3fe69fc96b6698048ab21be83d53860c}} 
+\index{tests.c@{tests.c}!test\_suite\_10@{test\_suite\_10}}
+\index{test\_suite\_10@{test\_suite\_10}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_10()}{test\_suite\_10()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+10 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a303aa42499966628722a1d75185da39e}\label{tests_8c_a303aa42499966628722a1d75185da39e}} 
+\index{tests.c@{tests.c}!test\_suite\_11@{test\_suite\_11}}
+\index{test\_suite\_11@{test\_suite\_11}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_11()}{test\_suite\_11()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+11 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a7f0aa00358108c1ebcdde73bb4599c56}\label{tests_8c_a7f0aa00358108c1ebcdde73bb4599c56}} 
+\index{tests.c@{tests.c}!test\_suite\_2@{test\_suite\_2}}
+\index{test\_suite\_2@{test\_suite\_2}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_2()}{test\_suite\_2()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a8f6c5fa3dc58896e2170b28e9cc45dfc}\label{tests_8c_a8f6c5fa3dc58896e2170b28e9cc45dfc}} 
+\index{tests.c@{tests.c}!test\_suite\_2\_no\_comments@{test\_suite\_2\_no\_comments}}
+\index{test\_suite\_2\_no\_comments@{test\_suite\_2\_no\_comments}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_2\_no\_comments()}{test\_suite\_2\_no\_comments()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+2\+\_\+no\+\_\+comments (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a6becdbd5089375066a690d54dad67d0f}\label{tests_8c_a6becdbd5089375066a690d54dad67d0f}} 
+\index{tests.c@{tests.c}!test\_suite\_2\_with\_comments@{test\_suite\_2\_with\_comments}}
+\index{test\_suite\_2\_with\_comments@{test\_suite\_2\_with\_comments}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_2\_with\_comments()}{test\_suite\_2\_with\_comments()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+2\+\_\+with\+\_\+comments (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a2889caf2f134f98d478fad07a1a5e476}\label{tests_8c_a2889caf2f134f98d478fad07a1a5e476}} 
+\index{tests.c@{tests.c}!test\_suite\_3@{test\_suite\_3}}
+\index{test\_suite\_3@{test\_suite\_3}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_3()}{test\_suite\_3()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+3 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a960f6759a5fbda1a4fe7fe3cd536fe8c}\label{tests_8c_a960f6759a5fbda1a4fe7fe3cd536fe8c}} 
+\index{tests.c@{tests.c}!test\_suite\_4@{test\_suite\_4}}
+\index{test\_suite\_4@{test\_suite\_4}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_4()}{test\_suite\_4()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+4 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_abc526d7057387e0766626b22ea384d1c}\label{tests_8c_abc526d7057387e0766626b22ea384d1c}} 
+\index{tests.c@{tests.c}!test\_suite\_5@{test\_suite\_5}}
+\index{test\_suite\_5@{test\_suite\_5}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_5()}{test\_suite\_5()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+5 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_ae6982a3d13c7ec61656ba5bcc176f95b}\label{tests_8c_ae6982a3d13c7ec61656ba5bcc176f95b}} 
+\index{tests.c@{tests.c}!test\_suite\_6@{test\_suite\_6}}
+\index{test\_suite\_6@{test\_suite\_6}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_6()}{test\_suite\_6()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+6 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a3675bd6781b21af107d37a46e3522862}\label{tests_8c_a3675bd6781b21af107d37a46e3522862}} 
+\index{tests.c@{tests.c}!test\_suite\_7@{test\_suite\_7}}
+\index{test\_suite\_7@{test\_suite\_7}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_7()}{test\_suite\_7()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+7 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a383bd1c4adf3954d3aaf34ff3dd44903}\label{tests_8c_a383bd1c4adf3954d3aaf34ff3dd44903}} 
+\index{tests.c@{tests.c}!test\_suite\_8@{test\_suite\_8}}
+\index{test\_suite\_8@{test\_suite\_8}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_8()}{test\_suite\_8()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+8 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a423772f77d56e3b3ce8306bfd3f68a3d}\label{tests_8c_a423772f77d56e3b3ce8306bfd3f68a3d}} 
+\index{tests.c@{tests.c}!test\_suite\_9@{test\_suite\_9}}
+\index{test\_suite\_9@{test\_suite\_9}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{test\_suite\_9()}{test\_suite\_9()}}
+{\footnotesize\ttfamily void test\+\_\+suite\+\_\+9 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tests_8c_a3215dc07c918a3c7e8caef67a308b322}\label{tests_8c_a3215dc07c918a3c7e8caef67a308b322}} 
+\index{tests.c@{tests.c}!tests\_main@{tests\_main}}
+\index{tests\_main@{tests\_main}!tests.c@{tests.c}}
+\doxysubsubsection{\texorpdfstring{tests\_main()}{tests\_main()}}
+{\footnotesize\ttfamily int tests\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
