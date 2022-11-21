@@ -2,6 +2,6 @@
 Very good, yes
 ```
 char* getShop() {
-    return 'Lidl';
+    return "Lidl";
 }
 ```
