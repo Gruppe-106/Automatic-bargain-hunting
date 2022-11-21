@@ -13,6 +13,6 @@ int main(void){
 void persistence_example(void) {
     JSON_Value  *salling = json_parse_file("./data/salling.json");
     JSON_Array  *clearences;
-    JSON_Object *;
+
 
 }
