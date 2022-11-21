@@ -1,3 +1,5 @@
 void main(int) {
-    return 1;
+    int test = 1;
+    int test2 = 2;
+    return 0;
 }
