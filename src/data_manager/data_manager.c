@@ -3,13 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "../../libs/parson/parson.h"
 
 // Private protoypes:
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 void free_item(Item_Type* item);
 void free_items(Item_Type* items, int item_count);
 
-// Definitions:
+// Declarations:
 /**
  * @brief Creates an item from a bunch of parameters. Remember to free this item.
  * @param name string, name of the item
@@ -61,19 +62,14 @@ Item_Type* create_items()
     /* Parses the file*/
     JSON_Value *salling = json_parse_file(file_name);
 
-    /* JSON variables */
-    JSON_Array *clearences,
-               *product_list;
-    JSON_Object *current_clearence,
-                *current_offer,
-                *current_store;
+    JSON_Array *clearences, *product_list;
+    JSON_Object *current_clearence, *current_offer, *current_store;
+    item **products;
 
-    /* Local variables */
-    Item_Type **items;
-    int offer_size,
-        num_of_products,
-        current_index = 0,
-        clearences_size;
+    int clearences_size;
+    int offer_size;
+    int num_of_products;
+    int current_index = 0;
 
     /* If file has been parsed unsuccessfully */
     if (json_value_get_type(salling) != JSONArray)
@@ -89,7 +85,6 @@ Item_Type* create_items()
     clearences_size = json_array_get_count (clearences);
 
 
-    /* Get amount of items */
     /* Get amount of products */
     for (int i = 0; i < clearences_size; i++)
     {
@@ -97,15 +92,11 @@ Item_Type* create_items()
         product_list      = json_object_get_array(current_clearence, "clearances");
         offer_size        = json_array_get_count(product_list);
         num_of_products   += offer_size;
-    }
-
-    /* Get items */
-    for (int i = 0; i < clearences_size; ++i) {
 
     }
 
-    /* Dynamically allocate for array of items */
-    items = (Item_Type**)malloc(sizeof(Item_Type) * num_of_products);
+    /* Dynamically allocate for array of products */
+    products = (item**)malloc(sizeof(item)*num_of_products);
 
     for (int i = 0; i < clearences_size; i++)
     {
@@ -125,7 +116,6 @@ Item_Type* create_items()
             current_offer = json_array_get_object(product_list, j);
 
             /* Reads the objetcs and creates a new product */
-            items[current_index] = create_item(
             products[current_index] = create_item(
                     json_object_dotget_string(current_offer,"product.description"),
                     json_object_get_string(current_store, "brand"),
@@ -139,8 +129,9 @@ Item_Type* create_items()
 
     }
 
-    print_products (items, num_of_products);
-    free_products  (items, num_of_products);
+
+    print_products (products,num_of_products);
+    free_products  (products,num_of_products);
 
     /* Frees the salling JSON value */
     json_value_free(salling);
