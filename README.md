@@ -46,10 +46,10 @@ gcc -v
 Goto https://www.mingw-w64.org/downloads/ and install the latest version
 ### Building
 ```
-gcc -g -w -Wall examples/example_1.c -o example_1 -lm 
+gcc -g -w -Wall examples/example_{num}.c -o example_{num} -lm
 ```
 ### Running
 In root open CMD and run
 ```
-example_1.exe "./data/salling.json" 
+example_{num}.exe "./data/salling.json"
 ```
