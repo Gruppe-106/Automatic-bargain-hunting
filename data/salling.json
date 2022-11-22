@@ -17,10 +17,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Stege & hele kødstykker>Flæskesteg & ribbenssteg",
+                        "da": "Koed & fisk>Grisekoed>Stege & hele koedstykker>Flaeskesteg & ribbenssteg",
                         "en": "Meat Fish>Pork>Roasted Whole Pork Pieces>Roasted Pork"
                     },
-                    "description": "KAMSTEG SALLING ØKO",
+                    "description": "KAMSTEG SALLING oeKO",
                     "ean": "267597",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/517490b3-8ac5-41f4-b1af-7d8e8a2ea4f4"
                 }
@@ -41,7 +41,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "FRUGTSALAT K-SALAT",
@@ -65,7 +65,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "KYLLINGESPYD SALLING",
@@ -89,7 +89,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
                     "description": "SOLSIKKERUGBR. KOHBERG",
@@ -113,7 +113,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Koteletter, flæsk & schnitzler",
+                        "da": "Koed & fisk>Grisekoed>Koteletter, flaesk & schnitzler",
                         "en": "Meat Fish>Pork>Pork Chops Pork Schnitzels"
                     },
                     "description": "PAN. SCHNITZEL SLAGTEREN",
@@ -137,7 +137,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Andre rugbrød",
+                        "da": "Broed & kager>Rugbroed>Andre rugbroed",
                         "en": "Bread And Cakes>Rye Breads>Other Rye Breads"
                     },
                     "description": "KARTOFFELRUGBR. KOHBERG",
@@ -161,7 +161,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
                     "description": "SKOVMAND I SK. SCHULSTAD",
@@ -185,10 +185,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skæreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skaereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese For Slicing"
                     },
-                    "description": "SKÆREOST 45+ ML SALLING ØKO",
+                    "description": "SKaeREOST 45+ ML SALLING oeKO",
                     "ean": "5707673107276",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7de10f0609a16c439a00365105458605"
                 }
@@ -209,7 +209,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "GRI OLIVEN MARI SALLING",
@@ -233,7 +233,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "PEPPADEW M OST SALLING",
@@ -257,10 +257,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
-                    "description": "MULTIKER.BOLLER LEVEBRØD",
+                    "description": "MULTIKER.BOLLER LEVEBRoeD",
                     "ean": "5701205005559",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/a114efae62223fcb6cd3f15cd55311e6"
                 }
@@ -281,10 +281,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Creme fraiche & kvark",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Creme fraiche & kvark",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Creme Fraiche Quark"
                     },
-                    "description": "CREME FRAI. 38% SALLING ØKO",
+                    "description": "CREME FRAI. 38% SALLING oeKO",
                     "ean": "5703985054338",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/6de387bc-352c-48a4-9b33-400453b42588"
                 }
@@ -305,7 +305,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
                     "description": "CORDON BLEU SLAGTEREN",
@@ -329,7 +329,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "ØKO SKÆREOST ML KLOVBORG",
+                    "description": "oeKO SKaeREOST ML KLOVBORG",
                     "ean": "5711953157103",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/07522d90-7bf1-4d3e-9a7b-5a3d794662c7"
                 }
@@ -350,7 +350,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "OLIVENTAPENADE PRINCIP",
@@ -374,10 +374,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
-                    "description": "SURDEJS RUG KLA SALLING ØKO",
+                    "description": "SURDEJS RUG KLA SALLING oeKO",
                     "ean": "5712874935702",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/93670aea-8e15-40c2-a5fd-c8d940d9e5d7"
                 }
@@ -398,7 +398,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "SERRANORULLER SALLING",
@@ -422,10 +422,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Smøreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Smoereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cream Cheese"
                     },
-                    "description": "FLØDEOST DILD S. PRINCIP",
+                    "description": "FLoeDEOST DILD S. PRINCIP",
                     "ean": "5712875295768",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/bf4398d825e3dc724e983b5b0125c69a"
                 }
@@ -446,10 +446,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "BAGERENS RUGBRØ KOHBERG",
+                    "description": "BAGERENS RUGBRoe KOHBERG",
                     "ean": "5701246016743",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1a505359-5b07-4401-987b-23ffdadd0542"
                 }
@@ -470,10 +470,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "KERNEGROV LEVEBRØD.",
+                    "description": "KERNEGROV LEVEBRoeD.",
                     "ean": "5701205002015",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/a04dab4f-8ca7-4307-b68f-6aa97f829eb0"
                 }
@@ -494,10 +494,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "PROTEIN BRØD KOHBERG",
+                    "description": "PROTEIN BRoeD KOHBERG",
                     "ean": "5726866108500",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ec6a45e8-cae0-40c3-af14-63ec6a4bb793"
                 }
@@ -518,10 +518,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
-                    "description": "LEVAIN PÅGEN",
+                    "description": "LEVAIN PaaGEN",
                     "ean": "7311070031959",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2a235481-a5e6-4d9c-9d94-78b64e1d7552"
                 }
@@ -542,10 +542,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Andre rugbrød",
+                        "da": "Broed & kager>Rugbroed>Andre rugbroed",
                         "en": "Bread And Cakes>Rye Breads>Other Rye Breads"
                     },
-                    "description": "SLESVIGERBRØD SCHULSTAD",
+                    "description": "SLESVIGERBRoeD SCHULSTAD",
                     "ean": "5701205175061",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/03c61aac-0f18-4583-b614-c9d6ed0f6093"
                 }
@@ -566,10 +566,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Hele brød",
+                        "da": "Broed & kager>Lyst & groft broed>Hele broed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Whole Breads"
                     },
-                    "description": "SØDM.FRANSKBRØ SCHULSTAD",
+                    "description": "SoeDM.FRANSKBRoe SCHULSTAD",
                     "ean": "5701205004873",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2a7d8777-adc5-468f-a2f6-720f4e07f02d"
                 }
@@ -590,10 +590,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "GILLELEJE HAVN SIGNATURBRØD",
+                    "description": "GILLELEJE HAVN SIGNATURBRoeD",
                     "ean": "5701205008994",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/82b490e7-c32b-4c59-98dd-14f69b540023"
                 }
@@ -614,10 +614,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
-                    "description": "SOLSIKKERUGBRØD KOHBERG",
+                    "description": "SOLSIKKERUGBRoeD KOHBERG",
                     "ean": "5701246022003",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/72eb6c2f-4add-4b50-98b9-b980feea2360"
                 }
@@ -638,10 +638,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Hele brød",
+                        "da": "Broed & kager>Lyst & groft broed>Hele broed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Whole Breads"
                     },
-                    "description": "YOGHURTBRØD KOHBERG",
+                    "description": "YOGHURTBRoeD KOHBERG",
                     "ean": "5701246105201",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/f977a56c-6d18-429b-ad58-16b0d593a3f2"
                 }
@@ -662,10 +662,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Gulerodsrugbrød",
+                        "da": "Broed & kager>Rugbroed>Gulerodsrugbroed",
                         "en": "Bread And Cakes>Rye Breads>Rye Breads With Carrots"
                     },
-                    "description": "GULERODSBRØD DET GODE",
+                    "description": "GULERODSBRoeD DET GODE",
                     "ean": "5701205009731",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/35609beb-1511-4902-b25f-0cca360ec2c2"
                 }
@@ -686,7 +686,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Gulerodsrugbrød",
+                        "da": "Broed & kager>Rugbroed>Gulerodsrugbroed",
                         "en": "Bread And Cakes>Rye Breads>Rye Breads With Carrots"
                     },
                     "description": "GULERODSRUGBR DET GODE",
@@ -710,10 +710,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Andre rugbrød",
+                        "da": "Broed & kager>Rugbroed>Andre rugbroed",
                         "en": "Bread And Cakes>Rye Breads>Other Rye Breads"
                     },
-                    "description": "BONDEBRØD SALLING",
+                    "description": "BONDEBRoeD SALLING",
                     "ean": "5712874822156",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/6a72ddbf-3d12-414b-8e11-3be514ee0fe5"
                 }
@@ -734,10 +734,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
-                    "description": "SKYRBOLLE LEVEBRØD",
+                    "description": "SKYRBOLLE LEVEBRoeD",
                     "ean": "5701205007195",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2e0d50ac-7bbb-4b1d-9134-0e7513abe981"
                 }
@@ -758,10 +758,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skæreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skaereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese For Slicing"
                     },
-                    "description": "ØKO 45+ ML 470G KLOVBORG",
+                    "description": "oeKO 45+ ML 470G KLOVBORG",
                     "ean": "5711953112843",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/d7e342e4-05a9-4b1e-bfb8-2eddc4cc071b"
                 }
@@ -782,7 +782,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Frikadeller & andet kødpålæg",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Frikadeller & andet koedpaalaeg",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Meat Ball Toppings Other Toppings"
                     },
                     "description": "KYL.DELLER DDFG",
@@ -806,7 +806,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "PASSIONFROMAGE DR. OETKER",
@@ -830,7 +830,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "FULDK. SANDWICH SALLING",
@@ -854,7 +854,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "CITRONFROMAGE DR. OETKER",
@@ -878,10 +878,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Pesto & hummus",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Pesto & hummus",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Pesto Hummus"
                     },
-                    "description": "RØD PESTO PRINCIP",
+                    "description": "RoeD PESTO PRINCIP",
                     "ean": "5712875050220",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ddc935f7-ade5-4ba5-875f-e60bcbfd2439"
                 }
@@ -902,7 +902,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skæreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skaereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese For Slicing"
                     },
                     "description": "45+ML M/K DANBO RIBERHUS",
@@ -926,7 +926,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Drikkevarer>Juice & smoothies>Frugt- & grøntsagsshots",
+                        "da": "Drikkevarer>Juice & smoothies>Frugt- & groentsagsshots",
                         "en": "Beverages>Juice Smoothies>Fruit Shots Vegetable Shots"
                     },
                     "description": "MULTISHOT LUNDBERG",
@@ -950,7 +950,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Kefir",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Kefir",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Kephir"
                     },
                     "description": "CULTURA KEFIR",
@@ -974,10 +974,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Kolde kaffedrikke & kakao",
+                        "da": "Mejeri & koel>Mejeri>Kolde kaffedrikke & kakao",
                         "en": "Dairy And Cold Storage>Dairy>Cold Coffee Drinks Cacao"
                     },
-                    "description": "CHOCOMEL KAKAOMÆLK",
+                    "description": "CHOCOMEL KAKAOMaeLK",
                     "ean": "5410438042414",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/3d92f89e-956a-4687-8950-3663a93de20b"
                 }
@@ -998,10 +998,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Drikke- & børneyoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Drikke- & boerneyoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Drinking Yoghurt Kids Yoghurt"
                     },
-                    "description": "DRIK HINDB/BLÅB YOGGI",
+                    "description": "DRIK HINDB/BLaaB YOGGI",
                     "ean": "8718166007963",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/c0e5be00-8c35-43b4-ba14-8d98c96a6319"
                 }
@@ -1022,7 +1022,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Sandwiches & wraps",
+                        "da": "Mejeri & koel>Faerdigretter>Sandwiches & wraps",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Sandwiches Wraps"
                     },
                     "description": "SANDW. KYLLING BY KAVSMAN",
@@ -1046,10 +1046,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Måltidssalater",
+                        "da": "Mejeri & koel>Faerdigretter>Maaltidssalater",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Salads"
                     },
-                    "description": "PASTA SPICY SALLING ØKO",
+                    "description": "PASTA SPICY SALLING oeKO",
                     "ean": "5712874595715",
                     "image": null
                 }
@@ -1070,7 +1070,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Sandwiches & wraps",
+                        "da": "Mejeri & koel>Faerdigretter>Sandwiches & wraps",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Sandwiches Wraps"
                     },
                     "description": "SANDW. TOM/MOZ BY KAVSMAN",
@@ -1094,7 +1094,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "CHIA M/MANGO TPK",
@@ -1142,7 +1142,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Sandwiches & wraps",
+                        "da": "Mejeri & koel>Faerdigretter>Sandwiches & wraps",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Sandwiches Wraps"
                     },
                     "description": "SANDW. SKI/OST BY KAVSMAN",
@@ -1166,10 +1166,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Specialpølser",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Specialpoelser",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Sausages Specialities"
                     },
-                    "description": "TAPAS SALAMI AALBÆK",
+                    "description": "TAPAS SALAMI AALBaeK",
                     "ean": "5704080958972",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/8b3f5e29-6d2d-43ca-8582-7f37ce864c5c"
                 }
@@ -1190,7 +1190,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Måltidssalater",
+                        "da": "Mejeri & koel>Faerdigretter>Maaltidssalater",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Salads"
                     },
                     "description": "ASIAN PASTA TPK",
@@ -1214,7 +1214,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Bacon>Bacon i skiver",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Bacon>Bacon i skiver",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Bacon>Sliced Bacon"
                     },
                     "description": "KYLLINGE BACON SALLING",
@@ -1238,10 +1238,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Mælk>Skummetmælk",
+                        "da": "Mejeri & koel>Mejeri>Maelk>Skummetmaelk",
                         "en": "Dairy And Cold Storage>Dairy>Milk>Nonfat Milk"
                     },
-                    "description": "ØKO SKUMMETMÆLK NATURMÆLK",
+                    "description": "oeKO SKUMMETMaeLK NATURMaeLK",
                     "ean": "5701852261537",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ca07b003-7e8a-4248-8aa3-38bba493f9cb"
                 }
@@ -1262,7 +1262,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
                     "description": "KOKOS SKYR YOG. CHEASY",
@@ -1286,7 +1286,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "BACON-PEBER 300 G",
@@ -1310,10 +1310,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
-                    "description": "BURGERBØFFER LUDVIG",
+                    "description": "BURGERBoeFFER LUDVIG",
                     "ean": "5701050412212",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/50c9bdaff9d64ebdf5dde70b678d6f80"
                 }
@@ -1334,7 +1334,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Spareribs & barbecuekød",
+                        "da": "Koed & fisk>Spareribs & barbecuekoed",
                         "en": "Meat Fish>spareribs Barbecue Meat"
                     },
                     "description": "KALVE RIBS BOOST",
@@ -1358,10 +1358,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
-                    "description": "JORDBÆR YOGHURT YOGGI",
+                    "description": "JORDBaeR YOGHURT YOGGI",
                     "ean": "5700426220024",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/acc23126-1753-4e5c-b94d-e139e7675b94"
                 }
@@ -1382,7 +1382,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
                     "description": "DGR. SOLSIKKE DET GODE",
@@ -1406,7 +1406,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Mozarella",
+                        "da": "Mejeri & koel>Mejeri>Ost>Mozarella",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Mozarella"
                     },
                     "description": "MINIKUGLER GALBANI",
@@ -1430,10 +1430,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Hakket grise- & kalvekød",
+                        "da": "Koed & fisk>Grisekoed>Hakket grise- & kalvekoed",
                         "en": "Meat Fish>Pork>Minced Pork Veal"
                     },
-                    "description": "FARSBRØD SLAGTERMEST.",
+                    "description": "FARSBRoeD SLAGTERMEST.",
                     "ean": "8713279263428",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/089d9480-be65-4575-b24d-ccbede609df2"
                 }
@@ -1454,10 +1454,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
-                    "description": "GRÆSK GYROS SLAGTEREN",
+                    "description": "GRaeSK GYROS SLAGTEREN",
                     "ean": "5707196297515",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7222eed2-ace5-4e8d-83e2-3bc30538e1a6"
                 }
@@ -1478,7 +1478,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Andet grisekød",
+                        "da": "Koed & fisk>Grisekoed>Andet grisekoed",
                         "en": "Meat Fish>Pork>Other Pork"
                     },
                     "description": "SPARERIBS SLAGTEREN",
@@ -1502,7 +1502,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
                     "description": "VEGGIE NUDELRET DGS",
@@ -1526,10 +1526,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Plantebaserede alternativer>Mælkealternativer",
+                        "da": "Mejeri & koel>Mejeri>Plantebaserede alternativer>Maelkealternativer",
                         "en": "Dairy And Cold Storage>Dairy>Plant Based Alternatives>Plant Based Milk Alternatives"
                     },
-                    "description": "ØKOLOGISK MÆLK NATURMÆLK",
+                    "description": "oeKOLOGISK MaeLK NATURMaeLK",
                     "ean": "5701852259152",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/b5f36af4-32ce-42f9-8c3d-215516001e74"
                 }
@@ -1550,10 +1550,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Andet grisekød",
+                        "da": "Koed & fisk>Grisekoed>Andet grisekoed",
                         "en": "Meat Fish>Pork>Other Pork"
                     },
-                    "description": "SVINEKÆBER SLAGTEREN",
+                    "description": "SVINEKaeBER SLAGTEREN",
                     "ean": "5707735939500",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/53cdfa90-6003-4186-b356-cc51ae377642"
                 }
@@ -1574,7 +1574,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "KINDER CHOCO 5-PAK",
@@ -1656,7 +1656,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "PØLSER",
+                    "description": "PoeLSER",
                     "ean": "250411",
                     "image": null
                 }
@@ -1677,7 +1677,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "FRANKFURTER GRILLPØLSE",
+                    "description": "FRANKFURTER GRILLPoeLSE",
                     "ean": "250478",
                     "image": null
                 }
@@ -1740,7 +1740,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Stege & hele kødstykker>Nakkefilet & svinekam",
+                        "da": "Koed & fisk>Grisekoed>Stege & hele koedstykker>Nakkefilet & svinekam",
                         "en": "Meat Fish>Pork>Roasted Whole Pork Pieces>Pork Neck Pork Loin"
                     },
                     "description": "NAKKEFILET SLAGTEREN",
@@ -1764,10 +1764,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
-                    "description": "MØRBRAD FAD",
+                    "description": "MoeRBRAD FAD",
                     "ean": "258436",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/af982818-3e8b-42f3-978a-504bdb31cf90"
                 }
@@ -1788,10 +1788,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
-                    "description": "MÆLKESNIT 5-PAK KINDER",
+                    "description": "MaeLKESNIT 5-PAK KINDER",
                     "ean": "40084794",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/09be2c82-e39d-4909-8da4-c5da79516316"
                 }
@@ -1812,10 +1812,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Frost>Kød & fisk>Grisekød",
+                        "da": "Frost>Koed & fisk>Grisekoed",
                         "en": "Frozen Products>Frozen Meat Fish>Frozen Pork"
                     },
-                    "description": "PAN. SCHNITZEL KÆMPEPOSEN",
+                    "description": "PAN. SCHNITZEL KaeMPEPOSEN",
                     "ean": "5712875386473",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/bc47cc8d-1cec-444d-b2e4-587173a58356"
                 }
@@ -1836,10 +1836,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
-                    "description": "BURGERBØFFER LUDVIG",
+                    "description": "BURGERBoeFFER LUDVIG",
                     "ean": "5701050412212",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/50c9bdaff9d64ebdf5dde70b678d6f80"
                 }
@@ -1860,10 +1860,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "KERNEGROV LEVEBRØD.",
+                    "description": "KERNEGROV LEVEBRoeD.",
                     "ean": "5701205002015",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/a04dab4f-8ca7-4307-b68f-6aa97f829eb0"
                 }
@@ -1884,10 +1884,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Gulerodsrugbrød",
+                        "da": "Broed & kager>Rugbroed>Gulerodsrugbroed",
                         "en": "Bread And Cakes>Rye Breads>Rye Breads With Carrots"
                     },
-                    "description": "GULERODSBRØD DET GODE",
+                    "description": "GULERODSBRoeD DET GODE",
                     "ean": "5701205009731",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/35609beb-1511-4902-b25f-0cca360ec2c2"
                 }
@@ -1908,7 +1908,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skæreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skaereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese For Slicing"
                     },
                     "description": "45+ML M/K DANBO KLOVBORG",
@@ -1932,7 +1932,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "FULDKORNSTOAST SALLING",
@@ -1956,7 +1956,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Skinkesalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Skinkesalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Pork Mayo Salads"
                     },
                     "description": "SKINKESALAT PRINCIP!",
@@ -1980,10 +1980,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
-                    "description": "MULTIKER.SANDW LEVEBRØD",
+                    "description": "MULTIKER.SANDW LEVEBRoeD",
                     "ean": "5701205005542",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1a655398-14e9-4264-b53f-3af867e7907b"
                 }
@@ -2004,7 +2004,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Frikadeller & andet kødpålæg",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Frikadeller & andet koedpaalaeg",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Meat Ball Toppings Other Toppings"
                     },
                     "description": "KYL.DELLER DDFG",
@@ -2028,10 +2028,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
-                    "description": "SURDEJS RUG KLA SALLING ØKO",
+                    "description": "SURDEJS RUG KLA SALLING oeKO",
                     "ean": "5712874935702",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/93670aea-8e15-40c2-a5fd-c8d940d9e5d7"
                 }
@@ -2052,10 +2052,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
-                    "description": "MULTIKER.BOLLER LEVEBRØD",
+                    "description": "MULTIKER.BOLLER LEVEBRoeD",
                     "ean": "5701205005559",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/a114efae62223fcb6cd3f15cd55311e6"
                 }
@@ -2076,10 +2076,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Medister",
+                        "da": "Koed & fisk>Grisekoed>Medister",
                         "en": "Meat Fish>Pork>Thick Sausages"
                     },
-                    "description": "MEDISTER SALLING ØKO",
+                    "description": "MEDISTER SALLING oeKO",
                     "ean": "5707196281675",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/d38c196a-2e33-4460-8686-11f38258593e"
                 }
@@ -2100,7 +2100,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Andet grisekød",
+                        "da": "Koed & fisk>Grisekoed>Andet grisekoed",
                         "en": "Meat Fish>Pork>Other Pork"
                     },
                     "description": "SPARERIBS SLAGTEREN",
@@ -2124,7 +2124,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Mozarella",
+                        "da": "Mejeri & koel>Mejeri>Ost>Mozarella",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Mozarella"
                     },
                     "description": "MOZZARELLA MAXI GALBANI",
@@ -2148,7 +2148,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skimmelost & brie",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skimmelost & brie",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Blue Cheese Brie"
                     },
                     "description": "FRANSK BRIE PRÉSIDENT",
@@ -2172,10 +2172,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Hele brød",
+                        "da": "Broed & kager>Lyst & groft broed>Hele broed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Whole Breads"
                     },
-                    "description": "SKAGENSBRØD SCHULSTAD",
+                    "description": "SKAGENSBRoeD SCHULSTAD",
                     "ean": "5701205005467",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/60cbec31-0726-4d69-8df2-6cc840f6c83e"
                 }
@@ -2196,10 +2196,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "SOFTKERNEBRØD SALLING",
+                    "description": "SOFTKERNEBRoeD SALLING",
                     "ean": "5712871634608",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/bed5e7cf-d0dc-427a-9e0c-b9f876227e48"
                 }
@@ -2220,10 +2220,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Hele brød",
+                        "da": "Broed & kager>Lyst & groft broed>Hele broed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Whole Breads"
                     },
-                    "description": "SOLSIKKEBRØD SCHULSTAD",
+                    "description": "SOLSIKKEBRoeD SCHULSTAD",
                     "ean": "5701205009748",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/96888776bda7e35fa93d331a716c86c7"
                 }
@@ -2244,10 +2244,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Hele brød",
+                        "da": "Broed & kager>Lyst & groft broed>Hele broed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Whole Breads"
                     },
-                    "description": "SØDM.FRANSKBRØ SCHULSTAD",
+                    "description": "SoeDM.FRANSKBRoe SCHULSTAD",
                     "ean": "5701205004873",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2a7d8777-adc5-468f-a2f6-720f4e07f02d"
                 }
@@ -2268,7 +2268,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
                     "description": "FULDKORNSRUGB. SALLING",
@@ -2292,10 +2292,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
-                    "description": "ØKO SOLSIKKEBR. DET GODE",
+                    "description": "oeKO SOLSIKKEBR. DET GODE",
                     "ean": "5701205009281",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1c10079f-de88-45cf-9e2f-fc049ab3db4b"
                 }
@@ -2316,7 +2316,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Kolde kaffedrikke & kakao",
+                        "da": "Mejeri & koel>Mejeri>Kolde kaffedrikke & kakao",
                         "en": "Dairy And Cold Storage>Dairy>Cold Coffee Drinks Cacao"
                     },
                     "description": "CAPPUCI ISKAFFE",
@@ -2340,7 +2340,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "FRA. LET POSTEJ STRYHNS",
@@ -2364,7 +2364,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "GROV SANDWICH SCHULSTAD",
@@ -2388,7 +2388,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Plantebaserede alternativer>Yoghurtalternativer",
+                        "da": "Mejeri & koel>Mejeri>Plantebaserede alternativer>Yoghurtalternativer",
                         "en": "Dairy And Cold Storage>Dairy>Plant Based Alternatives>Plant Based Yoghurt Alternatives"
                     },
                     "description": "SOYA NATUREL ALPRO",
@@ -2412,10 +2412,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Drikke- & børneyoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Drikke- & boerneyoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Drinking Yoghurt Kids Yoghurt"
                     },
-                    "description": "DRIK HINDB/BLÅB YOGGI",
+                    "description": "DRIK HINDB/BLaaB YOGGI",
                     "ean": "8718166007963",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/c0e5be00-8c35-43b4-ba14-8d98c96a6319"
                 }
@@ -2436,7 +2436,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
                     "description": "GULERODSBOLLER SALLING",
@@ -2460,7 +2460,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Skinkesalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Skinkesalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Pork Mayo Salads"
                     },
                     "description": "FIN SKINKESALAT K-SALAT",
@@ -2484,10 +2484,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
-                    "description": "SKYRBOLLE LEVEBRØD",
+                    "description": "SKYRBOLLE LEVEBRoeD",
                     "ean": "5701205007195",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2e0d50ac-7bbb-4b1d-9134-0e7513abe981"
                 }
@@ -2508,7 +2508,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
                     "description": "DGR. SOLSIKKE DET GODE",
@@ -2532,7 +2532,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
                     "description": "SOLSIKKERUGBR. KOHBERG",
@@ -2556,7 +2556,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Kolde kaffedrikke & kakao",
+                        "da": "Mejeri & koel>Mejeri>Kolde kaffedrikke & kakao",
                         "en": "Dairy And Cold Storage>Dairy>Cold Coffee Drinks Cacao"
                     },
                     "description": "WEINER ISKAFFE",
@@ -2617,7 +2617,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skimmelost & brie",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skimmelost & brie",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Blue Cheese Brie"
                     },
                     "description": "BRIE INTENSE PRÉSIDENT",
@@ -2641,10 +2641,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Frisk pasta>Frisk pasta med fyld",
+                        "da": "Mejeri & koel>Frisk pasta>Frisk pasta med fyld",
                         "en": "Dairy And Cold Storage>Fresh Pasta>Fresh Pasta With Fillings"
                     },
-                    "description": "ØKO RAVIOLI NATURLI'",
+                    "description": "oeKO RAVIOLI NATURLI'",
                     "ean": "5701977000196",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7725a3f49cd0a5cbefa537312083e152"
                 }
@@ -2665,7 +2665,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "FRANSK POSTEJ STRYHNS",
@@ -2709,7 +2709,7 @@
                     "stockUnit": "each"
                 },
                 "product": {
-                    "description": "COTTO ØKO NATURLI'",
+                    "description": "COTTO oeKO NATURLI'",
                     "ean": "5701977061340",
                     "image": null
                 }
@@ -2730,7 +2730,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Hønse- & kyllingesalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Hoense- & kyllingesalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Poultry Mayo Salads"
                     },
                     "description": "CLUB SANDWICH K-SALAT",
@@ -2754,7 +2754,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Feta & salatost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Feta & salatost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Salat Cheese"
                     },
                     "description": "SALATOST PUCK",
@@ -2778,10 +2778,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Pølser>Cocktail- & brunchpølser",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Poelser>Cocktail- & brunchpoelser",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Sausages>Cocktail Sausages Brunch Sausages"
                     },
-                    "description": "COCKTAILPØLSER KÆMPEKØB",
+                    "description": "COCKTAILPoeLSER KaeMPEKoeB",
                     "ean": "5712874966737",
                     "image": null
                 }
@@ -2802,7 +2802,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Specialpålæg",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Specialpaalaeg",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Cold Cuts Specialities"
                     },
                     "description": "BACH SCHINKEN BACH",
@@ -2847,7 +2847,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Bacon>Bacon i tern",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Bacon>Bacon i tern",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Bacon>Chopped Bacon Bits"
                     },
                     "description": "BACONTERN TULIP",
@@ -2871,7 +2871,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "FRANSK POSTEJ STRYHNS",
@@ -2895,7 +2895,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Frisk pasta>Frisk pasta med fyld",
+                        "da": "Mejeri & koel>Frisk pasta>Frisk pasta med fyld",
                         "en": "Dairy And Cold Storage>Fresh Pasta>Fresh Pasta With Fillings"
                     },
                     "description": "FALAFEL SPIR",
@@ -2919,10 +2919,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Medister",
+                        "da": "Koed & fisk>Grisekoed>Medister",
                         "en": "Meat Fish>Pork>Thick Sausages"
                     },
-                    "description": "ØKO MEDISTER ØGO",
+                    "description": "oeKO MEDISTER oeGO",
                     "ean": "5707196264654",
                     "image": null
                 }
@@ -2943,10 +2943,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Saucer & dressinger>Sauce",
+                        "da": "Mejeri & koel>Saucer & dressinger>Sauce",
                         "en": "Dairy And Cold Storage>Sauces Dressings>Sauce"
                     },
-                    "description": "BUTTERCHI SAUCE LØGISMOSE",
+                    "description": "BUTTERCHI SAUCE LoeGISMOSE",
                     "ean": "5713507050267",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/48a71f93f4f49df0482e5ed607585cae"
                 }
@@ -2967,10 +2967,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Plantebaserede alternativer>Mælkealternativer",
+                        "da": "Mejeri & koel>Mejeri>Plantebaserede alternativer>Maelkealternativer",
                         "en": "Dairy And Cold Storage>Dairy>Plant Based Alternatives>Plant Based Milk Alternatives"
                     },
-                    "description": "MANDEL DRIK ØKO NATURLI'",
+                    "description": "MANDEL DRIK oeKO NATURLI'",
                     "ean": "5701977001438",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/3b8a045f9493b8825b277d6b1b763556"
                 }
@@ -2991,10 +2991,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Plantebaserede alternativer>Yoghurtalternativer",
+                        "da": "Mejeri & koel>Mejeri>Plantebaserede alternativer>Yoghurtalternativer",
                         "en": "Dairy And Cold Storage>Dairy>Plant Based Alternatives>Plant Based Yoghurt Alternatives"
                     },
-                    "description": "BLÅBÆR ALPRO",
+                    "description": "BLaaBaeR ALPRO",
                     "ean": "5411188110743",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/4a606174-5bee-4b75-a57a-0474e5f8cbbf"
                 }
@@ -3039,10 +3039,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Koldskål",
+                        "da": "Mejeri & koel>Mejeri>Koldskaal",
                         "en": "Dairy And Cold Storage>Dairy>Cold Butter Milk Soup"
                     },
-                    "description": "KOLDSKÅL ARLA",
+                    "description": "KOLDSKaaL ARLA",
                     "ean": "5700426295008",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ac09bdb7-5989-4f30-a08d-f409c61d5172"
                 }
@@ -3063,7 +3063,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Kolde kaffedrikke & kakao",
+                        "da": "Mejeri & koel>Mejeri>Kolde kaffedrikke & kakao",
                         "en": "Dairy And Cold Storage>Dairy>Cold Coffee Drinks Cacao"
                     },
                     "description": "CAFE LATTE STARBUCKS",
@@ -3087,7 +3087,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Koteletter, flæsk & schnitzler",
+                        "da": "Koed & fisk>Grisekoed>Koteletter, flaesk & schnitzler",
                         "en": "Meat Fish>Pork>Pork Chops Pork Schnitzels"
                     },
                     "description": "SKAFTKOTELETTER VELSMAG",
@@ -3132,10 +3132,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri & køl>Mejeri>Mejeri>Plantebaserede alternativer>Plantebaserede alternativer>Mælkealternativer",
+                        "da": "Mejeri & koel>Mejeri & koel>Mejeri>Mejeri>Plantebaserede alternativer>Plantebaserede alternativer>Maelkealternativer",
                         "en": "Dairy And Cold Storage>Dairy And Cold Storage>Dairy>Dairy>Plant Based Alternatives>Plant Based Alternatives>Plant Based Milk Alternatives"
                     },
-                    "description": "ØKO HAVREDRIK OATLY",
+                    "description": "oeKO HAVREDRIK OATLY",
                     "ean": "7394376615665",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/a9a3e8cf-0aae-4307-8703-7ee1a68cac48"
                 }
@@ -3156,10 +3156,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Hytteost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Hytteost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cottage Cheese"
                     },
-                    "description": "HYTTEOST ØGO",
+                    "description": "HYTTEOST oeGO",
                     "ean": "5705425003500",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/20a2a71b-edf4-4e2d-9147-62ff2b7d68fc"
                 }
@@ -3201,10 +3201,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Måltidssalater",
+                        "da": "Mejeri & koel>Faerdigretter>Maaltidssalater",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Salads"
                     },
-                    "description": "PASTA KYL/PEBER NÆMT",
+                    "description": "PASTA KYL/PEBER NaeMT",
                     "ean": "5712872992677",
                     "image": null
                 }
@@ -3267,7 +3267,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skimmelost & brie",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skimmelost & brie",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Blue Cheese Brie"
                     },
                     "description": "SKIMMELOST 41% BLUE DREAM",
@@ -3291,10 +3291,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
-                    "description": "RULLEPØLSE STF HOULBERG",
+                    "description": "RULLEPoeLSE STF HOULBERG",
                     "ean": "5707196303483",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/f1541eb3dc5b1d513454331b4bc629f2"
                 }
@@ -3315,7 +3315,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Kiks & knækbrød>Knækbrød",
+                        "da": "Broed & kager>Kiks & knaekbroed>Knaekbroed",
                         "en": "Bread And Cakes>Crackers Crisp Bread>Crisp Bread"
                     },
                     "description": "FRANSKE URTER WASA",
@@ -3339,7 +3339,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Hønse- & kyllingesalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Hoense- & kyllingesalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Poultry Mayo Salads"
                     },
                     "description": "KYLLING /BAC K-SALAT",
@@ -3363,10 +3363,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
-                    "description": "KROSPEGEPØLSE DELIKA",
+                    "description": "KROSPEGEPoeLSE DELIKA",
                     "ean": "5705333099923",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/be3d9c5f-f8dc-4928-8c02-fa5ffde3f2b5"
                 }
@@ -3476,7 +3476,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
                     "description": "SKOVMAND SCHULSTAD",
@@ -3500,10 +3500,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "KERNERUGBRØD ØGO",
+                    "description": "KERNERUGBRoeD oeGO",
                     "ean": "5712872401629",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/72d88773-66d6-4e53-8fae-6dee49e01edc"
                 }
@@ -3524,10 +3524,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Hønse- & kyllingesalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Hoense- & kyllingesalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Poultry Mayo Salads"
                     },
-                    "description": "HØNSESALAT PLUK K-SALAT",
+                    "description": "HoeNSESALAT PLUK K-SALAT",
                     "ean": "5701018041911",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2af868e4-5b46-4aac-b734-d9aede677c58"
                 }
@@ -3548,7 +3548,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Koteletter, flæsk & schnitzler",
+                        "da": "Koed & fisk>Grisekoed>Koteletter, flaesk & schnitzler",
                         "en": "Meat Fish>Pork>Pork Chops Pork Schnitzels"
                     },
                     "description": "SKINKESCHNITZEL VELSMAG",
@@ -3571,7 +3571,7 @@
                     "stockUnit": "each"
                 },
                 "product": {
-                    "description": "CORDON BLEU DET HURT.KØK",
+                    "description": "CORDON BLEU DET HURT.KoeK",
                     "ean": "5712875342370",
                     "image": null
                 }
@@ -3592,7 +3592,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Fiske- & skaldyrssalat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Fiske- & skaldyrssalat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Fish Mayo Salads"
                     },
                     "description": "SPICY TUNSALAT K-SALAT",
@@ -3616,10 +3616,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Saucer & dressinger>Sauce",
+                        "da": "Mejeri & koel>Saucer & dressinger>Sauce",
                         "en": "Dairy And Cold Storage>Sauces Dressings>Sauce"
                     },
-                    "description": "BUTTERCHI SAUCE LØGISMOSE",
+                    "description": "BUTTERCHI SAUCE LoeGISMOSE",
                     "ean": "5713507050267",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/48a71f93f4f49df0482e5ed607585cae"
                 }
@@ -3640,7 +3640,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
                     "description": "HAVRE/MANGO CULTURA",
@@ -3664,10 +3664,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Skyr",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Skyr",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Skyr"
                     },
-                    "description": "ØKO VANILJESKYR LØGISMOSE",
+                    "description": "oeKO VANILJESKYR LoeGISMOSE",
                     "ean": "5713507022905",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/0a9ad01f76dd83ba21b2f866868b7781"
                 }
@@ -3688,7 +3688,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Mad- & specialbrød>Hotdog- & pølsebrød",
+                        "da": "Broed & kager>Mad- & specialbroed>Hotdog- & poelsebroed",
                         "en": "Bread And Cakes>Bread Specialities>Hotdog Buns"
                     },
                     "description": "BRIOCHE HOTDOG PREMIEUR",
@@ -3801,10 +3801,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Gulerodsrugbrød",
+                        "da": "Broed & kager>Rugbroed>Gulerodsrugbroed",
                         "en": "Bread And Cakes>Rye Breads>Rye Breads With Carrots"
                     },
-                    "description": "GULERODSBRØD DET GODE",
+                    "description": "GULERODSBRoeD DET GODE",
                     "ean": "5701205009731",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/35609beb-1511-4902-b25f-0cca360ec2c2"
                 }
@@ -3825,10 +3825,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Måltidssalater",
+                        "da": "Mejeri & koel>Faerdigretter>Maaltidssalater",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Salads"
                     },
-                    "description": "PASTA LAKS/PES. NÆMT",
+                    "description": "PASTA LAKS/PES. NaeMT",
                     "ean": "5712872992639",
                     "image": null
                 }
@@ -3870,7 +3870,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Drikkevarer>Juice & smoothies>Æblejuice",
+                        "da": "Drikkevarer>Juice & smoothies>aeblejuice",
                         "en": "Beverages>Juice Smoothies>Apple Juices"
                     },
                     "description": "RYNKEBY JUICE APPLE JUICE",
@@ -3983,10 +3983,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Koldskål",
+                        "da": "Mejeri & koel>Mejeri>Koldskaal",
                         "en": "Dairy And Cold Storage>Dairy>Cold Butter Milk Soup"
                     },
-                    "description": "KOLDSKÅL ARLA",
+                    "description": "KOLDSKaaL ARLA",
                     "ean": "5700426295008",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ac09bdb7-5989-4f30-a08d-f409c61d5172"
                 }
@@ -4007,7 +4007,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Kiks & knækbrød>Tvebakker & skorper",
+                        "da": "Broed & kager>Kiks & knaekbroed>Tvebakker & skorper",
                         "en": "Bread And Cakes>Crackers Crisp Bread>Rusks"
                     },
                     "description": "BISCA TARTA TVEBAKKE 300 G",
@@ -4031,10 +4031,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Mad- & specialbrød>Hele brød",
+                        "da": "Broed & kager>Mad- & specialbroed>Hele broed",
                         "en": "Bread And Cakes>Bread Specialities>Special Whole Breads"
                     },
-                    "description": "ØKO FOCACCIA IL FORNAIO",
+                    "description": "oeKO FOCACCIA IL FORNAIO",
                     "ean": "5703043995023",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/52b20086-e562-44a8-a71e-b1611f03a2fd"
                 }
@@ -4055,7 +4055,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Medister",
+                        "da": "Koed & fisk>Grisekoed>Medister",
                         "en": "Meat Fish>Pork>Thick Sausages"
                     },
                     "description": "JULEMEDISTER PREMIEUR",
@@ -4079,7 +4079,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Stege & hele kødstykker>Nakkefilet & svinekam",
+                        "da": "Koed & fisk>Grisekoed>Stege & hele koedstykker>Nakkefilet & svinekam",
                         "en": "Meat Fish>Pork>Roasted Whole Pork Pieces>Pork Neck Pork Loin"
                     },
                     "description": "MAR. NAKKEFILET VELSMAG",
@@ -4103,7 +4103,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Kiks & knækbrød>Knækbrød",
+                        "da": "Broed & kager>Kiks & knaekbroed>Knaekbroed",
                         "en": "Bread And Cakes>Crackers Crisp Bread>Crisp Bread"
                     },
                     "description": "SURDEJ FLERKORN WASA",
@@ -4127,7 +4127,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Koteletter, flæsk & schnitzler",
+                        "da": "Koed & fisk>Grisekoed>Koteletter, flaesk & schnitzler",
                         "en": "Meat Fish>Pork>Pork Chops Pork Schnitzels"
                     },
                     "description": "MAR. NAKKEKOT. VELSMAG",
@@ -4151,10 +4151,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
-                    "description": "ØKO GRÆSK INSP. LØGISMOSE",
+                    "description": "oeKO GRaeSK INSP. LoeGISMOSE",
                     "ean": "5710328005582",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/5f3cb164-314a-462f-a1f5-6ec0885085d0"
                 }
@@ -4196,7 +4196,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
                     "description": "MULTI BOLLER SCHULSTAD",
@@ -4220,7 +4220,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
                     "description": "RUGBR.BOLLER KOHBERG",
@@ -4244,7 +4244,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Hele pålægspølser",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Hele paalaegspoelser",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Lunch Sausages"
                     },
                     "description": "MINI SALAMI EGELYKKE",
@@ -4268,7 +4268,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "RUG SANDWICH KOHBERG",
@@ -4292,10 +4292,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
-                    "description": "KØDBOLLER VELSMAG",
+                    "description": "KoeDBOLLER VELSMAG",
                     "ean": "5712874569136",
                     "image": null
                 }
@@ -4316,10 +4316,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "BAGERENS RUGBRØ KOHBERG",
+                    "description": "BAGERENS RUGBRoe KOHBERG",
                     "ean": "5701246016743",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1a505359-5b07-4401-987b-23ffdadd0542"
                 }
@@ -4340,10 +4340,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "BRYGHUSET MØN SIGNATURBRØD",
+                    "description": "BRYGHUSET MoeN SIGNATURBRoeD",
                     "ean": "5701205009298",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7efe091a-7875-4aba-9da9-02b3a880e121"
                 }
@@ -4364,7 +4364,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Hele pålægspølser",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Hele paalaegspoelser",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Lunch Sausages"
                     },
                     "description": "MINI SALAMI EGELYKKE",
@@ -4477,7 +4477,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Saucer & dressinger>Sauce",
+                        "da": "Mejeri & koel>Saucer & dressinger>Sauce",
                         "en": "Dairy And Cold Storage>Sauces Dressings>Sauce"
                     },
                     "description": "PIZZASAUCE JENSENS",
@@ -4522,7 +4522,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "MINI RISKIKS MØ ØGO",
+                    "description": "MINI RISKIKS Moe oeGO",
                     "ean": "5712875028793",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/71d81b4b-23cf-4d19-85ba-4020b8231cbf"
                 }
@@ -4543,10 +4543,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Frisk pasta>Frisk pasta med fyld",
+                        "da": "Mejeri & koel>Frisk pasta>Frisk pasta med fyld",
                         "en": "Dairy And Cold Storage>Fresh Pasta>Fresh Pasta With Fillings"
                     },
-                    "description": "ØKO RAVIOLI NATURLI'",
+                    "description": "oeKO RAVIOLI NATURLI'",
                     "ean": "5701977000196",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7725a3f49cd0a5cbefa537312083e152"
                 }
@@ -4567,7 +4567,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
                     "description": "FAVORITGRYDE",
@@ -4591,7 +4591,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
                     "description": "SKOVMAND SCHULSTAD",
@@ -4615,10 +4615,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "HØRFRØBRØD GAMLE MØLLE",
+                    "description": "HoeRFRoeBRoeD GAMLE MoeLLE",
                     "ean": "5701012903079",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/589b271c-14c2-4e59-b284-4f9c22e4fd66"
                 }
@@ -4639,10 +4639,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Ost i skiver",
+                        "da": "Mejeri & koel>Mejeri>Ost>Ost i skiver",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Sliced Cheese"
                     },
-                    "description": "THEM ML SKIVER 175 G - ØKO",
+                    "description": "THEM ML SKIVER 175 G - oeKO",
                     "ean": "5707673100574",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/9b68008f-6adb-4254-88ea-64b5d5f368a6"
                 }
@@ -4663,7 +4663,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Bacon>Bacon i skiver",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Bacon>Bacon i skiver",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Bacon>Sliced Bacon"
                     },
                     "description": "STEGT BACON SKI TULIP",
@@ -4687,10 +4687,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Skyr",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Skyr",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Skyr"
                     },
-                    "description": "ØKO SKYR NATUR LØGISMOSE",
+                    "description": "oeKO SKYR NATUR LoeGISMOSE",
                     "ean": "5710328001621",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/2380ec2f-21b0-40c6-a862-d216bda3a2cb"
                 }
@@ -4711,7 +4711,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "RUG SANDWICH KOHBERG",
@@ -4735,7 +4735,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
                     "description": "CIABATTA STYKKE KOHBERG",
@@ -4759,7 +4759,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Mad- & specialbrød>Hotdog- & pølsebrød",
+                        "da": "Broed & kager>Mad- & specialbroed>Hotdog- & poelsebroed",
                         "en": "Bread And Cakes>Bread Specialities>Hotdog Buns"
                     },
                     "description": "BRIOCHE HOTDOG PREMIEUR",
@@ -4783,7 +4783,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Spareribs & barbecuekød",
+                        "da": "Koed & fisk>Spareribs & barbecuekoed",
                         "en": "Meat Fish>spareribs Barbecue Meat"
                     },
                     "description": "SPARERIBS TULIP",
@@ -4807,7 +4807,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "PASTA SPICY ØGO",
+                    "description": "PASTA SPICY oeGO",
                     "ean": "5712874501488",
                     "image": null
                 }
@@ -4828,10 +4828,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Mælk>Letmælk",
+                        "da": "Mejeri & koel>Mejeri>Maelk>Letmaelk",
                         "en": "Dairy And Cold Storage>Dairy>Milk>Skimmed Milk"
                     },
-                    "description": "ØKO LETMÆLK LØGISMOSE",
+                    "description": "oeKO LETMaeLK LoeGISMOSE",
                     "ean": "5710328002239",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/88f6c5fa-fc96-4864-bbe2-af30a2ee3880"
                 }
@@ -4852,7 +4852,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Ost i skiver",
+                        "da": "Mejeri & koel>Mejeri>Ost>Ost i skiver",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Sliced Cheese"
                     },
                     "description": "SKIVEOST 45+ MAMMEN",
@@ -4876,10 +4876,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "BRYGHUSET MØN SIGNATURBRØD",
+                    "description": "BRYGHUSET MoeN SIGNATURBRoeD",
                     "ean": "5701205009298",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7efe091a-7875-4aba-9da9-02b3a880e121"
                 }
@@ -5010,10 +5010,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "KERNERUGBRØD ØGO",
+                    "description": "KERNERUGBRoeD oeGO",
                     "ean": "5712872401629",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/72d88773-66d6-4e53-8fae-6dee49e01edc"
                 }
@@ -5034,10 +5034,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Drikkevarer>Juice & smoothies>Frugt- & grøntsagsshots",
+                        "da": "Drikkevarer>Juice & smoothies>Frugt- & groentsagsshots",
                         "en": "Beverages>Juice Smoothies>Fruit Shots Vegetable Shots"
                     },
-                    "description": "INGEFÆRSHOT/ÆBL ØGO",
+                    "description": "INGEFaeRSHOT/aeBL oeGO",
                     "ean": "5713300018068",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/607b0099-6789-48f4-b658-7711316d4482"
                 }
@@ -5058,10 +5058,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Andet grisekød",
+                        "da": "Koed & fisk>Grisekoed>Andet grisekoed",
                         "en": "Meat Fish>Pork>Other Pork"
                     },
-                    "description": "SVINEKÆBER PREMIEUR",
+                    "description": "SVINEKaeBER PREMIEUR",
                     "ean": "5707735939517",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/50706b9d-b835-4542-983a-cd85d65380b8"
                 }
@@ -5103,7 +5103,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "ÆGTE GEDEOST TINE",
+                    "description": "aeGTE GEDEOST TINE",
                     "ean": "5712874570897",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/e6e9f88c-dd5a-4838-bbaf-f3581c84658c"
                 }
@@ -5124,7 +5124,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Boller",
+                        "da": "Broed & kager>Lyst & groft broed>Boller",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Light Dark Buns"
                     },
                     "description": "MULTI BOLLER SCHULSTAD",
@@ -5148,10 +5148,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Måltidssalater",
+                        "da": "Mejeri & koel>Faerdigretter>Maaltidssalater",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Salads"
                     },
-                    "description": "PASTA KYL/PERS. NÆMT",
+                    "description": "PASTA KYL/PERS. NaeMT",
                     "ean": "5712873220380",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/8da0b952-001f-4fc0-8d77-086e7c891b63"
                 }
@@ -5172,10 +5172,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Kiks & knækbrød>Knækbrød",
+                        "da": "Broed & kager>Kiks & knaekbroed>Knaekbroed",
                         "en": "Bread And Cakes>Crackers Crisp Bread>Crisp Bread"
                     },
-                    "description": "RUGSPRØD ORI. WASA",
+                    "description": "RUGSPRoeD ORI. WASA",
                     "ean": "7300400101332",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/30df49ed-8c5b-4dab-8eaa-ce64d894a80d"
                 }
@@ -5196,7 +5196,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "FAMILIEPOSTEJ STRYHNS",
@@ -5220,7 +5220,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Smøreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Smoereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cream Cheese"
                     },
                     "description": "SMELTEOST PRÉSIDENT",
@@ -5265,10 +5265,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Koteletter, flæsk & schnitzler",
+                        "da": "Koed & fisk>Grisekoed>Koteletter, flaesk & schnitzler",
                         "en": "Meat Fish>Pork>Pork Chops Pork Schnitzels"
                     },
-                    "description": "KOTELETTER ØGO",
+                    "description": "KOTELETTER oeGO",
                     "ean": "5707196284447",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1722a3dd-5c7f-4e9b-ac2e-786b1d67f229"
                 }
@@ -5289,10 +5289,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Saucer & dressinger>Sauce",
+                        "da": "Mejeri & koel>Saucer & dressinger>Sauce",
                         "en": "Dairy And Cold Storage>Sauces Dressings>Sauce"
                     },
-                    "description": "BUTTERCHI SAUCE LØGISMOSE",
+                    "description": "BUTTERCHI SAUCE LoeGISMOSE",
                     "ean": "5713507050267",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/48a71f93f4f49df0482e5ed607585cae"
                 }
@@ -5313,7 +5313,7 @@
                 },
                 "product": {
                     "categories": {},
-                    "description": "MINI RISKIKS MØ ØGO",
+                    "description": "MINI RISKIKS Moe oeGO",
                     "ean": "5712875028793",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/71d81b4b-23cf-4d19-85ba-4020b8231cbf"
                 }
@@ -5334,10 +5334,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
-                    "description": "KOGT SKINKE AALBÆK",
+                    "description": "KOGT SKINKE AALBaeK",
                     "ean": "5704080958255",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/c28154b4-b3eb-42c5-8074-830b39403ed1"
                 }
@@ -5358,7 +5358,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skimmelost & brie",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skimmelost & brie",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Blue Cheese Brie"
                     },
                     "description": "SAINT ALBRAY",
@@ -5382,10 +5382,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "HØRFRØBRØD GAMLE MØLLE",
+                    "description": "HoeRFRoeBRoeD GAMLE MoeLLE",
                     "ean": "5701012903079",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/589b271c-14c2-4e59-b284-4f9c22e4fd66"
                 }
@@ -5406,7 +5406,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Lyst & groft brød>Toastbrød",
+                        "da": "Broed & kager>Lyst & groft broed>Toastbroed",
                         "en": "Bread And Cakes>Light Breads Dark Breads>Toast Breads"
                     },
                     "description": "RUG SANDWICH KOHBERG",
@@ -5430,7 +5430,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
                     "description": "DANONINO DANONE",
@@ -5454,10 +5454,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>A38, tykmælk & ymer",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>A38, tykmaelk & ymer",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Soured Milk"
                     },
-                    "description": "A38 HINDBÆR ARLA A38",
+                    "description": "A38 HINDBaeR ARLA A38",
                     "ean": "5760466961660",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/beefa261-34f0-47e7-afa5-baac07934284"
                 }
@@ -5478,10 +5478,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
-                    "description": "JORDBÆR YOG. EGELYKKE",
+                    "description": "JORDBaeR YOG. EGELYKKE",
                     "ean": "5711953107788",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/f1844876-212b-4b74-877d-ecccf629dcfa"
                 }
@@ -5502,10 +5502,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Mælk>Letmælk",
+                        "da": "Mejeri & koel>Mejeri>Maelk>Letmaelk",
                         "en": "Dairy And Cold Storage>Dairy>Milk>Skimmed Milk"
                     },
-                    "description": "ØKO LETMÆLK LØGISMOSE",
+                    "description": "oeKO LETMaeLK LoeGISMOSE",
                     "ean": "5710328002239",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/88f6c5fa-fc96-4864-bbe2-af30a2ee3880"
                 }
@@ -5525,7 +5525,7 @@
                     "stockUnit": "each"
                 },
                 "product": {
-                    "description": "SOLSIKKESTYKKER GAMLE MØLLE",
+                    "description": "SOLSIKKESTYKKER GAMLE MoeLLE",
                     "ean": "5712875381836",
                     "image": null
                 }
@@ -5635,10 +5635,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Bacon>Bacon i skiver",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Bacon>Bacon i skiver",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Bacon>Sliced Bacon"
                     },
-                    "description": "BACON SKIVE ØGO",
+                    "description": "BACON SKIVE oeGO",
                     "ean": "5708330005188",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/bf6d355e-42e3-4b66-9cdb-0b93ca8fb275"
                 }
@@ -5659,10 +5659,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "HØRFRØBRØD GAMLE MØLLE",
+                    "description": "HoeRFRoeBRoeD GAMLE MoeLLE",
                     "ean": "5701012903079",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/589b271c-14c2-4e59-b284-4f9c22e4fd66"
                 }
@@ -5683,10 +5683,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
-                    "description": "SOLS. RUGBRØD ØGO",
+                    "description": "SOLS. RUGBRoeD oeGO",
                     "ean": "5712871081860",
                     "image": null
                 }
@@ -5707,10 +5707,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Andre rugbrød",
+                        "da": "Broed & kager>Rugbroed>Andre rugbroed",
                         "en": "Bread And Cakes>Rye Breads>Other Rye Breads"
                     },
-                    "description": "SCHWARZBROT GAMLE MØLLE",
+                    "description": "SCHWARZBROT GAMLE MoeLLE",
                     "ean": "5701012824183",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/f396b5af-1e84-44ef-9f64-3bc7ad3a2d0d"
                 }
@@ -5731,7 +5731,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Solsikkerugbrød",
+                        "da": "Broed & kager>Rugbroed>Solsikkerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Sun Flower Seeded Rye Breads"
                     },
                     "description": "SOLSIKKERUGBR. KOHBERG",
@@ -5755,10 +5755,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "BAGERENS RUGBRØ KOHBERG",
+                    "description": "BAGERENS RUGBRoe KOHBERG",
                     "ean": "5701246016743",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/1a505359-5b07-4401-987b-23ffdadd0542"
                 }
@@ -5779,10 +5779,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "KERNERUGBRØD GAMLE MØLLE",
+                    "description": "KERNERUGBRoeD GAMLE MoeLLE",
                     "ean": "5701012523833",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/75ad80f5-37e3-4bef-a7b3-88bde3658efb"
                 }
@@ -5892,10 +5892,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
-                    "description": "KALKUNSPEGEPØL 3-STJERNET",
+                    "description": "KALKUNSPEGEPoeL 3-STJERNET",
                     "ean": "57067537",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/7ec346fc-9f71-4d78-9597-eab82820a9c6"
                 }
@@ -5916,7 +5916,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "FRUGTSALAT K-SALAT",
@@ -5940,10 +5940,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
-                    "description": "GRÆSK INSP. YOG SALLING ØKO",
+                    "description": "GRaeSK INSP. YOG SALLING oeKO",
                     "ean": "5701852263531",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/8bb1d031-e4b9-44bf-b46f-2b4f9bf411d5"
                 }
@@ -5964,10 +5964,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Mælk>Sødmælk",
+                        "da": "Mejeri & koel>Mejeri>Maelk>Soedmaelk",
                         "en": "Dairy And Cold Storage>Dairy>Milk>Whole Milk"
                     },
-                    "description": "BIODYN. SØDMÆLK NATURMÆLK",
+                    "description": "BIODYN. SoeDMaeLK NATURMaeLK",
                     "ean": "5701852251064",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/50541dde-42ca-42a6-a170-036753da4ea9"
                 }
@@ -5988,10 +5988,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Specialost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Specialost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese Specialities"
                     },
-                    "description": "ØKO RYGEOST LØGISMOSE",
+                    "description": "oeKO RYGEOST LoeGISMOSE",
                     "ean": "5713507032720",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/d4c5e6f6-d6f7-4473-87e1-5b286c6d41a7"
                 }
@@ -6012,7 +6012,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
                     "description": "CULTURA HAVRE/JORD",
@@ -6036,7 +6036,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Pesto & hummus",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Pesto & hummus",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Pesto Hummus"
                     },
                     "description": "PEBERFR. PESTO PRINCIP",
@@ -6060,10 +6060,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Brød & kager>Rugbrød>Kernerugbrød",
+                        "da": "Broed & kager>Rugbroed>Kernerugbroed",
                         "en": "Bread And Cakes>Rye Breads>Seeded Rye Breads"
                     },
-                    "description": "PROTEIN BRØD KOHBERG",
+                    "description": "PROTEIN BRoeD KOHBERG",
                     "ean": "5726866108500",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ec6a45e8-cae0-40c3-af14-63ec6a4bb793"
                 }
@@ -6084,7 +6084,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Leverpostej & paté",
+                        "da": "Mejeri & koel>Paalaeg>Leverpostej & paté",
                         "en": "Dairy And Cold Storage>Lunch Meats>Liver Paste Patee"
                     },
                     "description": "BACON-PEBER 300 G",
@@ -6108,10 +6108,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Andre salater",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Andre salater",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Other Mayo Salads"
                     },
-                    "description": "ÆGGESALAT 30% K-SALAT",
+                    "description": "aeGGESALAT 30% K-SALAT",
                     "ean": "5701018044721",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/291dfe9f-5d40-4597-9c97-f1403a3d2ca5"
                 }
@@ -6132,7 +6132,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Fersk dej & pandekager>Dessertpandekager",
+                        "da": "Mejeri & koel>Fersk dej & pandekager>Dessertpandekager",
                         "en": "Dairy And Cold Storage>Fresh Dough And Pancakes>Dessert Pancakes"
                     },
                     "description": "AMR. PANDEKAGER SALLING",
@@ -6156,7 +6156,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
                     "description": "KALKUNBRYST BUDGET",
@@ -6180,7 +6180,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Specialpølser",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Specialpoelser",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Sausages Specialities"
                     },
                     "description": "MINI FUET SALLING",
@@ -6204,7 +6204,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Pålæg i skiver",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Paalaeg i skiver",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Sliced Lunch Meats"
                     },
                     "description": "ROASTBEEF SALLING",
@@ -6228,10 +6228,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Yoghurt"
                     },
-                    "description": "ØKO YOGHURT LF NATURMÆLK",
+                    "description": "oeKO YOGHURT LF NATURMaeLK",
                     "ean": "5701852259404",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/5d91f380-691d-4354-a9a9-acc407802b5b"
                 }
@@ -6252,7 +6252,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Hakket grise- & kalvekød",
+                        "da": "Koed & fisk>Grisekoed>Hakket grise- & kalvekoed",
                         "en": "Meat Fish>Pork>Minced Pork Veal"
                     },
                     "description": "GRIS/KALV 8-12% SLAGTEREN",
@@ -6276,7 +6276,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Dessert & snacks",
+                        "da": "Mejeri & koel>Mejeri>Dessert & snacks",
                         "en": "Dairy And Cold Storage>Dairy>Desserts Snacks"
                     },
                     "description": "PASSIONFROMAGE DR. OETKER",
@@ -6300,10 +6300,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Mælk>Minimælk",
+                        "da": "Mejeri & koel>Mejeri>Maelk>Minimaelk",
                         "en": "Dairy And Cold Storage>Dairy>Milk>Semiskimmed Milk"
                     },
-                    "description": "ØKO GÅRDMÆLK NATURMÆLK",
+                    "description": "oeKO GaaRDMaeLK NATURMaeLK",
                     "ean": "5701852263388",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/e0fa960d-8480-4490-a6bb-03b47b5b297b"
                 }
@@ -6324,10 +6324,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Plantebaserede alternativer>Mælkealternativer",
+                        "da": "Mejeri & koel>Mejeri>Plantebaserede alternativer>Maelkealternativer",
                         "en": "Dairy And Cold Storage>Dairy>Plant Based Alternatives>Plant Based Milk Alternatives"
                     },
-                    "description": "ØKOLOGISK MÆLK NATURMÆLK",
+                    "description": "oeKOLOGISK MaeLK NATURMaeLK",
                     "ean": "5701852259152",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/b5f36af4-32ce-42f9-8c3d-215516001e74"
                 }
@@ -6348,7 +6348,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri & køl>Mejeri>Mejeri>Yoghurt & syrnede mælkeprodukter>Yoghurt & syrnede mælkeprodukter>Yoghurt>Skyr",
+                        "da": "Mejeri & koel>Mejeri & koel>Mejeri>Mejeri>Yoghurt & syrnede maelkeprodukter>Yoghurt & syrnede maelkeprodukter>Yoghurt>Skyr",
                         "en": "Dairy And Cold Storage>Dairy And Cold Storage>Dairy>Dairy>Yoghurt Soured Milk Products>Yoghurt Soured Milk Products>Yoghurt>Skyr"
                     },
                     "description": "CHIASKYR JORD/R LUNDBERG",
@@ -6372,10 +6372,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Yoghurt & syrnede mælkeprodukter>A38, tykmælk & ymer",
+                        "da": "Mejeri & koel>Mejeri>Yoghurt & syrnede maelkeprodukter>A38, tykmaelk & ymer",
                         "en": "Dairy And Cold Storage>Dairy>Yoghurt Soured Milk Products>Soured Milk"
                     },
-                    "description": "LETMÆLK 1,5% ARLA A38",
+                    "description": "LETMaeLK 1,5% ARLA A38",
                     "ean": "5700426219097",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/13efdcb2-63f2-4153-ba0e-25cc5a0a0a6d"
                 }
@@ -6396,7 +6396,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skimmelost & brie",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skimmelost & brie",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Blue Cheese Brie"
                     },
                     "description": "FRANSK BRIE PRÉSIDENT",
@@ -6420,7 +6420,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Skæreost",
+                        "da": "Mejeri & koel>Mejeri>Ost>Skaereost",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Cheese For Slicing"
                     },
                     "description": "45+ XL DANBO RIBERHUS",
@@ -6444,7 +6444,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Pålægssalater>Italiensk salat",
+                        "da": "Mejeri & koel>Paalaeg>Paalaegssalater>Italiensk salat",
                         "en": "Dairy And Cold Storage>Lunch Meats>Mayo Salads>Italian Mayo Salads"
                     },
                     "description": "ITALIENSK SALAT GRAASTEN",
@@ -6468,7 +6468,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Sandwiches & wraps",
+                        "da": "Mejeri & koel>Faerdigretter>Sandwiches & wraps",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Sandwiches Wraps"
                     },
                     "description": "WRAP KYLLING SALLING NU",
@@ -6492,7 +6492,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Fersk dej & pandekager>Fersk dej",
+                        "da": "Mejeri & koel>Fersk dej & pandekager>Fersk dej",
                         "en": "Dairy And Cold Storage>Fresh Dough And Pancakes>fresh Dough"
                     },
                     "description": "CROISSANTDEJ DANEROLLES",
@@ -6516,10 +6516,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Stege & hele kødstykker>Flæskesteg & ribbenssteg",
+                        "da": "Koed & fisk>Grisekoed>Stege & hele koedstykker>Flaeskesteg & ribbenssteg",
                         "en": "Meat Fish>Pork>Roasted Whole Pork Pieces>Roasted Pork"
                     },
-                    "description": "FLÆSKESTEG ANTONIUS",
+                    "description": "FLaeSKESTEG ANTONIUS",
                     "ean": "5707196276350",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/5edbbd6e-8daa-4ae6-88a7-40ce03ba6fb1"
                 }
@@ -6540,7 +6540,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Pålæg>Kødpålæg>Frikadeller & andet kødpålæg",
+                        "da": "Mejeri & koel>Paalaeg>Koedpaalaeg>Frikadeller & andet koedpaalaeg",
                         "en": "Dairy And Cold Storage>Lunch Meats>Meat>Meat Ball Toppings Other Toppings"
                     },
                     "description": "MID. FRIKADELLE TULIP",
@@ -6564,7 +6564,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Mejeri>Ost>Mozarella",
+                        "da": "Mejeri & koel>Mejeri>Ost>Mozarella",
                         "en": "Dairy And Cold Storage>Dairy>Cheese>Mozarella"
                     },
                     "description": "MINIKUGLER GALBANI",
@@ -6588,10 +6588,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Kød & fisk>Grisekød>Hakket grise- & kalvekød",
+                        "da": "Koed & fisk>Grisekoed>Hakket grise- & kalvekoed",
                         "en": "Meat Fish>Pork>Minced Pork Veal"
                     },
-                    "description": "KØDBOLLER 650G SLAGTERMEST.",
+                    "description": "KoeDBOLLER 650G SLAGTERMEST.",
                     "ean": "8713279263404",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/ba338b6b-61cd-4922-946d-4051f088b969"
                 }
@@ -6612,7 +6612,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Færdigretter>Middagsretter",
+                        "da": "Mejeri & koel>Faerdigretter>Middagsretter",
                         "en": "Dairy And Cold Storage>Ready To Eat Meals>Dinner Meals"
                     },
                     "description": "KALVEBURGER HAPSERE",
@@ -6636,10 +6636,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Bacon, pølser & toppings>Bacon>Bacon i skiver",
+                        "da": "Mejeri & koel>Bacon, poelser & toppings>Bacon>Bacon i skiver",
                         "en": "Dairy And Cold Storage>Bacon Sausages Toppings>Bacon>Sliced Bacon"
                     },
-                    "description": "ENGELSK BACON SALLING ØKO",
+                    "description": "ENGELSK BACON SALLING oeKO",
                     "ean": "5712874822750",
                     "image": "https://digitalassets.sallinggroup.com/image/upload/e_trim/c_limit,e_sharpen:80,f_auto,q_auto,w_400,h_400/5e4ed9d0-5050-4b76-817e-ac9d444f153a"
                 }
@@ -6660,7 +6660,7 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Tapas & specialiteter>Oliven & andet tilbehør",
+                        "da": "Mejeri & koel>Tapas & specialiteter>Oliven & andet tilbehoer",
                         "en": "Dairy And Cold Storage>Tapas Specialities>Olives Other Attachments"
                     },
                     "description": "MARINERET PEBER SALLING",
@@ -6684,10 +6684,10 @@
                 },
                 "product": {
                     "categories": {
-                        "da": "Mejeri & køl>Fersk dej & pandekager>Dessertpandekager",
+                        "da": "Mejeri & koel>Fersk dej & pandekager>Dessertpandekager",
                         "en": "Dairy And Cold Storage>Fresh Dough And Pancakes>Dessert Pancakes"
                     },
-                    "description": "SØDE PANDEKAGER PRINCIP",
+                    "description": "SoeDE PANDEKAGER PRINCIP",
                     "ean": "5712875448249",
                     "image": null
                 }
