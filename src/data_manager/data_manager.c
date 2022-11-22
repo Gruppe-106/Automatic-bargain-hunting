@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "../../libs/parson/parson.h"
 
 
@@ -128,14 +127,14 @@ Item_Type* create_items(char *file_name)
             /* Get the i'th clearance array's inside objects */
             current_offer = json_array_get_object(product_list, j);
 
-            // /* Reads the objetcs and creates a new product */
-            // products[current_index] = create_item(
-            //         json_object_dotget_string(current_offer,"product.description"),
-            //         json_object_get_string(current_store, "brand"),
-            //         json_object_dotget_number(current_offer,"offer.newPrice"),
-            //         json_object_dotget_number(current_offer,"offer.originalPrice"),
-            //         json_object_dotget_number(current_offer,"offer.percentDiscount"));
-            // current_index++;
+            /* Reads the objetcs and creates a new product */
+            products[current_index] = create_item(
+                    json_object_dotget_string(current_offer,"product.description"),
+                    json_object_get_string(current_store, "brand"),
+                    json_object_dotget_number(current_offer,"offer.newPrice"),
+                    json_object_dotget_number(current_offer,"offer.originalPrice"),
+                    json_object_dotget_number(current_offer,"offer.percentDiscount"));
+            current_index++;
         }
 
 
@@ -149,4 +148,5 @@ Item_Type* create_items(char *file_name)
     /* Frees the salling JSON value */
     json_value_free(salling);
 }
+
 
