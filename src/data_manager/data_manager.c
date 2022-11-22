@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "C:\Users\madsh\CLionProjects\Automatic-bargain-hunting\libs\parson\parson.h"
 
 // Private protoypes:
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
@@ -91,6 +90,7 @@ Item_Type* create_items()
 
 
     /* Get amount of items */
+    /* Get amount of products */
     for (int i = 0; i < clearences_size; i++)
     {
         current_clearence = json_array_get_object(clearences, i);
@@ -126,6 +126,7 @@ Item_Type* create_items()
 
             /* Reads the objetcs and creates a new product */
             items[current_index] = create_item(
+            products[current_index] = create_item(
                     json_object_dotget_string(current_offer,"product.description"),
                     json_object_get_string(current_store, "brand"),
                     json_object_dotget_number(current_offer,"offer.newPrice"),
@@ -137,7 +138,6 @@ Item_Type* create_items()
 
 
     }
-
 
     print_products (items, num_of_products);
     free_products  (items, num_of_products);
