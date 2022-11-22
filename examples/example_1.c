@@ -20,7 +20,6 @@ item *create_item  (const char *name,const char *store, double newPrice, double 
 
 int main(int argc, char *argv[])
 {
-
     example(argv[1]);
     return 0;
 }
