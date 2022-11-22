@@ -3,12 +3,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "../../libs/parson/parson.h"
 
+
+// Obtuse types
+
+typedef struct item {
+    char* name;
+    double price;
+    int unit_size;
+    Unit_Type unit;
+    _Bool organic;
+} Item_Type;
+
 // Private protoypes:
-Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
+
 void free_item(Item_Type* item);
 void free_items(Item_Type* items, int item_count);
+
 
 // Declarations:
 /**
@@ -57,14 +70,14 @@ void free_items(Item_Type* items, int item_count)
     }
 }
 
-Item_Type* create_items()
+Item_Type* create_items(char *file_name)
 {
     /* Parses the file*/
     JSON_Value *salling = json_parse_file(file_name);
 
-    JSON_Array *clearences, *product_list;
+    JSON_Array  *clearences, *product_list;
     JSON_Object *current_clearence, *current_offer, *current_store;
-    item **products;
+    Item_Type  **products;
 
     int clearences_size;
     int offer_size;
@@ -74,7 +87,7 @@ Item_Type* create_items()
     /* If file has been parsed unsuccessfully */
     if (json_value_get_type(salling) != JSONArray)
     {
-        printf("Can't find file");
+        printf("Can't parse file");
         exit(EXIT_FAILURE);
     }
 
@@ -96,7 +109,7 @@ Item_Type* create_items()
     }
 
     /* Dynamically allocate for array of products */
-    products = (item**)malloc(sizeof(item)*num_of_products);
+    products = (Item_Type**)malloc(sizeof(Item_Type)*num_of_products);
 
     for (int i = 0; i < clearences_size; i++)
     {
@@ -115,14 +128,14 @@ Item_Type* create_items()
             /* Get the i'th clearance array's inside objects */
             current_offer = json_array_get_object(product_list, j);
 
-            /* Reads the objetcs and creates a new product */
-            products[current_index] = create_item(
-                    json_object_dotget_string(current_offer,"product.description"),
-                    json_object_get_string(current_store, "brand"),
-                    json_object_dotget_number(current_offer,"offer.newPrice"),
-                    json_object_dotget_number(current_offer,"offer.originalPrice"),
-                    json_object_dotget_number(current_offer,"offer.percentDiscount"));
-            current_index++;
+            // /* Reads the objetcs and creates a new product */
+            // products[current_index] = create_item(
+            //         json_object_dotget_string(current_offer,"product.description"),
+            //         json_object_get_string(current_store, "brand"),
+            //         json_object_dotget_number(current_offer,"offer.newPrice"),
+            //         json_object_dotget_number(current_offer,"offer.originalPrice"),
+            //         json_object_dotget_number(current_offer,"offer.percentDiscount"));
+            // current_index++;
         }
 
 
@@ -130,9 +143,10 @@ Item_Type* create_items()
     }
 
 
-    print_products (products,num_of_products);
-    free_products  (products,num_of_products);
+    // print_products (products,num_of_products);
+    // free_products  (products,num_of_products);
 
     /* Frees the salling JSON value */
     json_value_free(salling);
 }
+
