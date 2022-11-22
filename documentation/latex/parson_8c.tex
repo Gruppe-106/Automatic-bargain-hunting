@@ -1,0 +1,1071 @@
+\hypertarget{parson_8c}{}\doxysection{parson/parson.c File Reference}
+\label{parson_8c}\index{parson/parson.c@{parson/parson.c}}
+{\ttfamily \#include \char`\"{}parson.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structjson__string}{json\+\_\+string}}
+\item 
+union \mbox{\hyperlink{unionjson__value__value}{json\+\_\+value\+\_\+value}}
+\item 
+struct \mbox{\hyperlink{structjson__value__t}{json\+\_\+value\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structjson__object__t}{json\+\_\+object\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structjson__array__t}{json\+\_\+array\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{parson_8c_a07f9807bb240aa561d01e7fd1e46d41b}{PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+MAJOR}}~1
+\item 
+\#define \mbox{\hyperlink{parson_8c_a48747232c45232776ad4921063217cc4}{PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+MINOR}}~5
+\item 
+\#define \mbox{\hyperlink{parson_8c_a967d47c35f5649058d9fa35025381e1c}{PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+PATCH}}~0
+\item 
+\#define \mbox{\hyperlink{parson_8c_a3c76c079d1e0dea93d871d02e407150e}{strcpy}}~USE\+\_\+\+MEMCPY\+\_\+\+INSTEAD\+\_\+\+OF\+\_\+\+STRCPY
+\item 
+\#define \mbox{\hyperlink{parson_8c_a6e8ccd661b425d5010a8d896117d4023}{STARTING\+\_\+\+CAPACITY}}~16
+\item 
+\#define \mbox{\hyperlink{parson_8c_a975fbcb7495d702b27dbbdb9fb149fa1}{MAX\+\_\+\+NESTING}}~2048
+\item 
+\#define \mbox{\hyperlink{parson_8c_a5bf8a39ed57e68bef68a5ad9ddcf8493}{PARSON\+\_\+\+DEFAULT\+\_\+\+FLOAT\+\_\+\+FORMAT}}~\char`\"{}\%1.\+17g\char`\"{} /$\ast$ do not increase precision without incresing NUM\+\_\+\+BUF\+\_\+\+SIZE $\ast$/
+\item 
+\#define \mbox{\hyperlink{parson_8c_a84f1ae28dde963141a15ec171b03d482}{PARSON\+\_\+\+NUM\+\_\+\+BUF\+\_\+\+SIZE}}~64 /$\ast$ double printed with \char`\"{}\%1.\+17g\char`\"{} shouldn\textquotesingle{}t be longer than 25 bytes so let\textquotesingle{}s be paranoid and use 64 $\ast$/
+\item 
+\#define \mbox{\hyperlink{parson_8c_acd537c18c2dc72b35d39cb3d1f96ff8a}{PARSON\+\_\+\+INDENT\+\_\+\+STR}}~\char`\"{}    \char`\"{}
+\item 
+\#define \mbox{\hyperlink{parson_8c_ad4644341e60718dfb88eaa20a29e2979}{SIZEOF\+\_\+\+TOKEN}}(a)~(sizeof(a) -\/ 1)
+\item 
+\#define \mbox{\hyperlink{parson_8c_a0f71b0b0e28703925b516e5212a985f6}{SKIP\+\_\+\+CHAR}}(str)~(($\ast$str)++)
+\item 
+\#define \mbox{\hyperlink{parson_8c_a39541f12f48d7f63c165301cc0888f91}{SKIP\+\_\+\+WHITESPACES}}(str)~while (isspace((unsigned char)($\ast$$\ast$str))) \{ \mbox{\hyperlink{parson_8c_a0f71b0b0e28703925b516e5212a985f6}{SKIP\+\_\+\+CHAR}}(str); \}
+\item 
+\#define \mbox{\hyperlink{parson_8c_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(a,  b)~((a) $>$ (b) ? (a) \+: (b))
+\item 
+\#define \mbox{\hyperlink{parson_8c_a1442218b676f983b5f73daca3faa9449}{IS\+\_\+\+NUMBER\+\_\+\+INVALID}}(x)~(((x) $\ast$ 0.\+0) != 0.\+0)
+\item 
+\#define \mbox{\hyperlink{parson_8c_ae4de8004988d4926a0c1f9b898c4f8fe}{OBJECT\+\_\+\+INVALID\+\_\+\+IX}}~((size\+\_\+t)-\/1)
+\item 
+\#define \mbox{\hyperlink{parson_8c_aaa2ed8cc468393251c47811ce8338d23}{IS\+\_\+\+CONT}}(b)~(((unsigned char)(b) \& 0x\+C0) == 0x80) /$\ast$ is utf-\/8 continuation byte $\ast$/
+\item 
+\#define \mbox{\hyperlink{parson_8c_abae69516fd35ca6cd47fa205610032b1}{PARSON\+\_\+\+TRUE}}~1
+\item 
+\#define \mbox{\hyperlink{parson_8c_a0df685e121046678502f79bef9d0fc98}{PARSON\+\_\+\+FALSE}}~0
+\item 
+\#define \mbox{\hyperlink{parson_8c_abb7cc56e38fce2aaeaf23238ab50eb5c}{APPEND\+\_\+\+STRING}}(str)
+\item 
+\#define \mbox{\hyperlink{parson_8c_a8446c4d4b3471bf0f1215accae0745a8}{APPEND\+\_\+\+INDENT}}(level)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{parson_8c_ae261825256c3890ec5c34076b7414e26}{parson\+\_\+bool\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structjson__string}{json\+\_\+string}} \mbox{\hyperlink{parson_8c_a38dc8c97704d22842057d5808274a23a}{JSON\+\_\+\+String}}
+\item 
+typedef union \mbox{\hyperlink{unionjson__value__value}{json\+\_\+value\+\_\+value}} \mbox{\hyperlink{parson_8c_a4d9de033d6a0ef597948d0c0e0113c19}{JSON\+\_\+\+Value\+\_\+\+Value}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_ab46574724afc3f8bb047b73a9d477179}{json\+\_\+parse\+\_\+file}} (const char $\ast$filename)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_aee8713749d8917080c20477d048c2b6c}{json\+\_\+parse\+\_\+file\+\_\+with\+\_\+comments}} (const char $\ast$filename)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a7e811c5276660cba5fa1758ff8dd86df}{json\+\_\+parse\+\_\+string}} (const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a918fc6c895cfed0e075a03e48c96dd75}{json\+\_\+parse\+\_\+string\+\_\+with\+\_\+comments}} (const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a925da100f918bb5a4dd65e810ea77f78}{json\+\_\+object\+\_\+get\+\_\+value}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a9e2d3e4d25595d394585cb11300bf53c}{json\+\_\+object\+\_\+get\+\_\+string}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a02901433c0f0b48d3968d5b1c92e8821}{json\+\_\+object\+\_\+get\+\_\+string\+\_\+len}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+double \mbox{\hyperlink{parson_8c_ac6d8779c183fb9cd58e3c57ba8d7ee21}{json\+\_\+object\+\_\+get\+\_\+number}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ \mbox{\hyperlink{parson_8c_a3a911a7c1b3328aa9d93923c07e8a641}{json\+\_\+object\+\_\+get\+\_\+object}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ \mbox{\hyperlink{parson_8c_a86c3aeabd94f51e6c04c3ef1468bc870}{json\+\_\+object\+\_\+get\+\_\+array}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+int \mbox{\hyperlink{parson_8c_a080a1fb2f95ac9ba3995c096a5339406}{json\+\_\+object\+\_\+get\+\_\+boolean}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a414a589c689b5733b0d983d6e9410663}{json\+\_\+object\+\_\+dotget\+\_\+value}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a36f910ea5423925fd93de7c373dc0b32}{json\+\_\+object\+\_\+dotget\+\_\+string}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_ac5c417d48ed3d1503026e0967c69cfa0}{json\+\_\+object\+\_\+dotget\+\_\+string\+\_\+len}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+double \mbox{\hyperlink{parson_8c_ac782225cbe9293782d006140f78daac2}{json\+\_\+object\+\_\+dotget\+\_\+number}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ \mbox{\hyperlink{parson_8c_a7385a0b985367c4ab3d2d2b49643ec19}{json\+\_\+object\+\_\+dotget\+\_\+object}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ \mbox{\hyperlink{parson_8c_a5e5c8b5e2ae7b587be17496277c69317}{json\+\_\+object\+\_\+dotget\+\_\+array}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+int \mbox{\hyperlink{parson_8c_a2ffd2a8e2e14b24d7a2d02a700507748}{json\+\_\+object\+\_\+dotget\+\_\+boolean}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a6e804d8e5c9e273fbb1b04cee885fb4d}{json\+\_\+object\+\_\+get\+\_\+count}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a316a15d78ae9d5e93b626dc5eb1b751a}{json\+\_\+object\+\_\+get\+\_\+name}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, size\+\_\+t index)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a76f96eda6679a83b8ac29274dc044be9}{json\+\_\+object\+\_\+get\+\_\+value\+\_\+at}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, size\+\_\+t index)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a700522442034a6277db8caf8822a8744}{json\+\_\+object\+\_\+get\+\_\+wrapping\+\_\+value}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object)
+\item 
+int \mbox{\hyperlink{parson_8c_a8cbdedc509113a21f3c348f4b1f1f7f8}{json\+\_\+object\+\_\+has\+\_\+value}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+int \mbox{\hyperlink{parson_8c_a39e904c031cd65a901ecf27dd3a856d4}{json\+\_\+object\+\_\+has\+\_\+value\+\_\+of\+\_\+type}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} type)
+\item 
+int \mbox{\hyperlink{parson_8c_a8180fb05845003341554fae35c1d85d2}{json\+\_\+object\+\_\+dothas\+\_\+value}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+int \mbox{\hyperlink{parson_8c_a603ccdeef1b2dd19c56850b8ec25774e}{json\+\_\+object\+\_\+dothas\+\_\+value\+\_\+of\+\_\+type}} (const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} type)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a2a304296ce6689afbdd6ccea34d05621}{json\+\_\+array\+\_\+get\+\_\+value}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a2b61099a67dd7a9293985f4565d5dd38}{json\+\_\+array\+\_\+get\+\_\+string}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_aaffc3561d9d4912f546a906a65404a18}{json\+\_\+array\+\_\+get\+\_\+string\+\_\+len}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+double \mbox{\hyperlink{parson_8c_a3d712bcec84295ecc5c391dbcd20ba6e}{json\+\_\+array\+\_\+get\+\_\+number}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ \mbox{\hyperlink{parson_8c_a702d7e9cc3aa91a031f50b52030d0558}{json\+\_\+array\+\_\+get\+\_\+object}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ \mbox{\hyperlink{parson_8c_ac2eb54ad0791798822512574301c71cf}{json\+\_\+array\+\_\+get\+\_\+array}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+int \mbox{\hyperlink{parson_8c_aa2e74bca6589f73ab3bfb7ab502f44af}{json\+\_\+array\+\_\+get\+\_\+boolean}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t index)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a3cdef5191eb478cae45757377e3e48f5}{json\+\_\+array\+\_\+get\+\_\+count}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_aaf5df5c9b9dc652bbdff0789616bc8cd}{json\+\_\+array\+\_\+get\+\_\+wrapping\+\_\+value}} (const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array)
+\item 
+\mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} \mbox{\hyperlink{parson_8c_ac9afd8b1fc34493d5dfddd84540818eb}{json\+\_\+value\+\_\+get\+\_\+type}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ \mbox{\hyperlink{parson_8c_ad1965490be7fedbbc836f3c077cb0db2}{json\+\_\+value\+\_\+get\+\_\+object}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ \mbox{\hyperlink{parson_8c_a3576591e51f5e56527218979b21fd659}{json\+\_\+value\+\_\+get\+\_\+array}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a03dd61a3b9f51c0734619fd5bf567bba}{json\+\_\+value\+\_\+get\+\_\+string}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a086dc40ce963c1a447dff77df4356fcb}{json\+\_\+value\+\_\+get\+\_\+string\+\_\+len}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+double \mbox{\hyperlink{parson_8c_ac66b65fac26ad83b9b90b3a40030e669}{json\+\_\+value\+\_\+get\+\_\+number}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+int \mbox{\hyperlink{parson_8c_a8dbc1a82a4ec68592d3654543505244e}{json\+\_\+value\+\_\+get\+\_\+boolean}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_af99d1af3a832cc46bbba6199046ab4cb}{json\+\_\+value\+\_\+get\+\_\+parent}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+void \mbox{\hyperlink{parson_8c_ab2422931b5eea3c2401a86dea9c06b8c}{json\+\_\+value\+\_\+free}} (\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_ad445f559e84d8dccaabcb048fe16e840}{json\+\_\+value\+\_\+init\+\_\+object}} (void)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a6722c82c17186694b8b6fc7d3ad70a7c}{json\+\_\+value\+\_\+init\+\_\+array}} (void)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_add84f0e29e09212fad5f43a79ce3b66b}{json\+\_\+value\+\_\+init\+\_\+string}} (const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_ac514a289993c17951481a4ba16c29cdb}{json\+\_\+value\+\_\+init\+\_\+string\+\_\+with\+\_\+len}} (const char $\ast$string, size\+\_\+t length)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a84630678b0d7e419a7e0e00c339f2039}{json\+\_\+value\+\_\+init\+\_\+number}} (double number)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_ac5ce42251b8b818708f88011b5909fee}{json\+\_\+value\+\_\+init\+\_\+boolean}} (int boolean)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_aa657e710e01bb10b3a0bde88870ebccb}{json\+\_\+value\+\_\+init\+\_\+null}} (void)
+\item 
+\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ \mbox{\hyperlink{parson_8c_a8e00bc34b23b3266c5e7415bc424ecec}{json\+\_\+value\+\_\+deep\+\_\+copy}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_ab6501025c8270219bb522ea169fc8ac7}{json\+\_\+serialization\+\_\+size}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_afa0950abfa2559f9ffc7f778a461ae52}{json\+\_\+serialize\+\_\+to\+\_\+buffer}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value, char $\ast$buf, size\+\_\+t buf\+\_\+size\+\_\+in\+\_\+bytes)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a5501d255adc5040d420bcf7a257de999}{json\+\_\+serialize\+\_\+to\+\_\+file}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value, const char $\ast$filename)
+\item 
+char $\ast$ \mbox{\hyperlink{parson_8c_aa3525f651580d8c66d446ffc950413ac}{json\+\_\+serialize\+\_\+to\+\_\+string}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a1c9e7442e7e0e065abd4fd9b836c17aa}{json\+\_\+serialization\+\_\+size\+\_\+pretty}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a11ba2d6dcf15cb9c2905cc56d610ddd7}{json\+\_\+serialize\+\_\+to\+\_\+buffer\+\_\+pretty}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value, char $\ast$buf, size\+\_\+t buf\+\_\+size\+\_\+in\+\_\+bytes)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_ab41c46f3b13268ae103e8b1d2afb99c5}{json\+\_\+serialize\+\_\+to\+\_\+file\+\_\+pretty}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value, const char $\ast$filename)
+\item 
+char $\ast$ \mbox{\hyperlink{parson_8c_adc914c37e3ab3be348336ba6910b009c}{json\+\_\+serialize\+\_\+to\+\_\+string\+\_\+pretty}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+void \mbox{\hyperlink{parson_8c_a4b32b8273c00bdcdb3fb9b04062c8084}{json\+\_\+free\+\_\+serialized\+\_\+string}} (char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a4c29ce80e9cee3a464cbe0027fb1f84c}{json\+\_\+array\+\_\+remove}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t ix)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a24c8c0e13d124323f72f48c493c1f726}{json\+\_\+array\+\_\+replace\+\_\+value}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t ix, \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_af865e93d395d11c52a18ff10164a2a1c}{json\+\_\+array\+\_\+replace\+\_\+string}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t i, const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a33d41c30195dfd30b1bc5db8a2763842}{json\+\_\+array\+\_\+replace\+\_\+string\+\_\+with\+\_\+len}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t i, const char $\ast$string, size\+\_\+t len)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a4035432816f6e455cc533c15cba51ddf}{json\+\_\+array\+\_\+replace\+\_\+number}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t i, double number)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a101fa1f9a3ce32034a8a7f89bc13bb89}{json\+\_\+array\+\_\+replace\+\_\+boolean}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t i, int boolean)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a03da91aa1986b3b97963a843bdad06da}{json\+\_\+array\+\_\+replace\+\_\+null}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, size\+\_\+t i)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a468f06ad47dfcf4b5188196a279da692}{json\+\_\+array\+\_\+clear}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a7fb23d000865c375cc956ef9352d1768}{json\+\_\+array\+\_\+append\+\_\+value}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_abdd2d9c2fd47a9dcd3cba7368fb1ea89}{json\+\_\+array\+\_\+append\+\_\+string}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a576d1a8fe8a29aa0f9341fa51c680172}{json\+\_\+array\+\_\+append\+\_\+string\+\_\+with\+\_\+len}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, const char $\ast$string, size\+\_\+t len)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_af7d32bd24e85ba8adc82dda2bb977f05}{json\+\_\+array\+\_\+append\+\_\+number}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, double number)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a2d6d3c1aa0f5544e2cec007c8ae2f36d}{json\+\_\+array\+\_\+append\+\_\+boolean}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array, int boolean)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a10046fe3bd949d389bbda6c120721efe}{json\+\_\+array\+\_\+append\+\_\+null}} (\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$array)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_aa407a58f390b497a6396d20d7c3c7bfd}{json\+\_\+object\+\_\+set\+\_\+value}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a4894ebaa8673c6dbc69519b6c1573c99}{json\+\_\+object\+\_\+set\+\_\+string}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a38be152968fdc545be58356f8e44aefd}{json\+\_\+object\+\_\+set\+\_\+string\+\_\+with\+\_\+len}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, const char $\ast$string, size\+\_\+t len)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a39e19ea718c221389fc991c22d39777d}{json\+\_\+object\+\_\+set\+\_\+number}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, double number)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a4b25ed7adda736fabdae1dee7c5f6dc9}{json\+\_\+object\+\_\+set\+\_\+boolean}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, int boolean)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_ab27d5079abe1331df55f0b806ae7b574}{json\+\_\+object\+\_\+set\+\_\+null}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a639e70952e2bffab866303ef528367a4}{json\+\_\+object\+\_\+dotset\+\_\+value}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a0069c12155c176511ea091a6471cbe49}{json\+\_\+object\+\_\+dotset\+\_\+string}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, const char $\ast$string)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_aa5cb83701146c7a54a91f3f6961a2dab}{json\+\_\+object\+\_\+dotset\+\_\+string\+\_\+with\+\_\+len}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, const char $\ast$string, size\+\_\+t len)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_ae3fafcf7fc27c8a0b08e517ebad87037}{json\+\_\+object\+\_\+dotset\+\_\+number}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, double number)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a0dbd83d15003b246782f0f75659b3f3d}{json\+\_\+object\+\_\+dotset\+\_\+boolean}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name, int boolean)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a386ab4593c8f46ddcb907207ffeea1d7}{json\+\_\+object\+\_\+dotset\+\_\+null}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a1051dd0b0e301046529d5f9550c7bd3a}{json\+\_\+object\+\_\+remove}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a638e7780ad1ab5bdcec7cba173954de4}{json\+\_\+object\+\_\+dotremove}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object, const char $\ast$name)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a9874cd6712b28250a2abe3186ba569e9}{json\+\_\+object\+\_\+clear}} (\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$object)
+\item 
+\mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} \mbox{\hyperlink{parson_8c_a50dfef020cb9a9d82eaa2a540a5dd724}{json\+\_\+validate}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$schema, const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+int \mbox{\hyperlink{parson_8c_a4d940749adc93761c25e3730271677c8}{json\+\_\+value\+\_\+equals}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$a, const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$b)
+\item 
+\mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} \mbox{\hyperlink{parson_8c_a2e9f04113d64e986c8b1e3fa7dc0b2e8}{json\+\_\+type}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ \mbox{\hyperlink{parson_8c_ad1a6df9a743eaa95a38637b6adebaa2f}{json\+\_\+object}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ \mbox{\hyperlink{parson_8c_a85ed43df4109463799be9467de3fad7b}{json\+\_\+array}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+const char $\ast$ \mbox{\hyperlink{parson_8c_a04d80366ddbfbe74dba3eb15f8fe219f}{json\+\_\+string}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+size\+\_\+t \mbox{\hyperlink{parson_8c_a0981c49381d7b5afbd4d99faf185cd06}{json\+\_\+string\+\_\+len}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+double \mbox{\hyperlink{parson_8c_a70d61224267692217c2907097e209be0}{json\+\_\+number}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+int \mbox{\hyperlink{parson_8c_a7083e59d4970797c4b0c4b630d4aa078}{json\+\_\+boolean}} (const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$value)
+\item 
+void \mbox{\hyperlink{parson_8c_aeb589bd96b2d28a7724d29f9ef50a338}{json\+\_\+set\+\_\+allocation\+\_\+functions}} (\mbox{\hyperlink{parson_8h_ab66583112bdc39a4309a4aa49d6d4159}{JSON\+\_\+\+Malloc\+\_\+\+Function}} malloc\+\_\+fun, \mbox{\hyperlink{parson_8h_aa6d9986e9dc8c0fb1a330f635f508b5a}{JSON\+\_\+\+Free\+\_\+\+Function}} free\+\_\+fun)
+\item 
+void \mbox{\hyperlink{parson_8c_a60e0704a3ac10a42e00cc570bce5daff}{json\+\_\+set\+\_\+escape\+\_\+slashes}} (int escape\+\_\+slashes)
+\item 
+void \mbox{\hyperlink{parson_8c_a3b7bafa4f174b5e6dd8ac9e972d36c39}{json\+\_\+set\+\_\+float\+\_\+serialization\+\_\+format}} (const char $\ast$format)
+\item 
+void \mbox{\hyperlink{parson_8c_a458815d5fc4d86e03dff263190e7bf64}{json\+\_\+set\+\_\+number\+\_\+serialization\+\_\+function}} (\mbox{\hyperlink{parson_8h_a47d5ac083bdd761036550045c105a3e5}{JSON\+\_\+\+Number\+\_\+\+Serialization\+\_\+\+Function}} func)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{parson_8c_a8446c4d4b3471bf0f1215accae0745a8}\label{parson_8c_a8446c4d4b3471bf0f1215accae0745a8}} 
+\index{parson.c@{parson.c}!APPEND\_INDENT@{APPEND\_INDENT}}
+\index{APPEND\_INDENT@{APPEND\_INDENT}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{APPEND\_INDENT}{APPEND\_INDENT}}
+{\footnotesize\ttfamily \#define APPEND\+\_\+\+INDENT(\begin{DoxyParamCaption}\item[{}]{level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                \textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{                                \textcolor{keywordtype}{int} level\_i = 0;\(\backslash\)}
+\DoxyCodeLine{                                for (level\_i = 0; level\_i < (level); level\_i++) \{\(\backslash\)}
+\DoxyCodeLine{                                    APPEND\_STRING(\mbox{\hyperlink{parson_8c_acd537c18c2dc72b35d39cb3d1f96ff8a}{PARSON\_INDENT\_STR}});\(\backslash\)}
+\DoxyCodeLine{                                \}\(\backslash\)}
+\DoxyCodeLine{                            \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{parson_8c_abb7cc56e38fce2aaeaf23238ab50eb5c}\label{parson_8c_abb7cc56e38fce2aaeaf23238ab50eb5c}} 
+\index{parson.c@{parson.c}!APPEND\_STRING@{APPEND\_STRING}}
+\index{APPEND\_STRING@{APPEND\_STRING}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{APPEND\_STRING}{APPEND\_STRING}}
+{\footnotesize\ttfamily \#define APPEND\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{str }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                \textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{                                written = \mbox{\hyperlink{parson_8c_ad4644341e60718dfb88eaa20a29e2979}{SIZEOF\_TOKEN}}((str));\(\backslash\)}
+\DoxyCodeLine{                                if (buf != NULL) \{\(\backslash\)}
+\DoxyCodeLine{                                    memcpy(buf, (str), written);\(\backslash\)}
+\DoxyCodeLine{                                    buf[written] = \textcolor{charliteral}{'\(\backslash\)0'};\(\backslash\)}
+\DoxyCodeLine{                                    buf += written;\(\backslash\)}
+\DoxyCodeLine{                                \}\(\backslash\)}
+\DoxyCodeLine{                                written\_total += written;\(\backslash\)}
+\DoxyCodeLine{                            \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{parson_8c_aaa2ed8cc468393251c47811ce8338d23}\label{parson_8c_aaa2ed8cc468393251c47811ce8338d23}} 
+\index{parson.c@{parson.c}!IS\_CONT@{IS\_CONT}}
+\index{IS\_CONT@{IS\_CONT}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{IS\_CONT}{IS\_CONT}}
+{\footnotesize\ttfamily \#define IS\+\_\+\+CONT(\begin{DoxyParamCaption}\item[{}]{b }\end{DoxyParamCaption})~(((unsigned char)(b) \& 0x\+C0) == 0x80) /$\ast$ is utf-\/8 continuation byte $\ast$/}
+
+\mbox{\Hypertarget{parson_8c_a1442218b676f983b5f73daca3faa9449}\label{parson_8c_a1442218b676f983b5f73daca3faa9449}} 
+\index{parson.c@{parson.c}!IS\_NUMBER\_INVALID@{IS\_NUMBER\_INVALID}}
+\index{IS\_NUMBER\_INVALID@{IS\_NUMBER\_INVALID}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{IS\_NUMBER\_INVALID}{IS\_NUMBER\_INVALID}}
+{\footnotesize\ttfamily \#define IS\+\_\+\+NUMBER\+\_\+\+INVALID(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) $\ast$ 0.\+0) != 0.\+0)}
+
+\mbox{\Hypertarget{parson_8c_afa99ec4acc4ecb2dc3c2d05da15d0e3f}\label{parson_8c_afa99ec4acc4ecb2dc3c2d05da15d0e3f}} 
+\index{parson.c@{parson.c}!MAX@{MAX}}
+\index{MAX@{MAX}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define MAX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~((a) $>$ (b) ? (a) \+: (b))}
+
+\mbox{\Hypertarget{parson_8c_a975fbcb7495d702b27dbbdb9fb149fa1}\label{parson_8c_a975fbcb7495d702b27dbbdb9fb149fa1}} 
+\index{parson.c@{parson.c}!MAX\_NESTING@{MAX\_NESTING}}
+\index{MAX\_NESTING@{MAX\_NESTING}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NESTING}{MAX\_NESTING}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+NESTING~2048}
+
+\mbox{\Hypertarget{parson_8c_ae4de8004988d4926a0c1f9b898c4f8fe}\label{parson_8c_ae4de8004988d4926a0c1f9b898c4f8fe}} 
+\index{parson.c@{parson.c}!OBJECT\_INVALID\_IX@{OBJECT\_INVALID\_IX}}
+\index{OBJECT\_INVALID\_IX@{OBJECT\_INVALID\_IX}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{OBJECT\_INVALID\_IX}{OBJECT\_INVALID\_IX}}
+{\footnotesize\ttfamily \#define OBJECT\+\_\+\+INVALID\+\_\+\+IX~((size\+\_\+t)-\/1)}
+
+\mbox{\Hypertarget{parson_8c_a5bf8a39ed57e68bef68a5ad9ddcf8493}\label{parson_8c_a5bf8a39ed57e68bef68a5ad9ddcf8493}} 
+\index{parson.c@{parson.c}!PARSON\_DEFAULT\_FLOAT\_FORMAT@{PARSON\_DEFAULT\_FLOAT\_FORMAT}}
+\index{PARSON\_DEFAULT\_FLOAT\_FORMAT@{PARSON\_DEFAULT\_FLOAT\_FORMAT}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_DEFAULT\_FLOAT\_FORMAT}{PARSON\_DEFAULT\_FLOAT\_FORMAT}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+DEFAULT\+\_\+\+FLOAT\+\_\+\+FORMAT~\char`\"{}\%1.\+17g\char`\"{} /$\ast$ do not increase precision without incresing NUM\+\_\+\+BUF\+\_\+\+SIZE $\ast$/}
+
+\mbox{\Hypertarget{parson_8c_a0df685e121046678502f79bef9d0fc98}\label{parson_8c_a0df685e121046678502f79bef9d0fc98}} 
+\index{parson.c@{parson.c}!PARSON\_FALSE@{PARSON\_FALSE}}
+\index{PARSON\_FALSE@{PARSON\_FALSE}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_FALSE}{PARSON\_FALSE}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+FALSE~0}
+
+\mbox{\Hypertarget{parson_8c_a07f9807bb240aa561d01e7fd1e46d41b}\label{parson_8c_a07f9807bb240aa561d01e7fd1e46d41b}} 
+\index{parson.c@{parson.c}!PARSON\_IMPL\_VERSION\_MAJOR@{PARSON\_IMPL\_VERSION\_MAJOR}}
+\index{PARSON\_IMPL\_VERSION\_MAJOR@{PARSON\_IMPL\_VERSION\_MAJOR}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_IMPL\_VERSION\_MAJOR}{PARSON\_IMPL\_VERSION\_MAJOR}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+MAJOR~1}
+
+\mbox{\Hypertarget{parson_8c_a48747232c45232776ad4921063217cc4}\label{parson_8c_a48747232c45232776ad4921063217cc4}} 
+\index{parson.c@{parson.c}!PARSON\_IMPL\_VERSION\_MINOR@{PARSON\_IMPL\_VERSION\_MINOR}}
+\index{PARSON\_IMPL\_VERSION\_MINOR@{PARSON\_IMPL\_VERSION\_MINOR}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_IMPL\_VERSION\_MINOR}{PARSON\_IMPL\_VERSION\_MINOR}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+MINOR~5}
+
+\mbox{\Hypertarget{parson_8c_a967d47c35f5649058d9fa35025381e1c}\label{parson_8c_a967d47c35f5649058d9fa35025381e1c}} 
+\index{parson.c@{parson.c}!PARSON\_IMPL\_VERSION\_PATCH@{PARSON\_IMPL\_VERSION\_PATCH}}
+\index{PARSON\_IMPL\_VERSION\_PATCH@{PARSON\_IMPL\_VERSION\_PATCH}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_IMPL\_VERSION\_PATCH}{PARSON\_IMPL\_VERSION\_PATCH}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+IMPL\+\_\+\+VERSION\+\_\+\+PATCH~0}
+
+\mbox{\Hypertarget{parson_8c_acd537c18c2dc72b35d39cb3d1f96ff8a}\label{parson_8c_acd537c18c2dc72b35d39cb3d1f96ff8a}} 
+\index{parson.c@{parson.c}!PARSON\_INDENT\_STR@{PARSON\_INDENT\_STR}}
+\index{PARSON\_INDENT\_STR@{PARSON\_INDENT\_STR}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_INDENT\_STR}{PARSON\_INDENT\_STR}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+INDENT\+\_\+\+STR~\char`\"{}    \char`\"{}}
+
+\mbox{\Hypertarget{parson_8c_a84f1ae28dde963141a15ec171b03d482}\label{parson_8c_a84f1ae28dde963141a15ec171b03d482}} 
+\index{parson.c@{parson.c}!PARSON\_NUM\_BUF\_SIZE@{PARSON\_NUM\_BUF\_SIZE}}
+\index{PARSON\_NUM\_BUF\_SIZE@{PARSON\_NUM\_BUF\_SIZE}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_NUM\_BUF\_SIZE}{PARSON\_NUM\_BUF\_SIZE}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+NUM\+\_\+\+BUF\+\_\+\+SIZE~64 /$\ast$ double printed with \char`\"{}\%1.\+17g\char`\"{} shouldn\textquotesingle{}t be longer than 25 bytes so let\textquotesingle{}s be paranoid and use 64 $\ast$/}
+
+\mbox{\Hypertarget{parson_8c_abae69516fd35ca6cd47fa205610032b1}\label{parson_8c_abae69516fd35ca6cd47fa205610032b1}} 
+\index{parson.c@{parson.c}!PARSON\_TRUE@{PARSON\_TRUE}}
+\index{PARSON\_TRUE@{PARSON\_TRUE}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{PARSON\_TRUE}{PARSON\_TRUE}}
+{\footnotesize\ttfamily \#define PARSON\+\_\+\+TRUE~1}
+
+\mbox{\Hypertarget{parson_8c_ad4644341e60718dfb88eaa20a29e2979}\label{parson_8c_ad4644341e60718dfb88eaa20a29e2979}} 
+\index{parson.c@{parson.c}!SIZEOF\_TOKEN@{SIZEOF\_TOKEN}}
+\index{SIZEOF\_TOKEN@{SIZEOF\_TOKEN}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{SIZEOF\_TOKEN}{SIZEOF\_TOKEN}}
+{\footnotesize\ttfamily \#define SIZEOF\+\_\+\+TOKEN(\begin{DoxyParamCaption}\item[{}]{a }\end{DoxyParamCaption})~(sizeof(a) -\/ 1)}
+
+\mbox{\Hypertarget{parson_8c_a0f71b0b0e28703925b516e5212a985f6}\label{parson_8c_a0f71b0b0e28703925b516e5212a985f6}} 
+\index{parson.c@{parson.c}!SKIP\_CHAR@{SKIP\_CHAR}}
+\index{SKIP\_CHAR@{SKIP\_CHAR}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{SKIP\_CHAR}{SKIP\_CHAR}}
+{\footnotesize\ttfamily \#define SKIP\+\_\+\+CHAR(\begin{DoxyParamCaption}\item[{}]{str }\end{DoxyParamCaption})~(($\ast$str)++)}
+
+\mbox{\Hypertarget{parson_8c_a39541f12f48d7f63c165301cc0888f91}\label{parson_8c_a39541f12f48d7f63c165301cc0888f91}} 
+\index{parson.c@{parson.c}!SKIP\_WHITESPACES@{SKIP\_WHITESPACES}}
+\index{SKIP\_WHITESPACES@{SKIP\_WHITESPACES}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{SKIP\_WHITESPACES}{SKIP\_WHITESPACES}}
+{\footnotesize\ttfamily \#define SKIP\+\_\+\+WHITESPACES(\begin{DoxyParamCaption}\item[{}]{str }\end{DoxyParamCaption})~while (isspace((unsigned char)($\ast$$\ast$str))) \{ \mbox{\hyperlink{parson_8c_a0f71b0b0e28703925b516e5212a985f6}{SKIP\+\_\+\+CHAR}}(str); \}}
+
+\mbox{\Hypertarget{parson_8c_a6e8ccd661b425d5010a8d896117d4023}\label{parson_8c_a6e8ccd661b425d5010a8d896117d4023}} 
+\index{parson.c@{parson.c}!STARTING\_CAPACITY@{STARTING\_CAPACITY}}
+\index{STARTING\_CAPACITY@{STARTING\_CAPACITY}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{STARTING\_CAPACITY}{STARTING\_CAPACITY}}
+{\footnotesize\ttfamily \#define STARTING\+\_\+\+CAPACITY~16}
+
+\mbox{\Hypertarget{parson_8c_a3c76c079d1e0dea93d871d02e407150e}\label{parson_8c_a3c76c079d1e0dea93d871d02e407150e}} 
+\index{parson.c@{parson.c}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{strcpy}{strcpy}}
+{\footnotesize\ttfamily \#define strcpy~USE\+\_\+\+MEMCPY\+\_\+\+INSTEAD\+\_\+\+OF\+\_\+\+STRCPY}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{parson_8c_a38dc8c97704d22842057d5808274a23a}\label{parson_8c_a38dc8c97704d22842057d5808274a23a}} 
+\index{parson.c@{parson.c}!JSON\_String@{JSON\_String}}
+\index{JSON\_String@{JSON\_String}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{JSON\_String}{JSON\_String}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structjson__string}{json\+\_\+string}} \mbox{\hyperlink{parson_8c_a38dc8c97704d22842057d5808274a23a}{JSON\+\_\+\+String}}}
+
+\mbox{\Hypertarget{parson_8c_a4d9de033d6a0ef597948d0c0e0113c19}\label{parson_8c_a4d9de033d6a0ef597948d0c0e0113c19}} 
+\index{parson.c@{parson.c}!JSON\_Value\_Value@{JSON\_Value\_Value}}
+\index{JSON\_Value\_Value@{JSON\_Value\_Value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{JSON\_Value\_Value}{JSON\_Value\_Value}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionjson__value__value}{json\+\_\+value\+\_\+value}} \mbox{\hyperlink{parson_8c_a4d9de033d6a0ef597948d0c0e0113c19}{JSON\+\_\+\+Value\+\_\+\+Value}}}
+
+\mbox{\Hypertarget{parson_8c_ae261825256c3890ec5c34076b7414e26}\label{parson_8c_ae261825256c3890ec5c34076b7414e26}} 
+\index{parson.c@{parson.c}!parson\_bool\_t@{parson\_bool\_t}}
+\index{parson\_bool\_t@{parson\_bool\_t}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{parson\_bool\_t}{parson\_bool\_t}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{parson_8c_ae261825256c3890ec5c34076b7414e26}{parson\+\_\+bool\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{parson_8c_a85ed43df4109463799be9467de3fad7b}\label{parson_8c_a85ed43df4109463799be9467de3fad7b}} 
+\index{parson.c@{parson.c}!json\_array@{json\_array}}
+\index{json\_array@{json\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array()}{json\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ json\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a2d6d3c1aa0f5544e2cec007c8ae2f36d}\label{parson_8c_a2d6d3c1aa0f5544e2cec007c8ae2f36d}} 
+\index{parson.c@{parson.c}!json\_array\_append\_boolean@{json\_array\_append\_boolean}}
+\index{json\_array\_append\_boolean@{json\_array\_append\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_boolean()}{json\_array\_append\_boolean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+boolean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{int}]{boolean }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a10046fe3bd949d389bbda6c120721efe}\label{parson_8c_a10046fe3bd949d389bbda6c120721efe}} 
+\index{parson.c@{parson.c}!json\_array\_append\_null@{json\_array\_append\_null}}
+\index{json\_array\_append\_null@{json\_array\_append\_null}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_null()}{json\_array\_append\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+null (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_af7d32bd24e85ba8adc82dda2bb977f05}\label{parson_8c_af7d32bd24e85ba8adc82dda2bb977f05}} 
+\index{parson.c@{parson.c}!json\_array\_append\_number@{json\_array\_append\_number}}
+\index{json\_array\_append\_number@{json\_array\_append\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_number()}{json\_array\_append\_number()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{double}]{number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_abdd2d9c2fd47a9dcd3cba7368fb1ea89}\label{parson_8c_abdd2d9c2fd47a9dcd3cba7368fb1ea89}} 
+\index{parson.c@{parson.c}!json\_array\_append\_string@{json\_array\_append\_string}}
+\index{json\_array\_append\_string@{json\_array\_append\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_string()}{json\_array\_append\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a576d1a8fe8a29aa0f9341fa51c680172}\label{parson_8c_a576d1a8fe8a29aa0f9341fa51c680172}} 
+\index{parson.c@{parson.c}!json\_array\_append\_string\_with\_len@{json\_array\_append\_string\_with\_len}}
+\index{json\_array\_append\_string\_with\_len@{json\_array\_append\_string\_with\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_string\_with\_len()}{json\_array\_append\_string\_with\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+string\+\_\+with\+\_\+len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a7fb23d000865c375cc956ef9352d1768}\label{parson_8c_a7fb23d000865c375cc956ef9352d1768}} 
+\index{parson.c@{parson.c}!json\_array\_append\_value@{json\_array\_append\_value}}
+\index{json\_array\_append\_value@{json\_array\_append\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_append\_value()}{json\_array\_append\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+append\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a468f06ad47dfcf4b5188196a279da692}\label{parson_8c_a468f06ad47dfcf4b5188196a279da692}} 
+\index{parson.c@{parson.c}!json\_array\_clear@{json\_array\_clear}}
+\index{json\_array\_clear@{json\_array\_clear}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_clear()}{json\_array\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac2eb54ad0791798822512574301c71cf}\label{parson_8c_ac2eb54ad0791798822512574301c71cf}} 
+\index{parson.c@{parson.c}!json\_array\_get\_array@{json\_array\_get\_array}}
+\index{json\_array\_get\_array@{json\_array\_get\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_array()}{json\_array\_get\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ json\+\_\+array\+\_\+get\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aa2e74bca6589f73ab3bfb7ab502f44af}\label{parson_8c_aa2e74bca6589f73ab3bfb7ab502f44af}} 
+\index{parson.c@{parson.c}!json\_array\_get\_boolean@{json\_array\_get\_boolean}}
+\index{json\_array\_get\_boolean@{json\_array\_get\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_boolean()}{json\_array\_get\_boolean()}}
+{\footnotesize\ttfamily int json\+\_\+array\+\_\+get\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a3cdef5191eb478cae45757377e3e48f5}\label{parson_8c_a3cdef5191eb478cae45757377e3e48f5}} 
+\index{parson.c@{parson.c}!json\_array\_get\_count@{json\_array\_get\_count}}
+\index{json\_array\_get\_count@{json\_array\_get\_count}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_count()}{json\_array\_get\_count()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+array\+\_\+get\+\_\+count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a3d712bcec84295ecc5c391dbcd20ba6e}\label{parson_8c_a3d712bcec84295ecc5c391dbcd20ba6e}} 
+\index{parson.c@{parson.c}!json\_array\_get\_number@{json\_array\_get\_number}}
+\index{json\_array\_get\_number@{json\_array\_get\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_number()}{json\_array\_get\_number()}}
+{\footnotesize\ttfamily double json\+\_\+array\+\_\+get\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a702d7e9cc3aa91a031f50b52030d0558}\label{parson_8c_a702d7e9cc3aa91a031f50b52030d0558}} 
+\index{parson.c@{parson.c}!json\_array\_get\_object@{json\_array\_get\_object}}
+\index{json\_array\_get\_object@{json\_array\_get\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_object()}{json\_array\_get\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ json\+\_\+array\+\_\+get\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a2b61099a67dd7a9293985f4565d5dd38}\label{parson_8c_a2b61099a67dd7a9293985f4565d5dd38}} 
+\index{parson.c@{parson.c}!json\_array\_get\_string@{json\_array\_get\_string}}
+\index{json\_array\_get\_string@{json\_array\_get\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_string()}{json\_array\_get\_string()}}
+{\footnotesize\ttfamily const char $\ast$ json\+\_\+array\+\_\+get\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aaffc3561d9d4912f546a906a65404a18}\label{parson_8c_aaffc3561d9d4912f546a906a65404a18}} 
+\index{parson.c@{parson.c}!json\_array\_get\_string\_len@{json\_array\_get\_string\_len}}
+\index{json\_array\_get\_string\_len@{json\_array\_get\_string\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_string\_len()}{json\_array\_get\_string\_len()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+array\+\_\+get\+\_\+string\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a2a304296ce6689afbdd6ccea34d05621}\label{parson_8c_a2a304296ce6689afbdd6ccea34d05621}} 
+\index{parson.c@{parson.c}!json\_array\_get\_value@{json\_array\_get\_value}}
+\index{json\_array\_get\_value@{json\_array\_get\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_value()}{json\_array\_get\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+array\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aaf5df5c9b9dc652bbdff0789616bc8cd}\label{parson_8c_aaf5df5c9b9dc652bbdff0789616bc8cd}} 
+\index{parson.c@{parson.c}!json\_array\_get\_wrapping\_value@{json\_array\_get\_wrapping\_value}}
+\index{json\_array\_get\_wrapping\_value@{json\_array\_get\_wrapping\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_get\_wrapping\_value()}{json\_array\_get\_wrapping\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+array\+\_\+get\+\_\+wrapping\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4c29ce80e9cee3a464cbe0027fb1f84c}\label{parson_8c_a4c29ce80e9cee3a464cbe0027fb1f84c}} 
+\index{parson.c@{parson.c}!json\_array\_remove@{json\_array\_remove}}
+\index{json\_array\_remove@{json\_array\_remove}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_remove()}{json\_array\_remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{ix }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a101fa1f9a3ce32034a8a7f89bc13bb89}\label{parson_8c_a101fa1f9a3ce32034a8a7f89bc13bb89}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_boolean@{json\_array\_replace\_boolean}}
+\index{json\_array\_replace\_boolean@{json\_array\_replace\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_boolean()}{json\_array\_replace\_boolean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+boolean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{i,  }\item[{int}]{boolean }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a03da91aa1986b3b97963a843bdad06da}\label{parson_8c_a03da91aa1986b3b97963a843bdad06da}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_null@{json\_array\_replace\_null}}
+\index{json\_array\_replace\_null@{json\_array\_replace\_null}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_null()}{json\_array\_replace\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+null (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4035432816f6e455cc533c15cba51ddf}\label{parson_8c_a4035432816f6e455cc533c15cba51ddf}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_number@{json\_array\_replace\_number}}
+\index{json\_array\_replace\_number@{json\_array\_replace\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_number()}{json\_array\_replace\_number()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{i,  }\item[{double}]{number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_af865e93d395d11c52a18ff10164a2a1c}\label{parson_8c_af865e93d395d11c52a18ff10164a2a1c}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_string@{json\_array\_replace\_string}}
+\index{json\_array\_replace\_string@{json\_array\_replace\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_string()}{json\_array\_replace\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{i,  }\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a33d41c30195dfd30b1bc5db8a2763842}\label{parson_8c_a33d41c30195dfd30b1bc5db8a2763842}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_string\_with\_len@{json\_array\_replace\_string\_with\_len}}
+\index{json\_array\_replace\_string\_with\_len@{json\_array\_replace\_string\_with\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_string\_with\_len()}{json\_array\_replace\_string\_with\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+string\+\_\+with\+\_\+len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{i,  }\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a24c8c0e13d124323f72f48c493c1f726}\label{parson_8c_a24c8c0e13d124323f72f48c493c1f726}} 
+\index{parson.c@{parson.c}!json\_array\_replace\_value@{json\_array\_replace\_value}}
+\index{json\_array\_replace\_value@{json\_array\_replace\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_array\_replace\_value()}{json\_array\_replace\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+array\+\_\+replace\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$}]{array,  }\item[{size\+\_\+t}]{ix,  }\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a7083e59d4970797c4b0c4b630d4aa078}\label{parson_8c_a7083e59d4970797c4b0c4b630d4aa078}} 
+\index{parson.c@{parson.c}!json\_boolean@{json\_boolean}}
+\index{json\_boolean@{json\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_boolean()}{json\_boolean()}}
+{\footnotesize\ttfamily int json\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4b32b8273c00bdcdb3fb9b04062c8084}\label{parson_8c_a4b32b8273c00bdcdb3fb9b04062c8084}} 
+\index{parson.c@{parson.c}!json\_free\_serialized\_string@{json\_free\_serialized\_string}}
+\index{json\_free\_serialized\_string@{json\_free\_serialized\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_free\_serialized\_string()}{json\_free\_serialized\_string()}}
+{\footnotesize\ttfamily void json\+\_\+free\+\_\+serialized\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a70d61224267692217c2907097e209be0}\label{parson_8c_a70d61224267692217c2907097e209be0}} 
+\index{parson.c@{parson.c}!json\_number@{json\_number}}
+\index{json\_number@{json\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_number()}{json\_number()}}
+{\footnotesize\ttfamily double json\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ad1a6df9a743eaa95a38637b6adebaa2f}\label{parson_8c_ad1a6df9a743eaa95a38637b6adebaa2f}} 
+\index{parson.c@{parson.c}!json\_object@{json\_object}}
+\index{json\_object@{json\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object()}{json\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ json\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a9874cd6712b28250a2abe3186ba569e9}\label{parson_8c_a9874cd6712b28250a2abe3186ba569e9}} 
+\index{parson.c@{parson.c}!json\_object\_clear@{json\_object\_clear}}
+\index{json\_object\_clear@{json\_object\_clear}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_clear()}{json\_object\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a5e5c8b5e2ae7b587be17496277c69317}\label{parson_8c_a5e5c8b5e2ae7b587be17496277c69317}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_array@{json\_object\_dotget\_array}}
+\index{json\_object\_dotget\_array@{json\_object\_dotget\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_array()}{json\_object\_dotget\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ json\+\_\+object\+\_\+dotget\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a2ffd2a8e2e14b24d7a2d02a700507748}\label{parson_8c_a2ffd2a8e2e14b24d7a2d02a700507748}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_boolean@{json\_object\_dotget\_boolean}}
+\index{json\_object\_dotget\_boolean@{json\_object\_dotget\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_boolean()}{json\_object\_dotget\_boolean()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+dotget\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac782225cbe9293782d006140f78daac2}\label{parson_8c_ac782225cbe9293782d006140f78daac2}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_number@{json\_object\_dotget\_number}}
+\index{json\_object\_dotget\_number@{json\_object\_dotget\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_number()}{json\_object\_dotget\_number()}}
+{\footnotesize\ttfamily double json\+\_\+object\+\_\+dotget\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a7385a0b985367c4ab3d2d2b49643ec19}\label{parson_8c_a7385a0b985367c4ab3d2d2b49643ec19}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_object@{json\_object\_dotget\_object}}
+\index{json\_object\_dotget\_object@{json\_object\_dotget\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_object()}{json\_object\_dotget\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ json\+\_\+object\+\_\+dotget\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a36f910ea5423925fd93de7c373dc0b32}\label{parson_8c_a36f910ea5423925fd93de7c373dc0b32}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_string@{json\_object\_dotget\_string}}
+\index{json\_object\_dotget\_string@{json\_object\_dotget\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_string()}{json\_object\_dotget\_string()}}
+{\footnotesize\ttfamily const char $\ast$ json\+\_\+object\+\_\+dotget\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac5c417d48ed3d1503026e0967c69cfa0}\label{parson_8c_ac5c417d48ed3d1503026e0967c69cfa0}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_string\_len@{json\_object\_dotget\_string\_len}}
+\index{json\_object\_dotget\_string\_len@{json\_object\_dotget\_string\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_string\_len()}{json\_object\_dotget\_string\_len()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+object\+\_\+dotget\+\_\+string\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a414a589c689b5733b0d983d6e9410663}\label{parson_8c_a414a589c689b5733b0d983d6e9410663}} 
+\index{parson.c@{parson.c}!json\_object\_dotget\_value@{json\_object\_dotget\_value}}
+\index{json\_object\_dotget\_value@{json\_object\_dotget\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotget\_value()}{json\_object\_dotget\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+object\+\_\+dotget\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a8180fb05845003341554fae35c1d85d2}\label{parson_8c_a8180fb05845003341554fae35c1d85d2}} 
+\index{parson.c@{parson.c}!json\_object\_dothas\_value@{json\_object\_dothas\_value}}
+\index{json\_object\_dothas\_value@{json\_object\_dothas\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dothas\_value()}{json\_object\_dothas\_value()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+dothas\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a603ccdeef1b2dd19c56850b8ec25774e}\label{parson_8c_a603ccdeef1b2dd19c56850b8ec25774e}} 
+\index{parson.c@{parson.c}!json\_object\_dothas\_value\_of\_type@{json\_object\_dothas\_value\_of\_type}}
+\index{json\_object\_dothas\_value\_of\_type@{json\_object\_dothas\_value\_of\_type}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dothas\_value\_of\_type()}{json\_object\_dothas\_value\_of\_type()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+dothas\+\_\+value\+\_\+of\+\_\+type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}}}]{type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a638e7780ad1ab5bdcec7cba173954de4}\label{parson_8c_a638e7780ad1ab5bdcec7cba173954de4}} 
+\index{parson.c@{parson.c}!json\_object\_dotremove@{json\_object\_dotremove}}
+\index{json\_object\_dotremove@{json\_object\_dotremove}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotremove()}{json\_object\_dotremove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotremove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a0dbd83d15003b246782f0f75659b3f3d}\label{parson_8c_a0dbd83d15003b246782f0f75659b3f3d}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_boolean@{json\_object\_dotset\_boolean}}
+\index{json\_object\_dotset\_boolean@{json\_object\_dotset\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_boolean()}{json\_object\_dotset\_boolean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+boolean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{int}]{boolean }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a386ab4593c8f46ddcb907207ffeea1d7}\label{parson_8c_a386ab4593c8f46ddcb907207ffeea1d7}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_null@{json\_object\_dotset\_null}}
+\index{json\_object\_dotset\_null@{json\_object\_dotset\_null}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_null()}{json\_object\_dotset\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+null (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ae3fafcf7fc27c8a0b08e517ebad87037}\label{parson_8c_ae3fafcf7fc27c8a0b08e517ebad87037}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_number@{json\_object\_dotset\_number}}
+\index{json\_object\_dotset\_number@{json\_object\_dotset\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_number()}{json\_object\_dotset\_number()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{double}]{number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a0069c12155c176511ea091a6471cbe49}\label{parson_8c_a0069c12155c176511ea091a6471cbe49}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_string@{json\_object\_dotset\_string}}
+\index{json\_object\_dotset\_string@{json\_object\_dotset\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_string()}{json\_object\_dotset\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aa5cb83701146c7a54a91f3f6961a2dab}\label{parson_8c_aa5cb83701146c7a54a91f3f6961a2dab}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_string\_with\_len@{json\_object\_dotset\_string\_with\_len}}
+\index{json\_object\_dotset\_string\_with\_len@{json\_object\_dotset\_string\_with\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_string\_with\_len()}{json\_object\_dotset\_string\_with\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+string\+\_\+with\+\_\+len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a639e70952e2bffab866303ef528367a4}\label{parson_8c_a639e70952e2bffab866303ef528367a4}} 
+\index{parson.c@{parson.c}!json\_object\_dotset\_value@{json\_object\_dotset\_value}}
+\index{json\_object\_dotset\_value@{json\_object\_dotset\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_dotset\_value()}{json\_object\_dotset\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+dotset\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a86c3aeabd94f51e6c04c3ef1468bc870}\label{parson_8c_a86c3aeabd94f51e6c04c3ef1468bc870}} 
+\index{parson.c@{parson.c}!json\_object\_get\_array@{json\_object\_get\_array}}
+\index{json\_object\_get\_array@{json\_object\_get\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_array()}{json\_object\_get\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ json\+\_\+object\+\_\+get\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a080a1fb2f95ac9ba3995c096a5339406}\label{parson_8c_a080a1fb2f95ac9ba3995c096a5339406}} 
+\index{parson.c@{parson.c}!json\_object\_get\_boolean@{json\_object\_get\_boolean}}
+\index{json\_object\_get\_boolean@{json\_object\_get\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_boolean()}{json\_object\_get\_boolean()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+get\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a6e804d8e5c9e273fbb1b04cee885fb4d}\label{parson_8c_a6e804d8e5c9e273fbb1b04cee885fb4d}} 
+\index{parson.c@{parson.c}!json\_object\_get\_count@{json\_object\_get\_count}}
+\index{json\_object\_get\_count@{json\_object\_get\_count}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_count()}{json\_object\_get\_count()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+object\+\_\+get\+\_\+count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a316a15d78ae9d5e93b626dc5eb1b751a}\label{parson_8c_a316a15d78ae9d5e93b626dc5eb1b751a}} 
+\index{parson.c@{parson.c}!json\_object\_get\_name@{json\_object\_get\_name}}
+\index{json\_object\_get\_name@{json\_object\_get\_name}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_name()}{json\_object\_get\_name()}}
+{\footnotesize\ttfamily const char $\ast$ json\+\_\+object\+\_\+get\+\_\+name (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac6d8779c183fb9cd58e3c57ba8d7ee21}\label{parson_8c_ac6d8779c183fb9cd58e3c57ba8d7ee21}} 
+\index{parson.c@{parson.c}!json\_object\_get\_number@{json\_object\_get\_number}}
+\index{json\_object\_get\_number@{json\_object\_get\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_number()}{json\_object\_get\_number()}}
+{\footnotesize\ttfamily double json\+\_\+object\+\_\+get\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a3a911a7c1b3328aa9d93923c07e8a641}\label{parson_8c_a3a911a7c1b3328aa9d93923c07e8a641}} 
+\index{parson.c@{parson.c}!json\_object\_get\_object@{json\_object\_get\_object}}
+\index{json\_object\_get\_object@{json\_object\_get\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_object()}{json\_object\_get\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ json\+\_\+object\+\_\+get\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a9e2d3e4d25595d394585cb11300bf53c}\label{parson_8c_a9e2d3e4d25595d394585cb11300bf53c}} 
+\index{parson.c@{parson.c}!json\_object\_get\_string@{json\_object\_get\_string}}
+\index{json\_object\_get\_string@{json\_object\_get\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_string()}{json\_object\_get\_string()}}
+{\footnotesize\ttfamily const char $\ast$ json\+\_\+object\+\_\+get\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a02901433c0f0b48d3968d5b1c92e8821}\label{parson_8c_a02901433c0f0b48d3968d5b1c92e8821}} 
+\index{parson.c@{parson.c}!json\_object\_get\_string\_len@{json\_object\_get\_string\_len}}
+\index{json\_object\_get\_string\_len@{json\_object\_get\_string\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_string\_len()}{json\_object\_get\_string\_len()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+object\+\_\+get\+\_\+string\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a925da100f918bb5a4dd65e810ea77f78}\label{parson_8c_a925da100f918bb5a4dd65e810ea77f78}} 
+\index{parson.c@{parson.c}!json\_object\_get\_value@{json\_object\_get\_value}}
+\index{json\_object\_get\_value@{json\_object\_get\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_value()}{json\_object\_get\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+object\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a76f96eda6679a83b8ac29274dc044be9}\label{parson_8c_a76f96eda6679a83b8ac29274dc044be9}} 
+\index{parson.c@{parson.c}!json\_object\_get\_value\_at@{json\_object\_get\_value\_at}}
+\index{json\_object\_get\_value\_at@{json\_object\_get\_value\_at}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_value\_at()}{json\_object\_get\_value\_at()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+object\+\_\+get\+\_\+value\+\_\+at (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a700522442034a6277db8caf8822a8744}\label{parson_8c_a700522442034a6277db8caf8822a8744}} 
+\index{parson.c@{parson.c}!json\_object\_get\_wrapping\_value@{json\_object\_get\_wrapping\_value}}
+\index{json\_object\_get\_wrapping\_value@{json\_object\_get\_wrapping\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_get\_wrapping\_value()}{json\_object\_get\_wrapping\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+object\+\_\+get\+\_\+wrapping\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a8cbdedc509113a21f3c348f4b1f1f7f8}\label{parson_8c_a8cbdedc509113a21f3c348f4b1f1f7f8}} 
+\index{parson.c@{parson.c}!json\_object\_has\_value@{json\_object\_has\_value}}
+\index{json\_object\_has\_value@{json\_object\_has\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_has\_value()}{json\_object\_has\_value()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+has\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a39e904c031cd65a901ecf27dd3a856d4}\label{parson_8c_a39e904c031cd65a901ecf27dd3a856d4}} 
+\index{parson.c@{parson.c}!json\_object\_has\_value\_of\_type@{json\_object\_has\_value\_of\_type}}
+\index{json\_object\_has\_value\_of\_type@{json\_object\_has\_value\_of\_type}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_has\_value\_of\_type()}{json\_object\_has\_value\_of\_type()}}
+{\footnotesize\ttfamily int json\+\_\+object\+\_\+has\+\_\+value\+\_\+of\+\_\+type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}}}]{type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a1051dd0b0e301046529d5f9550c7bd3a}\label{parson_8c_a1051dd0b0e301046529d5f9550c7bd3a}} 
+\index{parson.c@{parson.c}!json\_object\_remove@{json\_object\_remove}}
+\index{json\_object\_remove@{json\_object\_remove}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_remove()}{json\_object\_remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4b25ed7adda736fabdae1dee7c5f6dc9}\label{parson_8c_a4b25ed7adda736fabdae1dee7c5f6dc9}} 
+\index{parson.c@{parson.c}!json\_object\_set\_boolean@{json\_object\_set\_boolean}}
+\index{json\_object\_set\_boolean@{json\_object\_set\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_boolean()}{json\_object\_set\_boolean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+boolean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{int}]{boolean }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ab27d5079abe1331df55f0b806ae7b574}\label{parson_8c_ab27d5079abe1331df55f0b806ae7b574}} 
+\index{parson.c@{parson.c}!json\_object\_set\_null@{json\_object\_set\_null}}
+\index{json\_object\_set\_null@{json\_object\_set\_null}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_null()}{json\_object\_set\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+null (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a39e19ea718c221389fc991c22d39777d}\label{parson_8c_a39e19ea718c221389fc991c22d39777d}} 
+\index{parson.c@{parson.c}!json\_object\_set\_number@{json\_object\_set\_number}}
+\index{json\_object\_set\_number@{json\_object\_set\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_number()}{json\_object\_set\_number()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{double}]{number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4894ebaa8673c6dbc69519b6c1573c99}\label{parson_8c_a4894ebaa8673c6dbc69519b6c1573c99}} 
+\index{parson.c@{parson.c}!json\_object\_set\_string@{json\_object\_set\_string}}
+\index{json\_object\_set\_string@{json\_object\_set\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_string()}{json\_object\_set\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a38be152968fdc545be58356f8e44aefd}\label{parson_8c_a38be152968fdc545be58356f8e44aefd}} 
+\index{parson.c@{parson.c}!json\_object\_set\_string\_with\_len@{json\_object\_set\_string\_with\_len}}
+\index{json\_object\_set\_string\_with\_len@{json\_object\_set\_string\_with\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_string\_with\_len()}{json\_object\_set\_string\_with\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+string\+\_\+with\+\_\+len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aa407a58f390b497a6396d20d7c3c7bfd}\label{parson_8c_aa407a58f390b497a6396d20d7c3c7bfd}} 
+\index{parson.c@{parson.c}!json\_object\_set\_value@{json\_object\_set\_value}}
+\index{json\_object\_set\_value@{json\_object\_set\_value}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_object\_set\_value()}{json\_object\_set\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+object\+\_\+set\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$}]{object,  }\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ab46574724afc3f8bb047b73a9d477179}\label{parson_8c_ab46574724afc3f8bb047b73a9d477179}} 
+\index{parson.c@{parson.c}!json\_parse\_file@{json\_parse\_file}}
+\index{json\_parse\_file@{json\_parse\_file}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_parse\_file()}{json\_parse\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+parse\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aee8713749d8917080c20477d048c2b6c}\label{parson_8c_aee8713749d8917080c20477d048c2b6c}} 
+\index{parson.c@{parson.c}!json\_parse\_file\_with\_comments@{json\_parse\_file\_with\_comments}}
+\index{json\_parse\_file\_with\_comments@{json\_parse\_file\_with\_comments}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_parse\_file\_with\_comments()}{json\_parse\_file\_with\_comments()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+parse\+\_\+file\+\_\+with\+\_\+comments (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a7e811c5276660cba5fa1758ff8dd86df}\label{parson_8c_a7e811c5276660cba5fa1758ff8dd86df}} 
+\index{parson.c@{parson.c}!json\_parse\_string@{json\_parse\_string}}
+\index{json\_parse\_string@{json\_parse\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_parse\_string()}{json\_parse\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+parse\+\_\+string (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a918fc6c895cfed0e075a03e48c96dd75}\label{parson_8c_a918fc6c895cfed0e075a03e48c96dd75}} 
+\index{parson.c@{parson.c}!json\_parse\_string\_with\_comments@{json\_parse\_string\_with\_comments}}
+\index{json\_parse\_string\_with\_comments@{json\_parse\_string\_with\_comments}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_parse\_string\_with\_comments()}{json\_parse\_string\_with\_comments()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+parse\+\_\+string\+\_\+with\+\_\+comments (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ab6501025c8270219bb522ea169fc8ac7}\label{parson_8c_ab6501025c8270219bb522ea169fc8ac7}} 
+\index{parson.c@{parson.c}!json\_serialization\_size@{json\_serialization\_size}}
+\index{json\_serialization\_size@{json\_serialization\_size}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialization\_size()}{json\_serialization\_size()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+serialization\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a1c9e7442e7e0e065abd4fd9b836c17aa}\label{parson_8c_a1c9e7442e7e0e065abd4fd9b836c17aa}} 
+\index{parson.c@{parson.c}!json\_serialization\_size\_pretty@{json\_serialization\_size\_pretty}}
+\index{json\_serialization\_size\_pretty@{json\_serialization\_size\_pretty}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialization\_size\_pretty()}{json\_serialization\_size\_pretty()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+serialization\+\_\+size\+\_\+pretty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_afa0950abfa2559f9ffc7f778a461ae52}\label{parson_8c_afa0950abfa2559f9ffc7f778a461ae52}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_buffer@{json\_serialize\_to\_buffer}}
+\index{json\_serialize\_to\_buffer@{json\_serialize\_to\_buffer}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_buffer()}{json\_serialize\_to\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+serialize\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value,  }\item[{char $\ast$}]{buf,  }\item[{size\+\_\+t}]{buf\+\_\+size\+\_\+in\+\_\+bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a11ba2d6dcf15cb9c2905cc56d610ddd7}\label{parson_8c_a11ba2d6dcf15cb9c2905cc56d610ddd7}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_buffer\_pretty@{json\_serialize\_to\_buffer\_pretty}}
+\index{json\_serialize\_to\_buffer\_pretty@{json\_serialize\_to\_buffer\_pretty}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_buffer\_pretty()}{json\_serialize\_to\_buffer\_pretty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+serialize\+\_\+to\+\_\+buffer\+\_\+pretty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value,  }\item[{char $\ast$}]{buf,  }\item[{size\+\_\+t}]{buf\+\_\+size\+\_\+in\+\_\+bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a5501d255adc5040d420bcf7a257de999}\label{parson_8c_a5501d255adc5040d420bcf7a257de999}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_file@{json\_serialize\_to\_file}}
+\index{json\_serialize\_to\_file@{json\_serialize\_to\_file}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_file()}{json\_serialize\_to\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+serialize\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value,  }\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ab41c46f3b13268ae103e8b1d2afb99c5}\label{parson_8c_ab41c46f3b13268ae103e8b1d2afb99c5}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_file\_pretty@{json\_serialize\_to\_file\_pretty}}
+\index{json\_serialize\_to\_file\_pretty@{json\_serialize\_to\_file\_pretty}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_file\_pretty()}{json\_serialize\_to\_file\_pretty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+serialize\+\_\+to\+\_\+file\+\_\+pretty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value,  }\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aa3525f651580d8c66d446ffc950413ac}\label{parson_8c_aa3525f651580d8c66d446ffc950413ac}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_string@{json\_serialize\_to\_string}}
+\index{json\_serialize\_to\_string@{json\_serialize\_to\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_string()}{json\_serialize\_to\_string()}}
+{\footnotesize\ttfamily char $\ast$ json\+\_\+serialize\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_adc914c37e3ab3be348336ba6910b009c}\label{parson_8c_adc914c37e3ab3be348336ba6910b009c}} 
+\index{parson.c@{parson.c}!json\_serialize\_to\_string\_pretty@{json\_serialize\_to\_string\_pretty}}
+\index{json\_serialize\_to\_string\_pretty@{json\_serialize\_to\_string\_pretty}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_serialize\_to\_string\_pretty()}{json\_serialize\_to\_string\_pretty()}}
+{\footnotesize\ttfamily char $\ast$ json\+\_\+serialize\+\_\+to\+\_\+string\+\_\+pretty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aeb589bd96b2d28a7724d29f9ef50a338}\label{parson_8c_aeb589bd96b2d28a7724d29f9ef50a338}} 
+\index{parson.c@{parson.c}!json\_set\_allocation\_functions@{json\_set\_allocation\_functions}}
+\index{json\_set\_allocation\_functions@{json\_set\_allocation\_functions}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_set\_allocation\_functions()}{json\_set\_allocation\_functions()}}
+{\footnotesize\ttfamily void json\+\_\+set\+\_\+allocation\+\_\+functions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_ab66583112bdc39a4309a4aa49d6d4159}{JSON\+\_\+\+Malloc\+\_\+\+Function}}}]{malloc\+\_\+fun,  }\item[{\mbox{\hyperlink{parson_8h_aa6d9986e9dc8c0fb1a330f635f508b5a}{JSON\+\_\+\+Free\+\_\+\+Function}}}]{free\+\_\+fun }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a60e0704a3ac10a42e00cc570bce5daff}\label{parson_8c_a60e0704a3ac10a42e00cc570bce5daff}} 
+\index{parson.c@{parson.c}!json\_set\_escape\_slashes@{json\_set\_escape\_slashes}}
+\index{json\_set\_escape\_slashes@{json\_set\_escape\_slashes}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_set\_escape\_slashes()}{json\_set\_escape\_slashes()}}
+{\footnotesize\ttfamily void json\+\_\+set\+\_\+escape\+\_\+slashes (\begin{DoxyParamCaption}\item[{int}]{escape\+\_\+slashes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a3b7bafa4f174b5e6dd8ac9e972d36c39}\label{parson_8c_a3b7bafa4f174b5e6dd8ac9e972d36c39}} 
+\index{parson.c@{parson.c}!json\_set\_float\_serialization\_format@{json\_set\_float\_serialization\_format}}
+\index{json\_set\_float\_serialization\_format@{json\_set\_float\_serialization\_format}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_set\_float\_serialization\_format()}{json\_set\_float\_serialization\_format()}}
+{\footnotesize\ttfamily void json\+\_\+set\+\_\+float\+\_\+serialization\+\_\+format (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a458815d5fc4d86e03dff263190e7bf64}\label{parson_8c_a458815d5fc4d86e03dff263190e7bf64}} 
+\index{parson.c@{parson.c}!json\_set\_number\_serialization\_function@{json\_set\_number\_serialization\_function}}
+\index{json\_set\_number\_serialization\_function@{json\_set\_number\_serialization\_function}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_set\_number\_serialization\_function()}{json\_set\_number\_serialization\_function()}}
+{\footnotesize\ttfamily void json\+\_\+set\+\_\+number\+\_\+serialization\+\_\+function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a47d5ac083bdd761036550045c105a3e5}{JSON\+\_\+\+Number\+\_\+\+Serialization\+\_\+\+Function}}}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a04d80366ddbfbe74dba3eb15f8fe219f}\label{parson_8c_a04d80366ddbfbe74dba3eb15f8fe219f}} 
+\index{parson.c@{parson.c}!json\_string@{json\_string}}
+\index{json\_string@{json\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_string()}{json\_string()}}
+{\footnotesize\ttfamily const char $\ast$ \mbox{\hyperlink{structjson__string}{json\+\_\+string}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a0981c49381d7b5afbd4d99faf185cd06}\label{parson_8c_a0981c49381d7b5afbd4d99faf185cd06}} 
+\index{parson.c@{parson.c}!json\_string\_len@{json\_string\_len}}
+\index{json\_string\_len@{json\_string\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_string\_len()}{json\_string\_len()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+string\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a2e9f04113d64e986c8b1e3fa7dc0b2e8}\label{parson_8c_a2e9f04113d64e986c8b1e3fa7dc0b2e8}} 
+\index{parson.c@{parson.c}!json\_type@{json\_type}}
+\index{json\_type@{json\_type}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_type()}{json\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} json\+\_\+type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a50dfef020cb9a9d82eaa2a540a5dd724}\label{parson_8c_a50dfef020cb9a9d82eaa2a540a5dd724}} 
+\index{parson.c@{parson.c}!json\_validate@{json\_validate}}
+\index{json\_validate@{json\_validate}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_validate()}{json\_validate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a7c27445e3f0fce8eecf46326ac592cb3}{JSON\+\_\+\+Status}} json\+\_\+validate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{schema,  }\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a8e00bc34b23b3266c5e7415bc424ecec}\label{parson_8c_a8e00bc34b23b3266c5e7415bc424ecec}} 
+\index{parson.c@{parson.c}!json\_value\_deep\_copy@{json\_value\_deep\_copy}}
+\index{json\_value\_deep\_copy@{json\_value\_deep\_copy}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_deep\_copy()}{json\_value\_deep\_copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+deep\+\_\+copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a4d940749adc93761c25e3730271677c8}\label{parson_8c_a4d940749adc93761c25e3730271677c8}} 
+\index{parson.c@{parson.c}!json\_value\_equals@{json\_value\_equals}}
+\index{json\_value\_equals@{json\_value\_equals}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_equals()}{json\_value\_equals()}}
+{\footnotesize\ttfamily int json\+\_\+value\+\_\+equals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ab2422931b5eea3c2401a86dea9c06b8c}\label{parson_8c_ab2422931b5eea3c2401a86dea9c06b8c}} 
+\index{parson.c@{parson.c}!json\_value\_free@{json\_value\_free}}
+\index{json\_value\_free@{json\_value\_free}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_free()}{json\_value\_free()}}
+{\footnotesize\ttfamily void json\+\_\+value\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a3576591e51f5e56527218979b21fd659}\label{parson_8c_a3576591e51f5e56527218979b21fd659}} 
+\index{parson.c@{parson.c}!json\_value\_get\_array@{json\_value\_get\_array}}
+\index{json\_value\_get\_array@{json\_value\_get\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_array()}{json\_value\_get\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a65f383a4ad17a6872ee422c28ff4ab66}{JSON\+\_\+\+Array}} $\ast$ json\+\_\+value\+\_\+get\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a8dbc1a82a4ec68592d3654543505244e}\label{parson_8c_a8dbc1a82a4ec68592d3654543505244e}} 
+\index{parson.c@{parson.c}!json\_value\_get\_boolean@{json\_value\_get\_boolean}}
+\index{json\_value\_get\_boolean@{json\_value\_get\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_boolean()}{json\_value\_get\_boolean()}}
+{\footnotesize\ttfamily int json\+\_\+value\+\_\+get\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac66b65fac26ad83b9b90b3a40030e669}\label{parson_8c_ac66b65fac26ad83b9b90b3a40030e669}} 
+\index{parson.c@{parson.c}!json\_value\_get\_number@{json\_value\_get\_number}}
+\index{json\_value\_get\_number@{json\_value\_get\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_number()}{json\_value\_get\_number()}}
+{\footnotesize\ttfamily double json\+\_\+value\+\_\+get\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ad1965490be7fedbbc836f3c077cb0db2}\label{parson_8c_ad1965490be7fedbbc836f3c077cb0db2}} 
+\index{parson.c@{parson.c}!json\_value\_get\_object@{json\_value\_get\_object}}
+\index{json\_value\_get\_object@{json\_value\_get\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_object()}{json\_value\_get\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_aac3bec48f2f023bc1b362fc7cf0697c8}{JSON\+\_\+\+Object}} $\ast$ json\+\_\+value\+\_\+get\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_af99d1af3a832cc46bbba6199046ab4cb}\label{parson_8c_af99d1af3a832cc46bbba6199046ab4cb}} 
+\index{parson.c@{parson.c}!json\_value\_get\_parent@{json\_value\_get\_parent}}
+\index{json\_value\_get\_parent@{json\_value\_get\_parent}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_parent()}{json\_value\_get\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+get\+\_\+parent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a03dd61a3b9f51c0734619fd5bf567bba}\label{parson_8c_a03dd61a3b9f51c0734619fd5bf567bba}} 
+\index{parson.c@{parson.c}!json\_value\_get\_string@{json\_value\_get\_string}}
+\index{json\_value\_get\_string@{json\_value\_get\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_string()}{json\_value\_get\_string()}}
+{\footnotesize\ttfamily const char $\ast$ json\+\_\+value\+\_\+get\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a086dc40ce963c1a447dff77df4356fcb}\label{parson_8c_a086dc40ce963c1a447dff77df4356fcb}} 
+\index{parson.c@{parson.c}!json\_value\_get\_string\_len@{json\_value\_get\_string\_len}}
+\index{json\_value\_get\_string\_len@{json\_value\_get\_string\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_string\_len()}{json\_value\_get\_string\_len()}}
+{\footnotesize\ttfamily size\+\_\+t json\+\_\+value\+\_\+get\+\_\+string\+\_\+len (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac9afd8b1fc34493d5dfddd84540818eb}\label{parson_8c_ac9afd8b1fc34493d5dfddd84540818eb}} 
+\index{parson.c@{parson.c}!json\_value\_get\_type@{json\_value\_get\_type}}
+\index{json\_value\_get\_type@{json\_value\_get\_type}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_get\_type()}{json\_value\_get\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a44cf81f85e0d922e18ff42ba96b9add1}{JSON\+\_\+\+Value\+\_\+\+Type}} json\+\_\+value\+\_\+get\+\_\+type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a6722c82c17186694b8b6fc7d3ad70a7c}\label{parson_8c_a6722c82c17186694b8b6fc7d3ad70a7c}} 
+\index{parson.c@{parson.c}!json\_value\_init\_array@{json\_value\_init\_array}}
+\index{json\_value\_init\_array@{json\_value\_init\_array}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_array()}{json\_value\_init\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+array (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac5ce42251b8b818708f88011b5909fee}\label{parson_8c_ac5ce42251b8b818708f88011b5909fee}} 
+\index{parson.c@{parson.c}!json\_value\_init\_boolean@{json\_value\_init\_boolean}}
+\index{json\_value\_init\_boolean@{json\_value\_init\_boolean}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_boolean()}{json\_value\_init\_boolean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+boolean (\begin{DoxyParamCaption}\item[{int}]{boolean }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_aa657e710e01bb10b3a0bde88870ebccb}\label{parson_8c_aa657e710e01bb10b3a0bde88870ebccb}} 
+\index{parson.c@{parson.c}!json\_value\_init\_null@{json\_value\_init\_null}}
+\index{json\_value\_init\_null@{json\_value\_init\_null}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_null()}{json\_value\_init\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+null (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_a84630678b0d7e419a7e0e00c339f2039}\label{parson_8c_a84630678b0d7e419a7e0e00c339f2039}} 
+\index{parson.c@{parson.c}!json\_value\_init\_number@{json\_value\_init\_number}}
+\index{json\_value\_init\_number@{json\_value\_init\_number}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_number()}{json\_value\_init\_number()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+number (\begin{DoxyParamCaption}\item[{double}]{number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ad445f559e84d8dccaabcb048fe16e840}\label{parson_8c_ad445f559e84d8dccaabcb048fe16e840}} 
+\index{parson.c@{parson.c}!json\_value\_init\_object@{json\_value\_init\_object}}
+\index{json\_value\_init\_object@{json\_value\_init\_object}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_object()}{json\_value\_init\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+object (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_add84f0e29e09212fad5f43a79ce3b66b}\label{parson_8c_add84f0e29e09212fad5f43a79ce3b66b}} 
+\index{parson.c@{parson.c}!json\_value\_init\_string@{json\_value\_init\_string}}
+\index{json\_value\_init\_string@{json\_value\_init\_string}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_string()}{json\_value\_init\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+string (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{parson_8c_ac514a289993c17951481a4ba16c29cdb}\label{parson_8c_ac514a289993c17951481a4ba16c29cdb}} 
+\index{parson.c@{parson.c}!json\_value\_init\_string\_with\_len@{json\_value\_init\_string\_with\_len}}
+\index{json\_value\_init\_string\_with\_len@{json\_value\_init\_string\_with\_len}!parson.c@{parson.c}}
+\doxysubsubsection{\texorpdfstring{json\_value\_init\_string\_with\_len()}{json\_value\_init\_string\_with\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{parson_8h_a91dc2479d3207401f079aad08043852e}{JSON\+\_\+\+Value}} $\ast$ json\+\_\+value\+\_\+init\+\_\+string\+\_\+with\+\_\+len (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+

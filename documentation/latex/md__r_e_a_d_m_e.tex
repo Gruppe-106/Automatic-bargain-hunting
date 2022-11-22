@@ -1,0 +1,44 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysection{Structure}\label{md__r_e_a_d_m_e_autotoc_md11}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysubsection{../src}\label{md__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{data\_manager/}
+\DoxyCodeLine{    api\_manager.c       //Potentially, use static data for now}
+\DoxyCodeLine{    json\_parser.c       //String to json object helper using parson library}
+\DoxyCodeLine{    data\_manager.c      //Convert json object to our own data structure and categoriziation}
+\DoxyCodeLine{search/}
+\DoxyCodeLine{   search.c             //Search by store, item and/or categorice etc.}
+\DoxyCodeLine{   categorize\_input.c   //Helper for function for user input to search}
+\DoxyCodeLine{ui/}
+\DoxyCodeLine{    UserIO.c            //User input/output handler}
+\DoxyCodeLine{}
+\DoxyCodeLine{main.c                  //Injection point, should not contain general algorithms}
+
+\end{DoxyCode}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysection{Data structure}\label{md__r_e_a_d_m_e_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{typedef enum \{}
+\DoxyCodeLine{    gram,}
+\DoxyCodeLine{    kilogram,}
+\DoxyCodeLine{    liter,}
+\DoxyCodeLine{    mililiter,}
+\DoxyCodeLine{    ...}
+\DoxyCodeLine{\} Unit\_Type}
+\DoxyCodeLine{}
+\DoxyCodeLine{struct item \{}
+\DoxyCodeLine{    char* name;}
+\DoxyCodeLine{    double price;}
+\DoxyCodeLine{    int unit\_size;}
+\DoxyCodeLine{    Unit\_Type unit;}
+\DoxyCodeLine{    \_Bool organic;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsection{Data storage}\label{md__r_e_a_d_m_e_autotoc_md14}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Store -\/> Category -\/> ? Items[]}
+
+\end{DoxyCode}
+ 
