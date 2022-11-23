@@ -134,7 +134,7 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
                     double price    = json_object_get_number(item_offer, "newPrice");
                     int unit_size   = (int) json_object_get_number(item_offer, "stock");
                     Unit_Type unit  = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-                    _Bool organic   = str_contains_string((char *) name, "oeko", false) != -1;
+                    _Bool organic   = str_contains_str((char *) name, "oeko", false) != -1;
 
                     items[items_index] = create_item(name, price, unit_size, unit, organic);
                 }
