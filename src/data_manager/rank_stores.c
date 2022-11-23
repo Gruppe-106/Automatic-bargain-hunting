@@ -14,8 +14,9 @@ void get_total_for_store(Store_Type* store){
     } else {
         while (store->items)
         {
-            current_total += store->items->price;
-            store->items   = store->items->next_node;
+            //Det er en list, ikke en node
+            //current_total += store->items->price;
+            //store->items   = store->items->next_node;
         }
         store->total_price = current_total;
     }
@@ -34,8 +35,9 @@ void rank_all_stores(Store_Type* all_stores){
     } else {
         while (all_stores->items)
         {
-            current_total      += all_stores->items->price;
-            all_stores->items   = all_stores->items->next_node;
+            //Det er en list, ikke en node
+            //current_total      += all_stores->items->price;
+            //all_stores->items   = all_stores->items->next_node;
         }
         all_stores->total_price = current_total;
         rank_all_stores(all_stores->next_node);
