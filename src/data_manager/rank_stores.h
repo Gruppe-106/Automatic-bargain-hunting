@@ -5,5 +5,4 @@
 
 void rank_all_stores(Store_Type* all_stores);
 void get_total_for_stores(Store_Type* store);
-
 #endif //AUTOMATIC_BARGAIN_HUNTING_RANK_STORES_H

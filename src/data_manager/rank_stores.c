@@ -2,8 +2,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-
-
 /**
  * Get total price for one store and update the ptr total_price
  * @param store Store_Type ptr, store to search for all items and get total price from
@@ -62,4 +60,3 @@ void rank_all_stores(Store_Type* all_stores){
 //     }
 
 // }
-

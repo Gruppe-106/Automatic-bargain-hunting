@@ -3,12 +3,13 @@
 ### ../src
 ```
 data_manager/
-    rank_stores.c
-    data_manager.c      //Convert json object to our own data structure and categoriziation
+    rank_stores.c       //Used to ranke stores depending on prices -Andreas
+    data_manager.c      //Convert json object to our own data structure and categoriziation -Mikkel
+    sort_stores.c       //Sorts stores lists of items by price for faster searching - Christian
 search/
-   search.c             //Search by store, item and/or categorice etc.
+   search.c             //Search by store, item and/or categorice etc. - Mads
 ui/
-    UserIO.c            //User input/output handler
+    UserIO.c            //User input/output handler - Zeki || Simon
 
 main.c                  //Injection point, should not contain general algorithms
 ```
