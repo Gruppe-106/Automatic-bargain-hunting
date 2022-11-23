@@ -5,14 +5,25 @@
 #include <stdio.h>
 #include "../../libs/parson/parson.h"
 
-
-// Obtuse types
-
 // Private protoypes:
-
+Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 void free_item(Item_Type* item);
 void free_items(Item_Type* items, int item_count);
 
+/**
+ * @brief Injection point should take in a json and the list of all store \n
+ * This function should be all you need to call from this file \n
+ * This function should dynamically allocate store and items as needed
+ * @param json json to convert
+ * @param all_stores Store_type ptr, all stores can be NULL
+ */
+void updates_stores(JSON_Value json, Store_Type* all_stores);
+
+/**
+ * @brief Free a node-based Store_Type list and everything within it
+ * @param all_stores Store_Type ptr, for all stores to free
+ */
+void free_stores(Store_Type* all_stores);
 
 // Declarations:
 /**
@@ -66,9 +77,9 @@ Item_Type* create_items(char *file_name)
     /* Parses the file*/
     JSON_Value *salling = json_parse_file(file_name);
 
-    JSON_Array  *clearences, *product_list;
+    JSON_Array *clearences, *product_list;
     JSON_Object *current_clearence, *current_offer, *current_store;
-    Item_Type  **products;
+    item **products;
 
     int clearences_size;
     int offer_size;
@@ -78,7 +89,7 @@ Item_Type* create_items(char *file_name)
     /* If file has been parsed unsuccessfully */
     if (json_value_get_type(salling) != JSONArray)
     {
-        printf("Can't parse file");
+        printf("Can't find file");
         exit(EXIT_FAILURE);
     }
 
@@ -134,11 +145,9 @@ Item_Type* create_items(char *file_name)
     }
 
 
-    // print_products (products,num_of_products);
-    // free_products  (products,num_of_products);
+    print_products (products,num_of_products);
+    free_products  (products,num_of_products);
 
     /* Frees the salling JSON value */
     json_value_free(salling);
 }
-
-
