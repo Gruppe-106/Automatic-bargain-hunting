@@ -3,12 +3,10 @@
 ### ../src
 ```
 data_manager/
-    api_manager.c       //Potentially, use static data for now
-    json_parser.c       //String to json object helper using parson library
+    rank_stores.c
     data_manager.c      //Convert json object to our own data structure and categoriziation
 search/
    search.c             //Search by store, item and/or categorice etc.
-   categorize_input.c   //Helper for function for user input to search
 ui/
     UserIO.c            //User input/output handler
 
