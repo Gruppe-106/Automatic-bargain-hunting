@@ -9,6 +9,7 @@
 //Prototypes
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 
+
 //Used for temporary organization of data in before being parsed to Item_Type struct in Store_Type
 typedef struct {
     const char *name;
@@ -232,5 +233,4 @@ void test() {
         puts((next->items[i])->name);
         printf("%lf \n\n", next->items[i]->price);
     }
-    free_stores(all_stores);
 }
