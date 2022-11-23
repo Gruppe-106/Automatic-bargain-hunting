@@ -10,7 +10,7 @@
  */
 Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query);
 int get_length_of_items(Item_Type** items);
-int str_contains_str(const char* original, const char* str_to_find);
+int str_contains_str_test(const char* original, const char* str_to_find);
 
 /* Definitions */
 /**
@@ -45,7 +45,7 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
     /* Proceeds to find all names matching the query, appends them to the temporary array 'items_match'. */
     for (int i = 0; i < len; ++i) {
         Item_Type* item_ptr = items[i];
-        if (str_contains_str(item_ptr->name, query))
+        if (str_contains_str_test(item_ptr->name, query))
         {
             items_match[valid_items_len] = items[i];
             ++valid_items_len;
@@ -73,7 +73,7 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
  * @param str_to_find str, checks if it is contained in original
  * @return Returns 1 if str_to_find is contained in original. Otherwise returns 0
  */
-int str_contains_str(const char* original, const char* str_to_find)
+int str_contains_str_test(const char* original, const char* str_to_find)
 {
     int
         i = 0,
