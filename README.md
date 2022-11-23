@@ -9,7 +9,7 @@ data_manager/
 search/
    search.c             //Search by store, item and/or categorice etc. - Mads
 ui/
-    UserIO.c            //User input/output handler - 
+    UserIO.c            //User input/output handler - Zeki || Simon
 
 main.c                  //Injection point, should not contain general algorithms
 ```
