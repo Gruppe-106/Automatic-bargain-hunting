@@ -6,11 +6,18 @@ typedef enum {
     KILOGRAM,
     LITER,
     MILLILITER,
-    each,
+    EACH,
 } Unit_Type;
 
-/* This is an obtuse type, you cannot ascces it's inner members, but you can use functions and such */
-typedef struct item item_type;
+
+typedef struct item {
+    char* name;
+    double price;
+    int unit_size;
+    Unit_Type unit;
+    _Bool organic;
+} Item_Type;
+
 
 
 // Prototypes

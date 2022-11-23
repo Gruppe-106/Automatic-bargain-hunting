@@ -8,14 +8,6 @@
 
 // Obtuse types
 
-typedef struct item {
-    char* name;
-    double price;
-    int unit_size;
-    Unit_Type unit;
-    _Bool organic;
-} Item_Type;
-
 // Private protoypes:
 
 void free_item(Item_Type* item);
