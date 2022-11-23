@@ -9,12 +9,18 @@
 //Prototypes
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 
+//Used for temporary organization of data in before being parsed to Item_Type struct in Store_Type
 typedef struct {
     const char *name;
     JSON_Array *product_list;
     size_t product_amount;
 } Pre_Store_Type;
 
+/**
+ * Converts a string to a Unit_Type if exist
+ * @param str char*, string to check
+ * @return Unit_Type, if applicable otherwise -1
+ */
 Unit_Type str_to_unit_type(char* str) {
     str_to_lower(&str);
     if (strcmp(str, "g") == 0)
@@ -83,7 +89,7 @@ _Bool create_and_add_store(const char* name, Store_Type** all_stores) {
  * @param all_stores Store_type ptr, all stores can be NULL
  */
 void updates_stores(JSON_Value *json, Store_Type** all_stores) {
-    /* Check if JSON is Not Null */
+    // Check if JSON is Not Null
     if (json == NULL) {
         printf("[updates_stores] JSON is a NullPointerReference");
         exit(EXIT_FAILURE);
@@ -115,30 +121,31 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
             }
         }
 
-        next->items = (Item_Type**) malloc(sizeof(Item_Type) * (item_count + 1));
-        Item_Type *items = *next->items;
+        Item_Type **items = (Item_Type**) malloc(sizeof(Item_Type) * (item_count + 1));
         size_t items_index = 0;
         for (int i = 0; i < clearances_size; ++i) {
             if (strcmp(existing_stores->name, next->name) == 0) {
                 for (int j = 0; j < existing_stores[i].product_amount; ++j, ++items_index) {
-                    JSON_Object *json_item = json_array_get_object(existing_stores[i].product_list, j);
-                    JSON_Object *item_offer = json_object_get_object(json_item, "offer");
+                    JSON_Object *json_item    = json_array_get_object(existing_stores[i].product_list, j);
+                    JSON_Object *item_offer   = json_object_get_object(json_item, "offer");
                     JSON_Object *item_product = json_object_get_object(json_item, "product");
 
-                    const char *name = json_object_get_string(item_product, "description");
-                    double price = json_object_get_number(item_offer, "newPrice");
-                    int unit_size = (int) json_object_get_number(item_offer, "stock");
-                    Unit_Type unit = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-                    _Bool organic = str_contains_string((char *) name, "oeko", false) != -1;
+                    char *name      = (char*) json_object_get_string(item_product, "description");
+                    double price    = json_object_get_number(item_offer, "newPrice");
+                    int unit_size   = (int) json_object_get_number(item_offer, "stock");
+                    Unit_Type unit  = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
+                    _Bool organic   = str_contains_string((char *) name, "oeko", false) != -1;
 
-                    Item_Type *item = create_item((char *) name, price, unit_size, unit, organic);
-                    next->items[items_index] = item;
+                    items[items_index] = create_item(name, price, unit_size, unit, organic);
                 }
             }
-            next->items[items_index + 1] = NULL;
         }
+        //Assign last index to NullPointer to have stop point later
+        items[items_index + 1] = NULL;
+        //Assign items to store
+        next->items = items;
     }
-
+    //Free JSON from memory
     json_value_free(json);
 }
 
@@ -160,7 +167,8 @@ Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, 
     item->unit       = unit;
     item->organic    = organic;
 
-    /* Copy string using memcpy*/
+    //Convert to lowercase and copy string using memcpy
+    str_to_lower(&name);
     memcpy(item->name, name, strlen(name) + 1);
 
     return item;
@@ -214,89 +222,15 @@ void free_stores(Store_Type* all_stores) {
     }
 }
 
-/*
-Item_Type* create_items(char *file_name)
-{
-    JSON_Value *salling = json_parse_file(file_name);
-
-    JSON_Array *clearences, *product_list;
-    JSON_Object *current_clearence, *current_offer, *current_store;
-    item **products;
-
-    int clearences_size;
-    int offer_size;
-    int num_of_products;
-    int current_index = 0;
-
-    //Get lvl 1 arrays meaning the clearences arrays
-    clearences      = json_value_get_array (salling);
-    clearences_size = json_array_get_count (clearences);
-
-
-    //Get amount of products
-    for (int i = 0; i < clearences_size; i++)
-    {
-        current_clearence = json_array_get_object(clearences, i);
-        product_list      = json_object_get_array(current_clearence, "clearances");
-        offer_size        = json_array_get_count(product_list);
-        num_of_products   += offer_size;
-
-    }
-
-    // Dynamically allocate for array of products
-    products = (Item_Type**)malloc(sizeof(Item_Type)*num_of_products);
-
-    for (int i = 0; i < clearences_size; i++)
-    {
-        // Get the i'th clearence array
-        current_clearence = json_array_get_object(clearences, i);
-
-        // Get the inside of the i'th clearance array
-        product_list      = json_object_get_array(current_clearence, "clearances");
-        offer_size        = json_array_get_count (product_list);
-
-        // Get the current store
-        current_store    =  json_object_get_object(current_clearence, "store");
-
-        for (int j = 0; j < offer_size; j++)
-        {
-            // Get the i'th clearance array's inside objects
-            current_offer = json_array_get_object(product_list, j);
-
-            // Reads the objetcs and creates a new product
-            products[current_index] = create_item(
-                    json_object_dotget_string(current_offer,"product.description"),
-                    json_object_get_string(current_store, "brand"),
-                    json_object_dotget_number(current_offer,"offer.newPrice"),
-                    json_object_dotget_number(current_offer,"offer.originalPrice"),
-                    json_object_dotget_number(current_offer,"offer.percentDiscount"));
-            current_index++;
-        }
-
-
-
-    }
-
-
-    print_products (products,num_of_products);
-    free_products  (products,num_of_products);
-
-    // Frees the salling JSON value
-    json_value_free(salling);
-}
-*/
-
 void test() {
     JSON_Value *json = json_parse_file("data/salling.json");
     Store_Type* all_stores = NULL;
     updates_stores(json, &all_stores);
     Store_Type *next = all_stores;
-    puts("test");
-    while(1) {
-        puts(next->name);
-        if (next->next_node == NULL)
-            break;
-        next = next->next_node;
+    for (int i = 0; ; i++) {
+        if((next->items[i]) == NULL) break;
+        puts((next->items[i])->name);
+        printf("%lf \n\n", next->items[i]->price);
     }
     free_stores(all_stores);
 }
