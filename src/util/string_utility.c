@@ -39,7 +39,7 @@ int str_contains_char(const char* string, char c) {
  * @param case_sensitive _Bool, whether to ignore case
  * @return index of first letter if found, otherwise -1
  */
-int str_contains_str(char* string, char* to_find, _Bool case_sensitive) {
+int str_contains_string(char* string, char* to_find, _Bool case_sensitive) {
     if (!case_sensitive) {
         str_to_lower(&string);
         str_to_lower(&to_find);
