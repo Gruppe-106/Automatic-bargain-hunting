@@ -34,7 +34,13 @@ struct item {
 ```
 ### Data storage
 ```
-Store -> Category -> ? Items[]
+Main data storage
+All stores =
+    struct store {
+        char* name;
+        Item_type** items;
+        store* next;
+    }
 ```
 ## Examples
 cmake is stupid right now and wont build the folder with data. Therefore GCC is needed
@@ -52,4 +58,8 @@ gcc -g -w -Wall examples/example_{num}.c -o example_{num} -lm
 In root open CMD and run
 ```
 example_{num}.exe "./data/salling.json"
+```
+### Notes
+```
+As c uses acii character we need a solution for æ ø å.
 ```

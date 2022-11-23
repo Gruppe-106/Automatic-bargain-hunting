@@ -1,19 +1,34 @@
 #ifndef AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H
 #define AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H
+#include "../../libs/parson/parson.h"
 
 typedef enum {
     GRAM,
     KILOGRAM,
     LITER,
     MILLILITER,
-    each,
+    EACH,
 } Unit_Type;
 
-/* This is an obtuse type, you cannot ascces it's inner members, but you can use functions and such */
-typedef struct item item_type;
+
+typedef struct item {
+    char* name;
+    double price;
+    int unit_size;
+    Unit_Type unit;
+    _Bool organic;
+} Item_Type;
 
 
-// Prototypes
+
+typedef struct store {
+    char* name;
+    Item_Type** items;
+    struct store* next_node;
+} Store_Type;
+
+void updates_stores(JSON_Value json, Store_Type* all_stores);
+void free_stores(Store_Type* all_stores);
 
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 #endif //AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H
