@@ -8,7 +8,7 @@
  * @param item char*, a string query for what to find in the item list
  * @return Item_Type ptr, ptr to the cheapest item found matching query or NullPointerReference
  */
-Item_Type* find_cheapest_item_in_store(Store_Type *store, char* item);
+Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query);
 int get_length_of_items(Item_Type** items);
 int str_contains_str(const char* original, const char* str_to_find);
 
@@ -27,12 +27,12 @@ int get_length_of_items(Item_Type** items)
 
 /**
  * @brief Dynamically allocates a return type of Item_Type** to be freed.\n
- * Finds items that contain the query q, in a list of items.
- * @param q char*, the query.
+ * Finds items that contain the query query, in a list of items.
+ * @param query char*, the query.
  * @param items Item_Type**, the items that we will be going through.
  * @return Returns an array of item pointers, Item_Type**, that match the query.
  */
-Item_Type** find_items_in_items_by_str(char* q, Item_Type** items)
+Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
 {
     /*
      * Creates a temporary array (items_match) which will be freed when function is done automatically.
@@ -45,7 +45,7 @@ Item_Type** find_items_in_items_by_str(char* q, Item_Type** items)
     /* Proceeds to find all names matching the query, appends them to the temporary array 'items_match'. */
     for (int i = 0; i < len; ++i) {
         Item_Type* item_ptr = items[i];
-        if (str_contains_str(item_ptr->name, q))
+        if (str_contains_str(item_ptr->name, query))
         {
             items_match[valid_items_len] = items[i];
             ++valid_items_len;
@@ -102,7 +102,7 @@ int str_contains_str(const char* original, const char* str_to_find)
  * If the goal is to find an item, like this item parameter, then it would be highly unlikely for  it to be there.
  * If it is meant to search for the item name, and then find the item, it's doable, but item parameter is overkill opposed to str parameter.
  */ /* TODO: Find the true meaning of 'find_cheapest_item_in_store' */
-Item_Type* find_cheapest_item_in_store(Store_Type *store, char* item)
+Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query)
 {
     return NULL;
 }
