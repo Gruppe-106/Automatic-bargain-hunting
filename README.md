@@ -3,14 +3,13 @@
 ### ../src
 ```
 data_manager/
-    api_manager.c       //Potentially, use static data for now
-    json_parser.c       //String to json object helper using parson library
-    data_manager.c      //Convert json object to our own data structure and categoriziation
+    rank_stores.c       //Used to ranke stores depending on prices -Andreas
+    data_manager.c      //Convert json object to our own data structure and categoriziation -Mikkel
+    sort_stores.c       //Sorts stores lists of items by price for faster searching - Christian
 search/
-   search.c             //Search by store, item and/or categorice etc.
-   categorize_input.c   //Helper for function for user input to search
+   search.c             //Search by store, item and/or categorice etc. - Mads
 ui/
-    UserIO.c            //User input/output handler
+    UserIO.c            //User input/output handler - Zeki || Simon
 
 main.c                  //Injection point, should not contain general algorithms
 ```

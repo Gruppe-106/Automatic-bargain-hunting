@@ -24,6 +24,7 @@ typedef struct item {
 typedef struct store {
     char* name;
     Item_Type** items;
+    double total_price;
     struct store* next_node;
 } Store_Type;
 

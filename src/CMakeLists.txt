@@ -4,7 +4,7 @@ project(Automatic-bargain-hunting-main VERSION 0.1.0)
 set(SOURCES
         data_manager/data_manager.c
         data_manager/data_manager.h
-        search/search.c search/search.h data_manager/sort_stores.c data_manager/sort_stores.h util/string_utility.c util/string_utility.h)
+        search/search.c search/search.h data_manager/sort_stores.c data_manager/sort_stores.h util/string_utility.c util/string_utility.h io/user_io.c io/user_io.h data_manager/rank_stores.c data_manager/rank_stores.h)
 
 add_executable(${PROJECT_NAME} main.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)
