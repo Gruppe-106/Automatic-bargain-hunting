@@ -1,13 +1,62 @@
 #include "rank_stores.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 /**
  * Get total price for one store and update the ptr total_price
  * @param store Store_Type ptr, store to search for all items and get total price from
  */
-void get_total_for_store(Store_Type* store);
+void get_total_for_store(Store_Type* store){
+    int current_total = 0;
+
+    if(store){
+        return;
+    } else {
+        while (store->items)
+        {
+            current_total += store->items->price;
+            store->items   = store->items->next_node;
+        }
+        store->total_price = current_total;
+    }
+
+}
 
 /**
  * Uses get_total_for_store to get total for all stores in all stores linked list
  * @param all_stores Store_Type ptr, ptr to all store linked list
  */
-void rank_all_stores(Store_Type* all_stores);
+void rank_all_stores(Store_Type* all_stores){
+    int current_total = 0;
+
+    if(all_stores){
+        return;
+    } else {
+        while (all_stores->items)
+        {
+            current_total      += all_stores->items->price;
+            all_stores->items   = all_stores->items->next_node;
+        }
+        all_stores->total_price = current_total;
+        rank_all_stores(all_stores->next_node);
+    }
+
+}
+
+
+// ved ikke hvorfor jeg lavede det her XD
+//int sort_total_price (const void * a, const void * b);
+
+// int sort_total_price (const void * a, const void * b) {
+//     Store_Type *store_one = (Store_Type*)a;
+//     Store_Type *store_two = (Store_Type*)b;
+
+//     if(store_one->total_price > store_two->total_price){
+//         return 1;
+//     } else if(store_one->total_price < store_two->total_price){
+//         return -1;
+//     } else {
+//         return 0;
+//     }
+
+// }
