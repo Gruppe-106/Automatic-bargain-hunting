@@ -2,6 +2,24 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+
+
+// typedef struct item {
+//     char* name;
+//     double price;
+//     int unit_size;
+//     Unit_Type unit;
+//     _Bool organic;
+// } Item_Type;
+
+// typedef struct store {
+//     char* name;
+//     Item_Type** items;
+//     size_t item_amount;
+//     double total_price;
+//     struct store* next_node;
+// } Store_Type;
+
 /**
  * Get total price for one store and update the ptr total_price
  * @param store Store_Type ptr, store to search for all items and get total price from
@@ -12,11 +30,9 @@ void get_total_for_store(Store_Type* store){
     if(store){
         return;
     } else {
-        while (store->items)
+        for (int i = 0; i < store->item_amount; i++)
         {
-            //Det er en list, ikke en node
-            //current_total += store->items->price;
-            //store->items   = store->items->next_node;
+            current_total += store->items[i]->price;
         }
         store->total_price = current_total;
     }
@@ -33,12 +49,11 @@ void rank_all_stores(Store_Type* all_stores){
     if(all_stores){
         return;
     } else {
-        while (all_stores->items)
+        for (int i = 0; i < all_stores->item_amount; i++)
         {
-            //Det er en list, ikke en node
-            //current_total      += all_stores->items->price;
-            //all_stores->items   = all_stores->items->next_node;
+            current_total += all_stores->items[i]->price;
         }
+
         all_stores->total_price = current_total;
         rank_all_stores(all_stores->next_node);
     }
