@@ -25,9 +25,9 @@
  * @param store Store_Type ptr, store to search for all items and get total price from
  */
 void get_total_for_store(Store_Type* store){
-    int current_total = 0;
+    double current_total = 0;
 
-    if(store){
+    if(!store){
         return;
     } else {
         for (int i = 0; i < store->item_amount; i++)
@@ -44,9 +44,9 @@ void get_total_for_store(Store_Type* store){
  * @param all_stores Store_Type ptr, ptr to all store linked list
  */
 void rank_all_stores(Store_Type* all_stores){
-    int current_total = 0;
+    double current_total = 0;
 
-    if(all_stores){
+    if(!all_stores){
         return;
     } else {
         for (int i = 0; i < all_stores->item_amount; i++)
