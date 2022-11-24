@@ -10,13 +10,6 @@
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 Item_Type* create_item_from_json(JSON_Object *json_item);
 
-//Used for temporary organization of data in before being parsed to Item_Type struct in Store_Type
-typedef struct {
-    char *name;
-    Store_Type *store;
-    size_t product_amount;
-} Pre_Store_Type;
-
 /**
  * Converts a string to a Unit_Type if exist
  * @param str char*, string to check
