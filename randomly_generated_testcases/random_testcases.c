@@ -14,21 +14,20 @@
 #define STORE_NAMES_LEN 5
 
 /* PROTOTYPES */
+Store_Type* generate_store(int item_len, Store_Type* next_node, char** item_names, char** store_names);
 Item_Type* generate_item(char** item_names, char** store_names);
 Item_Type** generate_items(int len, char** item_names, char** store_names);
-Store_Type* generate_stores_with_lists(int store_len, int list_len);
+
+int get_item_list_len(Item_Type** items);
+int comparator_price_asc(const void *p, const void *q);
+
 void free_item_test(Item_Type* item);
 void free_items(Item_Type** items);
-Store_Type* generate_store(int item_len, Store_Type* next_node, char** item_names, char** store_names);
 void free_store_test(Store_Type* store);
-void free_all_stores_test(Store_Type* store);
-void print_item(Item_Type* item);
-void print_store_test(Store_Type* store);
-void print_all_stores_test(Store_Type* store);
-void print_all_items(Item_Type** items);
+
 
 /* DEFINITIONS */
-Store_Type* generate_stores_with_lists(int store_len, int list_len)
+Store_Type* generate_stores_unsorted(int store_len, int list_len)
 {
     char* item_names[ITEM_NAMES_LEN] =
             {
@@ -66,15 +65,31 @@ Store_Type* generate_stores_with_lists(int store_len, int list_len)
                     "bilka",
                     "rema1000",
             };
+
     for (int i = 0; i < ITEM_NAMES_LEN; ++i) {
         str_to_lower(&item_names[i]);
     }
+
     srand(time(NULL));
     Store_Type* next_store = NULL;
     for (int i = 0; i < store_len; ++i) {
         next_store = generate_store(list_len, next_store, item_names, store_names);
     }
     return next_store;
+}
+Store_Type* generate_stores_sorted(int store_len, int list_len)
+{
+    Store_Type* store = generate_stores_unsorted(store_len, list_len);
+    Store_Type* og_store = store;
+    while (store != NULL)
+    {
+        Item_Type** items = store->items;
+        int items_len = get_item_list_len(items);
+        qsort(items, items_len, sizeof (items), comparator_price_asc);
+        store = store->next_node;
+    }
+
+    return og_store;
 }
 Store_Type* generate_store(int item_len, Store_Type* next_node, char** item_names, char** store_names)
 {
@@ -89,7 +104,7 @@ Store_Type* generate_store(int item_len, Store_Type* next_node, char** item_name
 }
 Item_Type** generate_items(int len, char** item_names, char** store_names)
 {
-    Item_Type** items = (Item_Type**)malloc(sizeof(Item_Type) * (len + 1));
+    Item_Type** items = (Item_Type**)malloc(sizeof(Item_Type*) * (len + 1));
     for (int i = 0; i < len; ++i) {
         items[i] = generate_item(item_names, store_names);
     }
@@ -111,6 +126,12 @@ Item_Type* generate_item(char** item_names, char** store_names)
 
     return item;
 }
+int get_item_list_len(Item_Type** items)
+{
+    int i = 0;
+    while (items[i]) ++i;
+    return i;
+}
 
 void free_item_test(Item_Type* item)
 {
@@ -120,6 +141,7 @@ void free_item_test(Item_Type* item)
 void free_items(Item_Type** items)
 {
     int i = 0;
+
     Item_Type* item = items[i];
     while (item != NULL)
     {
@@ -166,7 +188,7 @@ void print_all_items(Item_Type** items)
 }
 void print_store_test(Store_Type* store)
 {
-    printf("STORE NAME: %s", store->name);
+    printf("STORE NAME: %s ----------------------------------------------------\n", store->name);
     print_all_items(store->items);
 }
 void print_all_stores_test(Store_Type* store)
@@ -176,4 +198,12 @@ void print_all_stores_test(Store_Type* store)
         print_store_test(store);
         store = store->next_node;
     }
+}
+int comparator_price_asc(const void *p, const void *q)
+{
+    double l = ((Item_Type*)p)->price;
+    double r = ((Item_Type*)q)->price;
+    if (l > r) return -1;
+    else if (l < r) return 1;
+    else return 0;
 }
