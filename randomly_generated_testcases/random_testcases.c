@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include "../src/util/string_utility.h"
+#include "../src/util/unit_type_conversion.h"
 
 
 #define ITEM_NAMES_LEN 24
@@ -102,6 +103,7 @@ Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_name
     memcpy(store->name, store_names[store_number],strlen(store_names[store_number])+1);
     store->items = generate_items(item_len, item_names, store_names);
     store->next_node = next_node;
+    store->item_amount = item_len;
     store->total_price = -1;
     return store;
 }
@@ -124,7 +126,8 @@ Item_Type *generate_item(char **item_names, char **store_names)
     item->name = (char*)malloc(sizeof(char)*strlen(item_names[item_number_rand])+1);                   // Remember to free
     memcpy(item->name, item_names[item_number_rand], strlen(item_names[item_number_rand])+1); // Maybe use memccpy
     item->organic = rand() % 2;
-    item->price = rand() % ((PRICE_RANGE_UPPER + 1) - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER; // Includes top range and lower range
+    double number3 =(float)rand()/(float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER;
+    item->price = number3;
     item->unit = rand() % 5;
     item->unit_size = rand() % ((UNIT_RANGE_UPPER + 1) - UNIT_RANGE_LOWER) + UNIT_RANGE_LOWER; // Includes top range and lower range
 
@@ -173,10 +176,10 @@ void free_all_stores_test(Store_Type *store)
 void print_item(Item_Type *item)
 {
     printf("NAME: %s\n", item->name);
-    printf("PRICE: %lf\n", item->price);
+    printf("PRICE: %.2lf\n", item->price);
     printf("ORGANIC: %d\n", item->organic);
     printf("UNIT_SIZE: %d\n", item->unit_size);
-    printf("UNIT: %d\n", item->unit);
+    printf("UNIT: %s\n", unit_type_to_str(item->unit));
 }
 void print_all_items(Item_Type **items)
 {

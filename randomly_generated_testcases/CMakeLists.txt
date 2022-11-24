@@ -1,1 +1,1 @@
-add_executable(test1 test1.c random_testcases.c random_testcases.h ../src/util/string_utility.c ../src/util/string_utility.h ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h)
+add_executable(test1 test1.c random_testcases.c random_testcases.h ../src/util/string_utility.c ../src/util/string_utility.h ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h ../src/search/search.c ../src/search/search.h ../src/util/unit_type_conversion.h ../src/util/unit_type_conversion.c)

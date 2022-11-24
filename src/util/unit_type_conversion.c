@@ -35,6 +35,8 @@ char* unit_type_to_str(Unit_Type unit_type) {
             return "kg";
         case LITER:
             return "l";
+        case MILLILITER:
+            return "ml";
         case EACH:
             return "each";
         default:
