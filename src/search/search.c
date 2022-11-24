@@ -32,7 +32,7 @@ int get_length_of_items(Item_Type** items)
  * @param items Item_Type**, the items that we will be going through.
  * @return Returns an array of item pointers, Item_Type**, that match the query.
  */
-Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
+Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, int* size_output)
 {
     /*
      * Creates a temporary array (items_match) which will be freed when function is done automatically.
@@ -65,6 +65,7 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
     }
     lst_to_return[valid_items_len] = NULL;
 
+    *size_output = valid_items_len;
     return lst_to_return;
 } /* TODO: Not walked through. Not tested. Do I allocate memory for an entire list of items or just item pointers? */
 

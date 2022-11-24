@@ -5,7 +5,7 @@
 void print_item(Item_Type* item);
 void print_store_test(Store_Type* store);
 void print_all_stores_test(Store_Type* store);
-void print_all_items(Item_Type** items);
+void print_all_items(Item_Type **items, size_t len);
 
 Store_Type* generate_stores_sorted(int store_len, int list_len);
 Store_Type* generate_stores_unsorted(int store_len, int list_len);
