@@ -8,12 +8,12 @@
 
 //Prototypes
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
-
+Item_Type* create_item_from_json(JSON_Object *json_item);
 
 //Used for temporary organization of data in before being parsed to Item_Type struct in Store_Type
 typedef struct {
-    const char *name;
-    JSON_Array *product_list;
+    char *name;
+    Store_Type *store;
     size_t product_amount;
 } Pre_Store_Type;
 
@@ -46,18 +46,18 @@ Unit_Type str_to_unit_type(char* str) {
  * @param name char*, name of store
  * @param all_stores Store_Type ptr, list of all stores
  */
-_Bool create_and_add_store(const char* name, Store_Type** all_stores) {
+Store_Type* create_and_add_store(const char* name, Store_Type** all_stores) {
     //Loop through all_stores nodes until an empty is found or one with same name is found
     Store_Type *next = *all_stores;
     if (next != NULL) {
         //It annoys me to do it like this, but only way I could find that worked
         //If name is the same return, as store is already assigned
-        if (strcmp(next->name, name) == 0) return false;
+        if (strcmp(next->name, name) == 0) return next;
         do {
             //Get next node
             if (next->next_node != NULL) next = next->next_node;
             //If name is the same return, as store is already assigned
-            if (strcmp(next->name, name) == 0) return false;
+            if (strcmp(next->name, name) == 0) return next;
         } while (next->next_node != NULL);
     }
     //Allocate store
@@ -69,17 +69,18 @@ _Bool create_and_add_store(const char* name, Store_Type** all_stores) {
 
     //Set rest to empty values
     store->next_node   = NULL;
+    store->item_amount = 0;
     store->items       = NULL;
     store->total_price = 0;
 
     //If all_stores is null set it to new store
     if (*all_stores == NULL) {
         *all_stores = store;
-        return true;
+        return *all_stores;
     }
     //Assign next free node to newly allocated store
     next->next_node = store;
-    return true;
+    return store;
 }
 
 /**
@@ -100,51 +101,48 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
     JSON_Array *clearances = json_value_get_array (json);
     size_t clearances_size = json_array_get_count (clearances);
 
-    //Get all stores and they product list
-    Pre_Store_Type existing_stores[clearances_size];
-    for (int store = 0; store < clearances_size; ++store) {
-        JSON_Object *current_clearances = json_array_get_object(clearances, store);
+    for (int i = 0; i < clearances_size; ++i) {
+        JSON_Object *current_clearances = json_array_get_object(clearances, i);
         //Get product list and the amount of products
-        existing_stores[store].product_list   = json_object_get_array(current_clearances, "clearances");
-        existing_stores[store].product_amount = json_array_get_count(existing_stores[store].product_list);
+        JSON_Array *product_list   = json_object_get_array(current_clearances, "clearances");
+        size_t      product_amount = json_array_get_count(product_list);
         //Get brand name of store
         JSON_Object *store_list     = json_object_get_object(current_clearances, "store");
-        existing_stores[store].name = json_object_get_string(store_list, "brand");
+        char*        name           = (char*) json_object_get_string(store_list, "brand");
 
-        create_and_add_store(existing_stores[store].name, all_stores);
-    }
-
-    for (Store_Type *next = *all_stores; next != NULL ; next = next->next_node) {
-        size_t item_count = 0;
-        for (int i = 0; i < clearances_size; ++i) {
-            if (strcmp(existing_stores->name, next->name) == 0) {
-                item_count += existing_stores->product_amount;
+        Item_Type **items;
+        //Get or create store if it doesn't exist
+        Store_Type* store = create_and_add_store(name, all_stores);
+        if (store != NULL) {
+            size_t index = 0;
+            //If item amount is zero no items therefore memory isn't allocated
+            if (store->item_amount == 0) {
+                //Allocated space needed for all items
+                items = (Item_Type**) calloc((product_amount), sizeof(Item_Type*));
+                store->item_amount = product_amount;
+            } else {
+                //If is not zero more space is needed to be able to store new items
+                items = store->items;
+                index = store->item_amount;
+                store->item_amount += product_amount;
+                //Reallocate space to fit new items and old items
+                items = (Item_Type**) realloc(items, store->item_amount * sizeof(Item_Type*));
             }
-        }
 
-        Item_Type **items = (Item_Type**) malloc(sizeof(Item_Type) * (item_count + 1));
-        size_t items_index = 0;
-        for (int i = 0; i < clearances_size; ++i) {
-            if (strcmp(existing_stores->name, next->name) == 0) {
-                for (int j = 0; j < existing_stores[i].product_amount; ++j, ++items_index) {
-                    JSON_Object *json_item    = json_array_get_object(existing_stores[i].product_list, j);
-                    JSON_Object *item_offer   = json_object_get_object(json_item, "offer");
-                    JSON_Object *item_product = json_object_get_object(json_item, "product");
-
-                    char *name      = (char*) json_object_get_string(item_product, "description");
-                    double price    = json_object_get_number(item_offer, "newPrice");
-                    int unit_size   = (int) json_object_get_number(item_offer, "stock");
-                    Unit_Type unit  = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-                    _Bool organic   = str_contains_str((char *) name, "oeko", false) != -1;
-
-                    items[items_index] = create_item(name, price, unit_size, unit, organic);
+            //Loop through all new items and add them to list of items
+            for (int j = 0; j < product_amount; ++j) {
+                //Get current item from JSON
+                JSON_Object *json_item    = json_array_get_object(product_list, j);
+                //Create an item based on that data
+                Item_Type *item = create_item_from_json(json_item);
+                //If item is not null add it to the list
+                if (item != NULL) {
+                    items[j + index] = item;
                 }
             }
+            //Reassign pointer to items list to the store
+            store->items = items;
         }
-        //Assign last index to NullPointer to have stop point later
-        items[items_index + 1] = NULL;
-        //Assign items to store
-        next->items = items;
     }
     //Free JSON from memory
     json_value_free(json);
@@ -162,7 +160,7 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic) {
     //Allocate item and name and assign all parameters
     Item_Type* item  = (Item_Type*)malloc(sizeof(Item_Type));
-    item->name       = (char*)malloc(strlen(name) * sizeof(char));
+    item->name       = (char*)malloc(strlen(name) * (sizeof(char)+1));
     item->price      = price;
     item->unit_size  = unit_size;
     item->unit       = unit;
@@ -173,6 +171,29 @@ Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, 
     memcpy(item->name, name, strlen(name) + 1);
 
     return item;
+}
+
+/**
+ * Creates a Item_Type ptr from a JSON item
+ * @param json_item JSON_Object ptr, JSON item to get data from
+ * @return Item_Type ptr
+ */
+Item_Type* create_item_from_json(JSON_Object *json_item) {
+    if (json_item == NULL) return NULL;
+    //Get the two JSON Objects that's within the JSON item object
+    JSON_Object *item_offer   = json_object_get_object(json_item, "offer");
+    JSON_Object *item_product = json_object_get_object(json_item, "product");
+
+    //Get all useful parameters of the JSON item
+    char     *name      = (char*) json_object_get_string(item_product, "description");
+    double    price     = json_object_get_number(item_offer, "newPrice");
+    int       unit_size = (int) json_object_get_number(item_offer, "stock");
+    Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
+    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
+
+    //Create item and return the ptr
+    return create_item(name, price, unit_size, unit, organic);
+
 }
 
 /* ================================================== *
@@ -204,8 +225,8 @@ void free_items(Item_Type** items) {
  * @param store Store_Type ptr, ptr to store to free from heap
  */
 void free_store(Store_Type* store) {
-    free(store->name);
     free_items(store->items);
+    free(store->name);
     free(store);
 }
 
@@ -228,9 +249,10 @@ void test() {
     Store_Type* all_stores = NULL;
     updates_stores(json, &all_stores);
     Store_Type *next = all_stores;
-    for (int i = 0; ; i++) {
+    for (int i = 0; i < next->item_amount; i++) {
         if((next->items[i]) == NULL) break;
-        puts((next->items[i])->name);
+        puts((*next->items[i]).name);
         printf("%lf \n\n", next->items[i]->price);
     }
+    free_stores(all_stores);
 }
