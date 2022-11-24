@@ -59,7 +59,8 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items)
      */
     Item_Type** lst_to_return = (Item_Type**) malloc(sizeof(Item_Type*) * (valid_items_len + 1));
 
-    for (int i = 0; i < valid_items_len; ++i) {
+    for (int i = 0; i < valid_items_len; ++i)
+    {
         lst_to_return[i] = items_match[i];
     }
     lst_to_return[valid_items_len] = NULL;
