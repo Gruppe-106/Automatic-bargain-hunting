@@ -5,7 +5,6 @@
 #include <ctype.h>
 #include <stdio.h>
 #include "../src/util/string_utility.h"
-#include "../src/util/string_utility.c"
 
 
 #define ITEM_NAMES_LEN 24
@@ -86,9 +85,10 @@ Store_Type *generate_stores_sorted(int store_len, int list_len)
     Store_Type *og_store = store;
     while (store != NULL)
     {
-        Item_Type **items = store->items;
-        int items_len = get_item_list_len(items);
-        qsort(items, items_len, sizeof(items), comparator_price_asc);
+        int items_len = get_item_list_len(store->items);
+        Item_Type ** itemsTMP = store->items;
+        qsort(itemsTMP, items_len, sizeof(Item_Type*), comparator_price_asc);
+        store->items = itemsTMP;
         store = store->next_node;
     }
 
@@ -205,11 +205,11 @@ void print_all_stores_test(Store_Type *store)
 }
 int comparator_price_asc(const void *p, const void *q)
 {
-    double l = ((Item_Type *)p)->price;
-    double r = ((Item_Type *)q)->price;
-    if (l > r)
+    Item_Type* item1 = *(Item_Type**)p;
+    Item_Type* item2 = *(Item_Type**)q;
+    if (item1->price < item2->price)
         return -1;
-    else if (l < r)
+    else if (item1->price > item2->price)
         return 1;
     else
         return 0;
