@@ -1,4 +1,5 @@
 #include "../randomly_generated_testcases/random_testcases.h"
+#include "../randomly_generated_testcases/random_testcases.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include "time.h"
