@@ -17,14 +17,13 @@
 
 /* PROTOTYPES */
 Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_names, char **store_names);
-Item_Type *generate_item(char **item_names, char **store_names);
-Item_Type **generate_items(int len, char **item_names, char **store_names);
+Item_Type *generate_item(char **item_names);
+Item_Type **generate_items(size_t len, char **item_names);
 
-int get_item_list_len(Item_Type **items);
 int comparator_price_asc(const void *p, const void *q);
 
 void free_item_test(Item_Type *item);
-void free_items(Item_Type **items);
+void free_items(Item_Type **items, size_t len);
 void free_store_test(Store_Type *store);
 
 /* DEFINITIONS */
@@ -86,9 +85,8 @@ Store_Type *generate_stores_sorted(int store_len, int list_len)
     Store_Type *og_store = store;
     while (store != NULL)
     {
-        int items_len = get_item_list_len(store->items);
-        Item_Type ** itemsTMP = store->items;
-        qsort(itemsTMP, items_len, sizeof(Item_Type*), comparator_price_asc);
+        Item_Type** itemsTMP = store->items;
+        qsort(store->items, store->item_amount, sizeof(Item_Type*), comparator_price_asc);
         store->items = itemsTMP;
         store = store->next_node;
     }
@@ -101,23 +99,22 @@ Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_name
     Store_Type *store = (Store_Type *)malloc(sizeof(Store_Type));
     store->name = (char*)malloc(strlen(store_names[store_number])*sizeof(char)+1);
     memcpy(store->name, store_names[store_number],strlen(store_names[store_number])+1);
-    store->items = generate_items(item_len, item_names, store_names);
+    store->items = generate_items(item_len, item_names);
     store->next_node = next_node;
     store->item_amount = item_len;
     store->total_price = -1;
     return store;
 }
-Item_Type **generate_items(int len, char **item_names, char **store_names)
+Item_Type **generate_items(size_t len, char **item_names)
 {
-    Item_Type **items = (Item_Type **)malloc(sizeof(Item_Type *) * (len + 1));
+    Item_Type **items = (Item_Type **)malloc(sizeof(Item_Type *) * (len));
     for (int i = 0; i < len; ++i)
     {
-        items[i] = generate_item(item_names, store_names);
+        items[i] = generate_item(item_names);
     }
-    items[len] = NULL;
     return items;
 }
-Item_Type *generate_item(char **item_names, char **store_names)
+Item_Type *generate_item(char **item_names)
 {
 
     int item_number_rand = rand() % ITEM_NAMES_LEN;
@@ -133,34 +130,22 @@ Item_Type *generate_item(char **item_names, char **store_names)
 
     return item;
 }
-int get_item_list_len(Item_Type **items)
-{
-    int i = 0;
-    while (items[i])
-        ++i;
-    return i;
-}
 
 void free_item_test(Item_Type *item)
 {
     //free(item->name);
     free(item);
 }
-void free_items(Item_Type **items)
+void free_items(Item_Type **items, size_t len)
 {
-    int i = 0;
-
-    // Item_Type *item = items[i];
-    while (items[i] != NULL)
-    {
+    for (int i = 0; i < len; ++i) {
         free_item_test(items[i]);
-        ++i;
     }
     free(items);
 }
 void free_store_test(Store_Type *store)
 {
-    free_items(store->items);
+    free_items(store->items, store->item_amount);
     free(store->name);
     free(store);
 }
@@ -181,22 +166,17 @@ void print_item(Item_Type *item)
     printf("UNIT_SIZE: %d\n", item->unit_size);
     printf("UNIT: %s\n", unit_type_to_str(item->unit));
 }
-void print_all_items(Item_Type **items)
+void print_all_items(Item_Type **items, size_t len)
 {
-    int i = 0;
-    Item_Type *item = items[0];
-    while (item != NULL)
-    {
-        print_item(item);
+    for (int i = 0; i < len; ++i) {
+        print_item(items[i]);
         printf("\n");
-        ++i;
-        item = items[i];
     }
 }
 void print_store_test(Store_Type *store)
 {
     printf("STORE NAME: %s ----------------------------------------------------\n", store->name);
-    print_all_items(store->items);
+    print_all_items(store->items, store->item_amount);
 }
 void print_all_stores_test(Store_Type *store)
 {
