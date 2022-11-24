@@ -217,16 +217,3 @@ void free_stores(Store_Type* all_stores) {
         free_store(to_free);
     }
 }
-
-void test() {
-    JSON_Value *json = json_parse_file("data/salling.json");
-    Store_Type* all_stores = NULL;
-    updates_stores(json, &all_stores);
-    Store_Type *next = all_stores;
-    for (int i = 0; i < next->item_amount; i++) {
-        if((next->items[i]) == NULL) break;
-        puts((*next->items[i]).name);
-        printf("%lf \n\n", next->items[i]->price);
-    }
-    free_stores(all_stores);
-}
