@@ -5,7 +5,8 @@
 
 int main(void)
 {
-    Store_Type* store = generate_stores_with_lists(5, 5);
+    Store_Type* store = generate_stores_unsorted(5, 5);
     print_all_stores_test(store);
     free_all_stores_test(store);
+
 }

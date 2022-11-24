@@ -18,41 +18,28 @@ void str_to_lower(char **string) {
 }
 
 /**
- * Finds first instance of char
- * @param string char*, string to search
- * @param c char, char to find
- * @return int, index if found, otherwise -1
- */
-int str_contains_char(const char* string, char c) {
-    //Run through string until end character is found
-    for (int i = 0; string[i] != '\0'; ++i)
-        //Check if char is found
-        if (string[i] == c)
-            return i;
-    return NOTFOUND;
-}
-
-/**
  * Looks for a string in a string
  * @param string char*, string to search
  * @param to_find char*, string to find
  * @param case_sensitive _Bool, whether to ignore case
  * @return index of first letter if found, otherwise -1
  */
-int str_contains_string(char* string, char* to_find, _Bool case_sensitive) {
+int str_contains_str(char* string, char* to_find, _Bool case_sensitive) {
     if (!case_sensitive) {
         str_to_lower(&string);
         str_to_lower(&to_find);
     }
-    //Find the first char in string
-    int first_index = str_contains_char(string, to_find[0]);
-    if (first_index != NOTFOUND) {
-        int count = 1;
-        //Keep checking until either full string found, out of bounds on either strings or character didn't match
-        for (int j = 1; to_find[j] != '\0' && string[first_index + j] != '\0' && to_find[j] == string[first_index + j]; ++j)
-            ++count;
-        //Check if a string match was found, if so return index of first char
-        if (count == strlen(to_find)) return first_index;
+    //Loop through string by each char
+    for (int i = 0; string[i] != '\0'; ++i) {
+        //Find the first char in string
+        if (string[i] == to_find[0]) {
+            int count = 1;
+            //Keep checking until either full string found, out of bounds on either strings or character didn't match
+            for (int j = 1; to_find[j] != '\0' && string[i + j] != '\0' && to_find[j] == string[i + j]; ++j)
+                ++count;
+            //Check if a string match was found, if so return index of first char
+            if (count == strlen(to_find)) return i;
+        }
     }
     return NOTFOUND;
 }
