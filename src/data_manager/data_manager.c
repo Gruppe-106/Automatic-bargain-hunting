@@ -5,30 +5,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "../util/string_utility.h"
+#include "../util/unit_type_conversion.h"
 
 //Prototypes
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 Item_Type* create_item_from_json(JSON_Object *json_item);
-
-/**
- * Converts a string to a Unit_Type if exist
- * @param str char*, string to check
- * @return Unit_Type, if applicable otherwise -1
- */
-Unit_Type str_to_unit_type(char* str) {
-    str_to_lower(&str);
-    if (strcmp(str, "g") == 0)
-        return GRAM;
-    else if (strcmp(str, "kg") == 0)
-        return KILOGRAM;
-    else if (strcmp(str, "l") == 0)
-        return LITER;
-    else if (strcmp(str, "ml") == 0)
-        return MILLILITER;
-    else if (strcmp(str, "each") == 0)
-        return EACH;
-    return -1;
-}
 
 /* ================================================== *
  *       Create and/or update store linked list       *
