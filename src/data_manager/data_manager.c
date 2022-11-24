@@ -57,8 +57,8 @@ Store_Type* create_and_add_store(const char* name, Store_Type** all_stores) {
     Store_Type* store = (Store_Type*) malloc(sizeof(Store_Type));
 
     //Allocate and assign name
-    store->name = (char*) malloc(strlen(name) * sizeof(char));
-    memcpy(store->name, name, strlen(name) + 1);
+    store->name = (char*) malloc((strlen(name) + 1) * sizeof(char));
+    memcpy(store->name, name, strlen(name));
 
     //Set rest to empty values
     store->next_node   = NULL;
@@ -153,7 +153,7 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic) {
     //Allocate item and name and assign all parameters
     Item_Type* item  = (Item_Type*)malloc(sizeof(Item_Type));
-    item->name       = (char*)malloc(strlen(name) * (sizeof(char)+1));
+    item->name       = (char*) malloc(strlen(name) * (sizeof(char)+1));
     item->price      = price;
     item->unit_size  = unit_size;
     item->unit       = unit;
@@ -207,8 +207,8 @@ void free_item(Item_Type* item) {
  * @param items ptr, pointer to the first index value
  * @param item_count int, amount of items in the array
  */
-void free_items(Item_Type** items) {
-    for (int i = 0; items[i] != NULL; ++i) {
+void free_items(Item_Type** items, size_t item_amount) {
+    for (int i = 0; i < item_amount; ++i) {
         free_item(items[i]);
     }
 }
@@ -218,7 +218,7 @@ void free_items(Item_Type** items) {
  * @param store Store_Type ptr, ptr to store to free from heap
  */
 void free_store(Store_Type* store) {
-    free_items(store->items);
+    free_items(store->items, store->item_amount);
     free(store->name);
     free(store);
 }
