@@ -5,30 +5,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "../util/string_utility.h"
+#include "../util/unit_type_conversion.h"
 
 //Prototypes
 Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 Item_Type* create_item_from_json(JSON_Object *json_item);
-
-/**
- * Converts a string to a Unit_Type if exist
- * @param str char*, string to check
- * @return Unit_Type, if applicable otherwise -1
- */
-Unit_Type str_to_unit_type(char* str) {
-    str_to_lower(&str);
-    if (strcmp(str, "g") == 0)
-        return GRAM;
-    else if (strcmp(str, "kg") == 0)
-        return KILOGRAM;
-    else if (strcmp(str, "l") == 0)
-        return LITER;
-    else if (strcmp(str, "ml") == 0)
-        return MILLILITER;
-    else if (strcmp(str, "each") == 0)
-        return EACH;
-    return -1;
-}
 
 /* ================================================== *
  *       Create and/or update store linked list       *
@@ -100,8 +81,8 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
         JSON_Array *product_list   = json_object_get_array(current_clearances, "clearances");
         size_t      product_amount = json_array_get_count(product_list);
         //Get brand name of store
-        JSON_Object *store_list     = json_object_get_object(current_clearances, "store");
-        char*        name           = (char*) json_object_get_string(store_list, "brand");
+        JSON_Object *store_list    = json_object_get_object(current_clearances, "store");
+        char*        name          = (char*) json_object_get_string(store_list, "brand");
 
         Item_Type **items;
         //Get or create store if it doesn't exist
@@ -140,6 +121,10 @@ void updates_stores(JSON_Value *json, Store_Type** all_stores) {
     //Free JSON from memory
     json_value_free(json);
 }
+
+/* ================================================== *
+ *           Create item from vars and JSON           *
+ * ================================================== */
 
 /**
  * @brief Creates an item from a bunch of parameters. Remember to free this item.
@@ -235,17 +220,4 @@ void free_stores(Store_Type* all_stores) {
         next = next->next_node;
         free_store(to_free);
     }
-}
-
-void test() {
-    JSON_Value *json = json_parse_file("data/salling.json");
-    Store_Type* all_stores = NULL;
-    updates_stores(json, &all_stores);
-    Store_Type *next = all_stores;
-    for (int i = 0; i < next->item_amount; i++) {
-        if((next->items[i]) == NULL) break;
-        puts((*next->items[i]).name);
-        printf("%lf \n\n", next->items[i]->price);
-    }
-    free_stores(all_stores);
 }
