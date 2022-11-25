@@ -7,7 +7,6 @@
 #include "../src/util/string_utility.h"
 #include "../src/util/unit_type_conversion.h"
 
-
 #define ITEM_NAMES_LEN 24
 #define PRICE_RANGE_LOWER 1
 #define PRICE_RANGE_UPPER 1000
@@ -27,6 +26,14 @@ void free_items_test_case(Item_Type **items, size_t len);
 void free_store_test(Store_Type *store);
 
 /* DEFINITIONS */
+
+/**
+ * @brief
+ *
+ * @param store_len
+ * @param list_len
+ * @return Store_Type*
+ */
 Store_Type *generate_stores_unsorted(int store_len, int list_len)
 {
     char *item_names[ITEM_NAMES_LEN] =
@@ -74,37 +81,63 @@ Store_Type *generate_stores_unsorted(int store_len, int list_len)
     srand(time(NULL));
     Store_Type *next_store = NULL;
     for (int i = 0; i < store_len; ++i)
-    { 
+    {
         next_store = generate_store(list_len, next_store, item_names, store_names);
     }
     return next_store;
 }
+
+/**
+ * @brief
+ *
+ * @param store_len
+ * @param list_len
+ * @return Store_Type*
+ */
 Store_Type *generate_stores_sorted(int store_len, int list_len)
 {
     Store_Type *store = generate_stores_unsorted(store_len, list_len);
     Store_Type *og_store = store;
     while (store != NULL)
     {
-        Item_Type** itemsTMP = store->items;
-        qsort(store->items, store->item_amount, sizeof(Item_Type*), comparator_price_asc);
+        Item_Type **itemsTMP = store->items;
+        qsort(store->items, store->item_amount, sizeof(Item_Type *), comparator_price_asc);
         store->items = itemsTMP;
         store = store->next_node;
     }
 
     return og_store;
 }
+
+/**
+ * @brief
+ *
+ * @param item_len
+ * @param next_node
+ * @param item_names
+ * @param store_names
+ * @return Store_Type*
+ */
 Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_names, char **store_names)
 {
     int store_number = rand() % STORE_NAMES_LEN;
     Store_Type *store = (Store_Type *)malloc(sizeof(Store_Type));
-    store->name = (char*)malloc(strlen(store_names[store_number])*sizeof(char)+1);
-    memcpy(store->name, store_names[store_number],strlen(store_names[store_number])+1);
+    store->name = (char *)malloc(strlen(store_names[store_number]) * sizeof(char) + 1);
+    memcpy(store->name, store_names[store_number], strlen(store_names[store_number]) + 1);
     store->items = generate_items(item_len, item_names);
     store->next_node = next_node;
     store->item_amount = item_len;
     store->total_price = -1;
     return store;
 }
+
+/**
+ * @brief
+ *
+ * @param len
+ * @param item_names
+ * @return Item_Type**
+ */
 Item_Type **generate_items(size_t len, char **item_names)
 {
     Item_Type **items = (Item_Type **)malloc(sizeof(Item_Type *) * (len));
@@ -114,16 +147,23 @@ Item_Type **generate_items(size_t len, char **item_names)
     }
     return items;
 }
+
+/**
+ * @brief
+ *
+ * @param item_names
+ * @return Item_Type*
+ */
 Item_Type *generate_item(char **item_names)
 {
 
     int item_number_rand = rand() % ITEM_NAMES_LEN;
 
     Item_Type *item = (Item_Type *)malloc(sizeof(Item_Type));
-    item->name = (char*)malloc(sizeof(char)*strlen(item_names[item_number_rand])+1);                   // Remember to free
-    memcpy(item->name, item_names[item_number_rand], strlen(item_names[item_number_rand])+1); // Maybe use memccpy
+    item->name = (char *)malloc(sizeof(char) * strlen(item_names[item_number_rand]) + 1);       // Remember to free
+    memcpy(item->name, item_names[item_number_rand], strlen(item_names[item_number_rand]) + 1); // Maybe use memccpy
     item->organic = rand() % 2;
-    double number3 =(float)rand()/(float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER;
+    double number3 = (float)rand() / (float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER;
     item->price = number3;
     item->unit = rand() % 5;
     item->unit_size = rand() % ((UNIT_RANGE_UPPER + 1) - UNIT_RANGE_LOWER) + UNIT_RANGE_LOWER; // Includes top range and lower range
@@ -131,24 +171,49 @@ Item_Type *generate_item(char **item_names)
     return item;
 }
 
+/**
+ * @brief
+ *
+ * @param item
+ */
 void free_item_test(Item_Type *item)
 {
-    //free(item->name);
+    free(item->name);
     free(item);
 }
+
+/**
+ * @brief
+ *
+ * @param items
+ * @param len
+ */
 void free_items_test_case(Item_Type **items, size_t len)
 {
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i)
+    {
         free_item_test(items[i]);
     }
     free(items);
 }
+
+/**
+ * @brief
+ *
+ * @param store
+ */
 void free_store_test(Store_Type *store)
 {
     free_items_test_case(store->items, store->item_amount);
     free(store->name);
     free(store);
 }
+
+/**
+ * @brief
+ *
+ * @param store
+ */
 void free_all_stores_test(Store_Type *store)
 {
     while (store != NULL)
@@ -158,6 +223,12 @@ void free_all_stores_test(Store_Type *store)
         store = next_store;
     }
 }
+
+/**
+ * @brief
+ *
+ * @param item
+ */
 void print_item(Item_Type *item)
 {
     printf("NAME: %s\n", item->name);
@@ -166,18 +237,38 @@ void print_item(Item_Type *item)
     printf("UNIT_SIZE: %d\n", item->unit_size);
     printf("UNIT: %s\n", unit_type_to_str(item->unit));
 }
+
+/**
+ * @brief
+ *
+ * @param items
+ * @param len
+ */
 void print_all_items(Item_Type **items, size_t len)
 {
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i)
+    {
         print_item(items[i]);
         printf("\n");
     }
 }
+
+/**
+ * @brief
+ *
+ * @param store
+ */
 void print_store_test(Store_Type *store)
 {
-    printf("STORE NAME: %s TOTAL PRICE: %.2lf ----------------------------------------------------\n", store->name,store->total_price);
+    printf("STORE NAME: %s TOTAL PRICE: %.2lf ----------------------------------------------------\n", store->name, store->total_price);
     print_all_items(store->items, store->item_amount);
 }
+
+/**
+ * @brief
+ *
+ * @param store
+ */
 void print_all_stores_test(Store_Type *store)
 {
     while (store != NULL)
@@ -186,10 +277,18 @@ void print_all_stores_test(Store_Type *store)
         store = store->next_node;
     }
 }
+
+/**
+ * @brief
+ *
+ * @param p
+ * @param q
+ * @return int
+ */
 int comparator_price_asc(const void *p, const void *q)
 {
-    Item_Type* item1 = *(Item_Type**)p;
-    Item_Type* item2 = *(Item_Type**)q;
+    Item_Type *item1 = *(Item_Type **)p;
+    Item_Type *item2 = *(Item_Type **)q;
     if (item1->price < item2->price)
         return -1;
     else if (item1->price > item2->price)

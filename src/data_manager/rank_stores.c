@@ -2,24 +2,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-
-
-// typedef struct item {
-//     char* name;
-//     double price;
-//     int unit_size;
-//     Unit_Type unit;
-//     _Bool organic;
-// } Item_Type;
-
-// typedef struct store {
-//     char* name;
-//     Item_Type** items;
-//     size_t item_amount;
-//     double total_price;
-//     struct store* next_node;
-// } Store_Type;
-
 /**
  * Get total price for one store and update the ptr total_price
  * @param store Store_Type ptr, store to search for all items and get total price from
