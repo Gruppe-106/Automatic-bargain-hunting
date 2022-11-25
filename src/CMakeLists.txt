@@ -3,13 +3,13 @@ project(Automatic-bargain-hunting-main VERSION 0.1.0)
 
 set(SOURCES
         data_manager/data_manager.c data_manager/data_manager.h
-        data_manager/sort_stores.c  data_manager/sort_stores.h
         data_manager/rank_stores.c  data_manager/rank_stores.h
-        search/search.c             search/search.h
-        util/string_utility.c       util/string_utility.h
-        util/unit_type_conversion.c util/unit_type_conversion.h
+        data_manager/sort_stores.c  data_manager/sort_stores.h
         io/user_io.c                io/user_io.h
-        util/node_handler.c         util/node_handler.h)
+        search/search.c             search/search.h
+        util/node_handler.c         util/node_handler.h
+        util/string_utility.c       util/string_utility.h
+        util/unit_type_conversion.c util/unit_type_conversion.h)
 
 add_executable(${PROJECT_NAME} main.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)
