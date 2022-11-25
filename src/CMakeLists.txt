@@ -9,7 +9,7 @@ set(SOURCES
         util/string_utility.c       util/string_utility.h
         util/unit_type_conversion.c util/unit_type_conversion.h
         io/user_io.c                io/user_io.h
-        )
+        util/node_handler.c         util/node_handler.h)
 
 add_executable(${PROJECT_NAME} main.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)
