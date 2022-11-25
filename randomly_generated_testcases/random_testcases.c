@@ -23,7 +23,7 @@ Item_Type **generate_items(size_t len, char **item_names);
 int comparator_price_asc(const void *p, const void *q);
 
 void free_item_test(Item_Type *item);
-void free_items(Item_Type **items, size_t len);
+void free_items_test_case(Item_Type **items, size_t len);
 void free_store_test(Store_Type *store);
 
 /* DEFINITIONS */
@@ -74,7 +74,7 @@ Store_Type *generate_stores_unsorted(int store_len, int list_len)
     srand(time(NULL));
     Store_Type *next_store = NULL;
     for (int i = 0; i < store_len; ++i)
-    {
+    { 
         next_store = generate_store(list_len, next_store, item_names, store_names);
     }
     return next_store;
@@ -136,7 +136,7 @@ void free_item_test(Item_Type *item)
     //free(item->name);
     free(item);
 }
-void free_items(Item_Type **items, size_t len)
+void free_items_test_case(Item_Type **items, size_t len)
 {
     for (int i = 0; i < len; ++i) {
         free_item_test(items[i]);
@@ -145,7 +145,7 @@ void free_items(Item_Type **items, size_t len)
 }
 void free_store_test(Store_Type *store)
 {
-    free_items(store->items, store->item_amount);
+    free_items_test_case(store->items, store->item_amount);
     free(store->name);
     free(store);
 }
@@ -175,7 +175,7 @@ void print_all_items(Item_Type **items, size_t len)
 }
 void print_store_test(Store_Type *store)
 {
-    printf("STORE NAME: %s ----------------------------------------------------\n", store->name);
+    printf("STORE NAME: %s TOTAL PRICE: %.2lf ----------------------------------------------------\n", store->name,store->total_price);
     print_all_items(store->items, store->item_amount);
 }
 void print_all_stores_test(Store_Type *store)

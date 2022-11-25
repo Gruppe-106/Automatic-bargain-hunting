@@ -7,6 +7,7 @@
 int main(void)
 {
     Store_Type* store = generate_stores_sorted(5, 5);
+    rank_all_stores(store);
     print_all_stores_test(store);
     free_all_stores_test(store);
 }

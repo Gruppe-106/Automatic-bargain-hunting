@@ -1,6 +1,7 @@
 #ifndef AUTOMATIC_BARGAIN_HUNTING_RANDOM_TESTCASES_H
 #define AUTOMATIC_BARGAIN_HUNTING_RANDOM_TESTCASES_H
 #include "../src/data_manager/data_manager.h"
+#include "../src/data_manager/rank_stores.h"
 
 void print_item(Item_Type* item);
 void print_store_test(Store_Type* store);
