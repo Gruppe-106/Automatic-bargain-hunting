@@ -3,11 +3,20 @@
 #include "../../libs/parson/parson.h"
 
 typedef enum {
+    BILKA,
+    REMA,
+    SALLING_CLERANCES
+} Valid_Stores_Enum;
+
+typedef enum {
     GRAM,
     KILOGRAM,
     LITER,
     MILLILITER,
+    CENTILITER,
     EACH,
+    METER,
+    SET
 } Unit_Type;
 
 typedef struct item {
@@ -26,7 +35,7 @@ typedef struct store {
     struct store* next_node;
 } Store_Type;
 
-void updates_stores(JSON_Value *json, Store_Type** all_stores);
+void updates_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type);
 void free_stores(Store_Type* all_stores);
 //Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
 #endif //AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H

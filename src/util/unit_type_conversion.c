@@ -9,16 +9,22 @@
  */
 Unit_Type str_to_unit_type(char* str) {
     str_to_lower(&str);
-    if (strcmp(str, "g") == 0 || strcmp(str, "gram") == 0)
+    if (strcmp(str, "g") == 0 || strcmp(str, "gram") == 0 || strcmp(str, "gr"))
         return GRAM;
     else if (strcmp(str, "kg") == 0 || strcmp(str, "kilogram") == 0)
         return KILOGRAM;
-    else if (strcmp(str, "l" ) == 0 || strcmp(str, "liter") == 0)
+    else if (strcmp(str, "l" ) == 0 || strcmp(str, "liter") == 0 || strcmp(str, "ltr") == 0)
         return LITER;
     else if (strcmp(str, "ml") == 0 || strcmp(str, "milliliter") == 0)
         return MILLILITER;
-    else if (strcmp(str, "each") == 0)
+    else if (strcmp(str, "each") == 0 || strcmp(str, "stk") == 0)
         return EACH;
+    else if (strcmp(str, "cl") == 0)
+        return CENTILITER;
+    else if (strcmp(str, "mtr") == 0)
+        return METER;
+    else if (strcmp(str, "saet") == 0)
+        return SET;
     return -1;
 }
 
@@ -39,6 +45,12 @@ char* unit_type_to_str(Unit_Type unit_type) {
             return "ml";
         case EACH:
             return "each";
+        case CENTILITER:
+            return "cl";
+        case METER:
+            return "m";
+        case SET:
+            return "set";
         default:
             return "";
     }
