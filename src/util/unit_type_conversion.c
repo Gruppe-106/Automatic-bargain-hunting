@@ -9,7 +9,7 @@
  */
 Unit_Type str_to_unit_type(char* str) {
     str_to_lower(&str);
-    if (strcmp(str, "g") == 0 || strcmp(str, "gram") == 0 || strcmp(str, "gr"))
+    if (strcmp(str, "g") == 0 || strcmp(str, "gram") == 0 || strcmp(str, "gr") == 0)
         return GRAM;
     else if (strcmp(str, "kg") == 0 || strcmp(str, "kilogram") == 0)
         return KILOGRAM;
