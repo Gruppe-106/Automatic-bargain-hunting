@@ -22,7 +22,7 @@ typedef enum {
 typedef struct item {
     char* name;
     double price;
-    int unit_size;
+    double unit_size;
     Unit_Type unit;
     _Bool organic;
 } Item_Type;
@@ -37,5 +37,5 @@ typedef struct store {
 
 void updates_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type);
 void free_stores(Store_Type* all_stores);
-//Item_Type* create_item(char* name, double price, int unit_size, Unit_Type unit, _Bool organic);
+void print_store(Store_Type* store);
 #endif //AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H
