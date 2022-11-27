@@ -28,11 +28,12 @@ void free_store_test(Store_Type *store);
 /* DEFINITIONS */
 
 /**
- * @brief
+ * @brief Generates a specific amount of stores and items from fixed lists of store names and item names,
+ * with unsorted lists. Free with free_all_stores_test.
  *
- * @param store_len
- * @param list_len
- * @return Store_Type*
+ * @param store_len the amount of stores, it's node-based.
+ * @param list_len the amount of items in a store, in the form of an array.
+ * @return Store_Type* Returns stores with random names and items, unsorted.
  */
 Store_Type *generate_stores_unsorted(int store_len, int list_len)
 {
@@ -88,11 +89,12 @@ Store_Type *generate_stores_unsorted(int store_len, int list_len)
 }
 
 /**
- * @brief
+ * @brief Generates a specific amount of stores and items from fixed lists of store names and item names,
+ * with sorted lists with lowest price first. Free with free_all_stores_test.
  *
- * @param store_len
- * @param list_len
- * @return Store_Type*
+ * @param store_len the amount of stores, it's node-based.
+ * @param list_len the amount of items in a store, in the form of an array.
+ * @return Store_Type* Returns stores with random names and items, sorted.
  */
 Store_Type *generate_stores_sorted(int store_len, int list_len)
 {
@@ -110,13 +112,13 @@ Store_Type *generate_stores_sorted(int store_len, int list_len)
 }
 
 /**
- * @brief
+ * @brief Generates a single store with unsorted items.
  *
- * @param item_len
- * @param next_node
- * @param item_names
- * @param store_names
- * @return Store_Type*
+ * @param item_len The amount of items in a store.
+ * @param next_node A pointer to the store this one should be linked to. Will accept NULL.
+ * @param item_names The list of item names.
+ * @param store_names The list of store names.
+ * @return Store_Type*  Returns a pointer to a store. Free with free_store_test.
  */
 Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_names, char **store_names)
 {
@@ -132,11 +134,11 @@ Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_name
 }
 
 /**
- * @brief
+ * @brief Generates a list of items, unsorted.
  *
- * @param len
- * @param item_names
- * @return Item_Type**
+ * @param len Length of the list generated.
+ * @param item_names Array of item names.
+ * @return Item_Type** Returns a list of items. Free with free_items_test_case.
  */
 Item_Type **generate_items(size_t len, char **item_names)
 {
@@ -149,10 +151,10 @@ Item_Type **generate_items(size_t len, char **item_names)
 }
 
 /**
- * @brief
+ * @brief Generates a single item.
  *
- * @param item_names
- * @return Item_Type*
+ * @param item_names Array of item names.
+ * @return Item_Type* Returns an item pointer. Free with free_item_test.
  */
 Item_Type *generate_item(char **item_names)
 {
@@ -172,9 +174,9 @@ Item_Type *generate_item(char **item_names)
 }
 
 /**
- * @brief
+ * @brief Frees a single item. First frees the name, then the item itself.
  *
- * @param item
+ * @param item The item to be freed.
  */
 void free_item_test(Item_Type *item)
 {
@@ -183,10 +185,10 @@ void free_item_test(Item_Type *item)
 }
 
 /**
- * @brief
+ * @brief Frees items in an array of item pointers. First frees items then frees the array.
  *
- * @param items
- * @param len
+ * @param items The array of item pointers to be freed.
+ * @param len The length of the array.
  */
 void free_items_test_case(Item_Type **items, size_t len)
 {
@@ -198,9 +200,9 @@ void free_items_test_case(Item_Type **items, size_t len)
 }
 
 /**
- * @brief
+ * @brief Free a single store. Frees the items, then the store name, then the store struct.
  *
- * @param store
+ * @param store The store to be freed.
  */
 void free_store_test(Store_Type *store)
 {
@@ -210,9 +212,9 @@ void free_store_test(Store_Type *store)
 }
 
 /**
- * @brief
+ * @brief Frees all stores by continuously freeing current store and moving to the next.
  *
- * @param store
+ * @param store The first store in the node to free.
  */
 void free_all_stores_test(Store_Type *store)
 {
@@ -225,9 +227,9 @@ void free_all_stores_test(Store_Type *store)
 }
 
 /**
- * @brief
+ * @brief Prints a single item.
  *
- * @param item
+ * @param item Item to be printed.
  */
 void print_item(Item_Type *item)
 {
@@ -239,10 +241,10 @@ void print_item(Item_Type *item)
 }
 
 /**
- * @brief
+ * @brief Prints all item in an array.
  *
- * @param items
- * @param len
+ * @param items Items to be printed.
+ * @param len The length of the item array.
  */
 void print_all_items(Item_Type **items, size_t len)
 {
@@ -254,9 +256,9 @@ void print_all_items(Item_Type **items, size_t len)
 }
 
 /**
- * @brief
+ * @brief Prints a single store and it's items.
  *
- * @param store
+ * @param store Store to be printed, along with the items.
  */
 void print_store_test(Store_Type *store)
 {
@@ -265,9 +267,9 @@ void print_store_test(Store_Type *store)
 }
 
 /**
- * @brief
+ * @brief Prints all stores in the node.
  *
- * @param store
+ * @param store The first store in the node.
  */
 void print_all_stores_test(Store_Type *store)
 {
@@ -279,11 +281,11 @@ void print_all_stores_test(Store_Type *store)
 }
 
 /**
- * @brief
+ * @brief Comparator function for qsort. Sorts such that the first item is the cheapest.
  *
- * @param p
- * @param q
- * @return int
+ * @param p Item pointer 1.
+ * @param q Item pointer 2.
+ * @return int Comparator value.
  */
 int comparator_price_asc(const void *p, const void *q)
 {
