@@ -36,6 +36,5 @@ typedef struct store {
 } Store_Type;
 
 void updates_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type);
-void free_stores(Store_Type* all_stores);
 void print_store(Store_Type* store);
 #endif //AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H
