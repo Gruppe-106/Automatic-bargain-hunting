@@ -3,12 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "time.h"
+#include "../src/data_manager/sort_stores.h"
+#include "../src/util/node_handler.h"
+#include "../libs/parson/parson.h"
+#include "../src/data_manager/data_manager.h"
 
 void how_it_works(void);
 
 int main(void)
 {
-    how_it_works();
+    JSON_Value* json = json_parse_file("C:\\Users\\madsh\\CLionProjects\\Automatic-bargain-hunting\\data\\rema-1000.json");
+    Store_Type* store = NULL;
+    updates_stores(json, &store, REMA);
+
+    print_store(store);
+
+    free_stores(store);
 }
 
 void how_it_works(void)

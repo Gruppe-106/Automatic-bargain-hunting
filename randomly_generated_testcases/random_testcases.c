@@ -168,8 +168,7 @@ Item_Type *generate_item(char **item_names)
     item->name = (char *)malloc(sizeof(char) * strlen(item_names[item_number_rand]) + 1);       // Remember to free
     memcpy(item->name, item_names[item_number_rand], strlen(item_names[item_number_rand]) + 1); // Maybe use memccpy
     item->organic = rand() % 2;
-    double number3 = (float)rand() / (float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER;
-    item->price = number3;
+    item->price = (float)rand() / (float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER - 1;
     item->unit = rand() % 5;
     item->unit_size = rand() % ((UNIT_RANGE_UPPER + 1) - UNIT_RANGE_LOWER) + UNIT_RANGE_LOWER; // Includes top range and lower range
 

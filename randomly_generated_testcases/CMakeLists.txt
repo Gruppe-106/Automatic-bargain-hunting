@@ -1,1 +1,4 @@
-add_executable(test1 test1.c random_testcases.c random_testcases.h ../src/util/string_utility.c ../src/util/string_utility.h ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h ../src/search/search.c ../src/search/search.h ../src/util/unit_type_conversion.h ../src/util/unit_type_conversion.c ../src/util/node_handler.c ../src/util/node_handler.h)
+add_executable(test1 test1.c random_testcases.c random_testcases.h ../src/util/string_utility.c ../src/util/string_utility.h ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h ../src/search/search.c ../src/search/search.h ../src/util/unit_type_conversion.h ../src/util/unit_type_conversion.c ../src/util/node_handler.c ../src/util/node_handler.h ../src/data_manager/sort_stores.c ../src/data_manager/sort_stores.h ../src/util/node_handler.c ../src/util/node_handler.h)
+target_include_directories(test1 PUBLIC parson)
+target_link_directories(test1 PRIVATE  parson)
+target_link_libraries(test1 parson)
