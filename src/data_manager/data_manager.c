@@ -10,6 +10,7 @@
 //Prototypes
 Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic);
 Item_Type* create_item_from_salling(JSON_Object *json_item);
+Item_Type* create_item_from_rema(JSON_Object *json_item);
 
 /* ================================================== *
  *       Create and/or update store linked list       *
@@ -80,33 +81,29 @@ Item_Type** allocate_or_reallocate_items(Store_Type* store, size_t product_amoun
  * @param all_stores Store_type ptr, all stores can be NULL
  */
 void json_to_store_rema(JSON_Value *json, Store_Type** all_stores) {
+    //Add or get the ptr of store Rema-1000
     Store_Type* rema = create_and_add_store("rema-1000", all_stores);
 
+    //Get the product array & the amount of products from the json
     JSON_Array *products = json_value_get_array (json);
     size_t product_amount = json_array_get_count (products);
 
+    //Get the current last index of items in the Rema Store_Type
     size_t index = rema->item_amount;
 
     Item_Type** items = allocate_or_reallocate_items(rema, product_amount);
     for (int i = 0; i < product_amount; ++i) {
+        //Get next product in the json array
         JSON_Object *cur_item = json_array_get_object(products, i);
-        if (cur_item == NULL) continue;
-
-        //Get all useful parameters of the JSON item
-        char     *name      = (char*) json_object_get_string(cur_item, "name");
-        double    price     = json_object_get_number(cur_item, "price");
-        double    unit_size = json_object_get_number(cur_item, "unit_size");
-        Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(cur_item, "unit_type"));
-        _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
-
         //Create item
-        Item_Type* item = create_item(name, price, unit_size, unit, organic);
+        Item_Type* item = create_item_from_rema(cur_item);
 
         //Add item to the items list, if not NULL
         if (item != NULL) {
             items[i + index] = item;
         }
     }
+    //Update the Store_Type items list
     rema->items = items;
 }
 
@@ -230,6 +227,25 @@ Item_Type* create_item_from_salling(JSON_Object *json_item) {
     double    price     = json_object_get_number(item_offer, "newPrice");
     double    unit_size = json_object_get_number(item_offer, "stock");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
+    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
+
+    //Create item and return the ptr
+    return create_item(name, price, unit_size, unit, organic);
+}
+
+/**
+ * Creates a Item_Type ptr from a Rema JSON
+ * @param json_item JSON_Object ptr, JSON item to get data from
+ * @return Item_Type ptr
+ */
+Item_Type* create_item_from_rema(JSON_Object *json_item) {
+    if (json_item == NULL) return NULL;
+
+    //Get all useful parameters of the JSON item
+    char     *name      = (char*) json_object_get_string(json_item, "name");
+    double    price     = json_object_get_number(json_item, "price");
+    double    unit_size = json_object_get_number(json_item, "unit_size");
+    Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(json_item, "unit_type"));
     _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
 
     //Create item and return the ptr
