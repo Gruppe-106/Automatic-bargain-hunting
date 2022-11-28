@@ -227,7 +227,7 @@ Item_Type* create_item_from_salling(JSON_Object *json_item) {
     double    price     = json_object_get_number(item_offer, "newPrice");
     double    unit_size = json_object_get_number(item_offer, "stock");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
+    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1 || str_contains_str((char *) name, "oekologisk",false) != -1;
 
     //Create item and return the ptr
     return create_item(name, price, unit_size, unit, organic);
