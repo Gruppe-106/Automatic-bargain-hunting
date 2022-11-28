@@ -168,7 +168,7 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum 
 
     //Call json to store converter depending on type of store
     switch (type) {
-        case SALLING_CLERANCES:
+        case SALLING_CLEARANCES:
             json_to_stores_salling_clearances(json, all_stores);
             break;
         case REMA:
