@@ -4,28 +4,22 @@
 #include <stdlib.h>
 #include "time.h"
 
+void how_it_works(void);
+
 int main(void)
 {
-    Store_Type* store = generate_stores_sorted(5, 5);
-    rank_all_stores(store);
-    print_all_stores_test(store);
-    free_all_stores_test(store);
+    how_it_works();
 }
 
-void tester1(void)
+void how_it_works(void)
 {
-    Store_Type* store = generate_stores_sorted(1, 300);
-    Store_Type* og_store = store;
+    // Allocate an amount of stores and it's items
+    int store_amount = 5,
+        list_amount = 5;
+    Store_Type* store = generate_stores_sorted(store_amount, list_amount);
 
-    int i = 0;
-    while (store)
-    {
-        int size_list;
-        Item_Type** results = find_items_in_items_by_str("oeko", store->items, &size_list);
-        printf("QUERY: %d ---------------------------------------------\n", i++);
-        print_all_items(results, size_list);
-        free(results);
-        store = store->next_node;
-    }
+    print_all_stores_test(store);
+
+    // Free the stores and lists and items
     free_all_stores_test(store);
 }
