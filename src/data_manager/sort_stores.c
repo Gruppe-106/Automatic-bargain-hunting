@@ -1,5 +1,8 @@
-#include "sort_stores.h"
+/* Standard libraries */
 #include <stdlib.h>
+
+/* Custom libraries */
+#include "sort_stores.h"
 
 int compare_price_of_items(const void *p, const void *q);
 

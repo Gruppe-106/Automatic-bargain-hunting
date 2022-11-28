@@ -1,7 +1,11 @@
 
+
+/* Standard libraires */
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Custom libraires */
 #include "./store_utility.h"
-#include "stdio.h"
-#include "stdlib.h"
 
 
 

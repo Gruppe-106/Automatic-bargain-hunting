@@ -1,9 +1,13 @@
-// Includes struct as well as 'public' functions, private prototypes should be in here.
-#include "data_manager.h"
+/*Includes struct as well as 'public' functions, private prototypes should be in here.*/
+
+/* Standard libraries */
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+
+/* Custom ibraries */
+#include "data_manager.h"
 #include "../util/string_utility.h"
 #include "../util/unit_type_conversion.h"
 #include "../util/store_utility.h"

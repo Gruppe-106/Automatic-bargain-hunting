@@ -1,4 +1,8 @@
+/* Standard libraries */
 #include <stdlib.h>
+
+
+/* Custom libraries */
 #include "node_handler.h"
 
 /* ================================================== *
