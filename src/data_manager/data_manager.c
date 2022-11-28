@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include "../util/string_utility.h"
 #include "../util/unit_type_conversion.h"
+#include "../util/store_utility.h"
 
 //Prototypes
 Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic);
@@ -252,18 +253,3 @@ Item_Type* create_item_from_rema(JSON_Object *json_item) {
     return create_item(name, price, unit_size, unit, organic);
 }
 
-/**
- * @brief Prints a stores items
- * @param store Store_Type*, store to print
- */
-void print_store(Store_Type* store) {
-    Item_Type **items = store->items;
-    for (int i = 0; i < store->item_amount; ++i) {
-        Item_Type *item = items[i];
-        printf("======= %s - %d =======\n", store->name, i + 1);
-        printf("Item: %s\n", item->name);
-        printf("Price: %.2lf kr.\n", item->price);
-        printf("Organic: %s\n", item->organic == 1 ? "yes" : "no");
-        printf("Amount %.2lf %s\n\n", item->unit_size, item->unit != -1 ? unit_type_to_str(item->unit) : "NAN");
-    }
-}
