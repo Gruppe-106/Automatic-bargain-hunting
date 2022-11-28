@@ -10,7 +10,11 @@ search/
    search.c             //Search by store, item and/or categorice etc. - Mads
 ui/
     UserIO.c            //User input/output handler - Zeki || Simon
-
+util/
+    node_handler.c
+    store_utility.c
+    string_utility.c
+    unit_type_conversion.c
 main.c                  //Injection point, should not contain general algorithms
 ```
 ## Data structure
@@ -26,7 +30,7 @@ typedef enum {
 struct item {
     char* name;
     double price;
-    int unit_size;
+    double unit_size;
     Unit_Type unit;
     _Bool organic;
 }
@@ -37,8 +41,10 @@ Main data storage
 All stores =
     struct store {
         char* name;
-        Item_type** items;
-        store* next;
+        Item_Type** items;
+        size_t item_amount;
+        double total_price;
+        struct store* next_node;
     }
 ```
 ## Examples
