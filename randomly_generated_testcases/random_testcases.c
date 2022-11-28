@@ -98,8 +98,9 @@ Store_Type *generate_stores_unsorted(int store_len, int list_len)
  */
 Store_Type *generate_stores_sorted(int store_len, int list_len)
 {
-    Store_Type *store = generate_stores_unsorted(store_len, list_len);
+    Store_Type *store    = generate_stores_unsorted(store_len, list_len);
     Store_Type *og_store = store;
+
     while (store != NULL)
     {
         Item_Type **itemsTMP = store->items;
@@ -122,14 +123,18 @@ Store_Type *generate_stores_sorted(int store_len, int list_len)
  */
 Store_Type *generate_store(int item_len, Store_Type *next_node, char **item_names, char **store_names)
 {
-    int store_number = rand() % STORE_NAMES_LEN;
+    int store_number  = rand() % STORE_NAMES_LEN;
     Store_Type *store = (Store_Type *)malloc(sizeof(Store_Type));
-    store->name = (char *)malloc(strlen(store_names[store_number]) * sizeof(char) + 1);
+
+
+    store->name        = (char *)malloc(strlen(store_names[store_number]) * sizeof(char) + 1);
     memcpy(store->name, store_names[store_number], strlen(store_names[store_number]) + 1);
-    store->items = generate_items(item_len, item_names);
-    store->next_node = next_node;
+    store->items       = generate_items(item_len, item_names);
+    store->next_node   = next_node;
     store->item_amount = item_len;
     store->total_price = 0;
+
+
     for (int i = 0; i < store->item_amount; ++i) {
         store->total_price += store->items[i]->price;
     }
@@ -165,11 +170,12 @@ Item_Type *generate_item(char **item_names)
     int item_number_rand = rand() % ITEM_NAMES_LEN;
 
     Item_Type *item = (Item_Type *)malloc(sizeof(Item_Type));
-    item->name = (char *)malloc(sizeof(char) * strlen(item_names[item_number_rand]) + 1);       // Remember to free
+
+    item->name      = (char *)malloc(sizeof(char) * strlen(item_names[item_number_rand]) + 1);       // Remember to free
     memcpy(item->name, item_names[item_number_rand], strlen(item_names[item_number_rand]) + 1); // Maybe use memccpy
-    item->organic = rand() % 2;
-    item->price = (float)rand() / (float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER - 1;
-    item->unit = rand() % 5;
+    item->organic   = rand() % 2;
+    item->price     = (float)rand() / (float)(RAND_MAX) + rand() % (PRICE_RANGE_UPPER - PRICE_RANGE_LOWER) + PRICE_RANGE_LOWER - 1;
+    item->unit      = rand() % 5;
     item->unit_size = rand() % ((UNIT_RANGE_UPPER + 1) - UNIT_RANGE_LOWER) + UNIT_RANGE_LOWER; // Includes top range and lower range
 
     return item;
