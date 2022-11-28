@@ -4,6 +4,7 @@
 /* Custom libraries */
 #include "sort_stores.h"
 
+/* Prototype */
 int compare_price_of_items(const void *p, const void *q);
 
 /**
