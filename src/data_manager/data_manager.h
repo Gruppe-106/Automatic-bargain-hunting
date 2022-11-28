@@ -5,7 +5,7 @@
 typedef enum {
     BILKA,
     REMA,
-    SALLING_CLERANCES
+    SALLING_CLEARANCES
 } Valid_Stores_Enum;
 
 typedef enum {
