@@ -5,7 +5,7 @@
 typedef enum {
     BILKA,
     REMA,
-    SALLING_CLERANCES
+    SALLING_CLEARANCES
 } Valid_Stores_Enum;
 
 typedef enum {
@@ -35,6 +35,6 @@ typedef struct store {
     struct store* next_node;
 } Store_Type;
 
-void updates_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type);
+void update_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type);
 void print_store(Store_Type* store);
 #endif //AUTOMATIC_BARGAIN_HUNTING_DATA_MANAGER_H

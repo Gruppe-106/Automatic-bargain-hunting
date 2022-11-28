@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include "../util/string_utility.h"
 #include "../util/unit_type_conversion.h"
+#include "../util/store_utility.h"
 
 //Prototypes
 Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic);
@@ -62,7 +63,7 @@ Item_Type** allocate_or_reallocate_items(Store_Type* store, size_t product_amoun
     Item_Type **items;
     if (store->item_amount == 0) {
         //Allocated space needed for all items
-        items = (Item_Type**) calloc((product_amount), sizeof(Item_Type*));
+        items = (Item_Type**) calloc(product_amount, sizeof(Item_Type*));
         store->item_amount = product_amount;
     } else {
         //If is not zero more space is needed to be able to store new items
@@ -84,23 +85,23 @@ void json_to_store_rema(JSON_Value *json, Store_Type** all_stores) {
     //Add or get the ptr of store Rema-1000
     Store_Type* rema = create_and_add_store("rema-1000", all_stores);
 
-    //Get the product array & the amount of products from the json
-    JSON_Array *products = json_value_get_array (json);
-    size_t product_amount = json_array_get_count (products);
+    //Get the product array & the amount of product_list from the json
+    JSON_Array *product_list = json_value_get_array (json);
+    size_t product_amount = json_array_get_count (product_list);
 
-    //Get the current last index of items in the Rema Store_Type
-    size_t index = rema->item_amount;
+    //Get the current last last_index of items in the Rema Store_Type
+    size_t last_index = rema->item_amount;
 
     Item_Type** items = allocate_or_reallocate_items(rema, product_amount);
     for (int i = 0; i < product_amount; ++i) {
         //Get next product in the json array
-        JSON_Object *cur_item = json_array_get_object(products, i);
+        JSON_Object *cur_item = json_array_get_object(product_list, i);
         //Create item
         Item_Type* item = create_item_from_rema(cur_item);
 
         //Add item to the items list, if not NULL
         if (item != NULL) {
-            items[i + index] = item;
+            items[i + last_index] = item;
         }
     }
     //Update the Store_Type items list
@@ -130,8 +131,8 @@ void json_to_stores_salling_clearances(JSON_Value *json, Store_Type** all_stores
         //Get or create store if it doesn't exist
         Store_Type* store = create_and_add_store(name, all_stores);
         if (store != NULL) {
-            size_t index = store->item_amount;
-            //Allocate or reallocate space for new items and get back index of new item
+            size_t last_index = store->item_amount;
+            //Allocate or reallocate space for new items and get back last_index of new item
             Item_Type **items = allocate_or_reallocate_items(store, product_amount);
 
             //Loop through all new items and add them to list of items
@@ -142,7 +143,7 @@ void json_to_stores_salling_clearances(JSON_Value *json, Store_Type** all_stores
                 Item_Type *item = create_item_from_salling(json_item);
                 //If item is not null add it to the list
                 if (item != NULL) {
-                    items[j + index] = item;
+                    items[j + last_index] = item;
                 }
             }
             //Reassign pointer to items list to the store
@@ -168,7 +169,7 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum 
 
     //Call json to store converter depending on type of store
     switch (type) {
-        case SALLING_CLERANCES:
+        case SALLING_CLEARANCES:
             json_to_stores_salling_clearances(json, all_stores);
             break;
         case REMA:
@@ -227,7 +228,7 @@ Item_Type* create_item_from_salling(JSON_Object *json_item) {
     double    price     = json_object_get_number(item_offer, "newPrice");
     double    unit_size = json_object_get_number(item_offer, "stock");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
+    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1 || str_contains_str((char *) name, "oekologisk",false) != -1;
 
     //Create item and return the ptr
     return create_item(name, price, unit_size, unit, organic);
@@ -252,18 +253,3 @@ Item_Type* create_item_from_rema(JSON_Object *json_item) {
     return create_item(name, price, unit_size, unit, organic);
 }
 
-/**
- * @brief Prints a stores items
- * @param store Store_Type*, store to print
- */
-void print_store(Store_Type* store) {
-    Item_Type **items = store->items;
-    for (int i = 0; i < store->item_amount; ++i) {
-        Item_Type *item = items[i];
-        printf("======= %d =======\n", i + 1);
-        printf("Item: %s\n", item->name);
-        printf("Price: %.2lf kr.\n", item->price);
-        printf("Organic: %s\n", item->organic == 1 ? "yes" : "no");
-        printf("Amount %.2lf %s\n\n", item->unit_size, item->unit != -1 ? unit_type_to_str(item->unit) : "NAN");
-    }
-}

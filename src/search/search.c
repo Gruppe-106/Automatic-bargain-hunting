@@ -32,13 +32,12 @@ int get_length_of_items(Item_Type** items)
  * @param items Item_Type**, the items that we will be going through.
  * @return Returns an array of item pointers, Item_Type**, that match the query.
  */
-Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, int* size_output)
+Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, size_t len, int* size_output)
 {
     /*
      * Creates a temporary array (items_match) which will be freed when function is done automatically.
      * It has the length of len because matching items count can impossibly exceed the length of the array 'items'.
      */
-    int len = get_length_of_items(items);
     Item_Type* items_match[len];
     int valid_items_len = 0;
 
@@ -63,7 +62,6 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, int* size
     {
         lst_to_return[i] = items_match[i];
     }
-    lst_to_return[valid_items_len] = NULL;
 
     *size_output = valid_items_len;
     return lst_to_return;
@@ -77,13 +75,11 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, int* size
  */
 int str_contains_str_test(const char* original, const char* str_to_find)
 {
-    int
-        i = 0,
+    int i = 0,
         i_query = 0;
 
-    char
-        c = original[i],
-        c_query = str_to_find[i_query];
+    char c = original[i],
+         c_query = str_to_find[i_query];
 
     while (c != '\0')
     {
@@ -95,6 +91,7 @@ int str_contains_str_test(const char* original, const char* str_to_find)
         c_query = str_to_find[i_query];
         c = original[i];
     }
+
     if (c_query == '\0') return 1;
     else return 0;
 } /* TODO: Not walked through. Limited testing. */
