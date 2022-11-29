@@ -9,7 +9,9 @@ set(SOURCES
         ../src/search/search.c             ../src/search/search.h
         ../src/util/node_handler.c         ../src/util/node_handler.h
         ../src/util/string_utility.c       ../src/util/string_utility.h
-        ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h)
+        ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h
+        random_testcases.c                 random_testcases.h
+        )
 
 add_executable(${PROJECT_NAME} test1.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)

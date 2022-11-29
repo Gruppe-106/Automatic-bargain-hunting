@@ -9,14 +9,23 @@
 #include "../src/data_manager/data_manager.h"
 
 void how_it_works(void);
+void json_how_it_works(void);
 
 int main(void)
 {
+    json_how_it_works();
+}
+
+void json_how_it_works(void)
+{
     JSON_Value* json = json_parse_file("C:\\Users\\madsh\\CLionProjects\\Automatic-bargain-hunting\\data\\rema-1000.json");
     Store_Type* store = NULL;
-    updates_stores(json, &store, REMA);
+    update_stores(json, &store, REMA);
+    store = sort_store_items(store);
 
-    print_store(store);
+    int q_res_len;
+    Item_Type** q_res = find_items_in_items_by_str("ris", store->items, store->item_amount, &q_res_len);
+    print_all_items(q_res, q_res_len);
 
     free_stores(store);
 }
@@ -27,6 +36,7 @@ void how_it_works(void)
     int store_amount = 5,
         list_amount = 5;
     Store_Type* store = generate_stores_sorted(store_amount, list_amount);
+
 
     print_all_stores_test(store);
 
