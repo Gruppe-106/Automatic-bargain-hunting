@@ -1,5 +1,6 @@
 #include "search.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /* Prototypes */
 /**
@@ -11,6 +12,8 @@
 Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query);
 int get_length_of_items(Item_Type** items);
 int str_contains_str_test(const char* original, const char* str_to_find);
+char** tokenize(const char* string, int* words_length_output);
+int count_spaces(const char* string);
 
 /* Definitions */
 /**
@@ -32,6 +35,7 @@ int get_length_of_items(Item_Type** items)
  * @param items Item_Type**, the items that we will be going through.
  * @return Returns an array of item pointers, Item_Type**, that match the query.
  */
+
 Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, size_t len, int* size_output)
 {
     /*
@@ -49,6 +53,10 @@ Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, size_t le
             items_match[valid_items_len] = items[i];
             ++valid_items_len;
         }
+
+        // Tokenize the string, and match the query with
+        int words_len = 0;
+        char** words = tokenize(item_ptr->name, &words_len);
     }
 
     /*
@@ -104,4 +112,47 @@ int str_contains_str_test(const char* original, const char* str_to_find)
 Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query)
 {
     return NULL;
+}
+
+int count_spaces(const char* string)
+{
+    int count = 0,
+        i = 0;
+    char c = string[i];
+    while (c != '\0')
+    {
+        if (c == ' ') ++count;
+        ++i;
+        c = string[i];
+    }
+    return count;
+}
+
+int tok_char_count(const char* string, int word_index)
+{
+    int sep_count = 0,
+        i = 0;
+    char c = string[i];
+    while (c != '\0')
+    {
+        // Make sure we're only looking at the correct word.
+        if (c == ' ') ++sep_count;
+        if (sep_count < word_index)
+        else if (sep_count > word_index) break;
+
+        ++i;
+        c = string[i];
+    }
+
+    return  i;
+}
+
+char** tokenize(const char* string, int* words_length_output)
+{
+    int space_count = count_spaces(string);
+    char** word_arr = (char**) malloc((space_count + 1) * sizeof(char*));
+
+    for (int i = 0; i < space_count + 1; ++i) {
+        printf("%d", tok_char_count(string, i));
+    }
 }
