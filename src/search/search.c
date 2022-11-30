@@ -1,158 +1,142 @@
 #include "search.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
 
 /* Prototypes */
-/**
- * Find the cheapest item in a sorted list of Item_Type in a store node
- * @param store Store_Type ptr, a single store as a ptr
- * @param item char*, a string query for what to find in the item list
- * @return Item_Type ptr, ptr to the cheapest item found matching query or NullPointerReference
- */
-Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query);
-int get_length_of_items(Item_Type** items);
-int str_contains_str_test(const char* original, const char* str_to_find);
-char** tokenize(const char* string, int* words_length_output);
 int count_spaces(const char* string);
+char** create_wordlist(const char* sent, size_t* length_output);
+void free_wordlist(char** wordlist, size_t len);
 
 /* Definitions */
 /**
- * @brief Gets the length of items under the assumption that items ends in a NULL pointer
- * @param items array of item pointers, ending in NULL
- * @return the length of the array of item pointers, not including NULL pointer. An array of one valid pointer returns len = 1.
+ * @brief Simply counts spaces
+ * @param string the string in which spaces need to be counted
+ * @return Returns the amount of spaces in 'string'
  */
-int get_length_of_items(Item_Type** items)
-{
-    int i = 0;
-    while (items[i] != NULL) ++i;
-    return i;
-} /* TODO: Not walked through. Not tested. Edge cases? */
-
-/**
- * @brief Dynamically allocates a return type of Item_Type** to be freed.\n
- * Finds items that contain the query query, in a list of items.
- * @param query char*, the query.
- * @param items Item_Type**, the items that we will be going through.
- * @return Returns an array of item pointers, Item_Type**, that match the query.
- */
-
-Item_Type** find_items_in_items_by_str(char* query, Item_Type** items, size_t len, int* size_output)
-{
-    /*
-     * Creates a temporary array (items_match) which will be freed when function is done automatically.
-     * It has the length of len because matching items count can impossibly exceed the length of the array 'items'.
-     */
-    Item_Type* items_match[len];
-    int valid_items_len = 0;
-
-    /* Proceeds to find all names matching the query, appends them to the temporary array 'items_match'. */
-    for (int i = 0; i < len; ++i) {
-        Item_Type* item_ptr = items[i];
-        if (str_contains_str_test(item_ptr->name, query))
-        {
-            items_match[valid_items_len] = items[i];
-            ++valid_items_len;
-        }
-
-        // Tokenize the string, and match the query with
-        int words_len = 0;
-        char** words = tokenize(item_ptr->name, &words_len);
-    }
-
-    /*
-     * Now that we know how many matching cases there is, we dynamically allocate an array of item pointers to return.
-     * This array of item pointers will be ending in a NULL pointer. We then copy the values of the temporary array
-     * to the new array that we will return.
-     */
-    Item_Type** lst_to_return = (Item_Type**) malloc(sizeof(Item_Type*) * (valid_items_len + 1));
-
-    for (int i = 0; i < valid_items_len; ++i)
-    {
-        lst_to_return[i] = items_match[i];
-    }
-
-    *size_output = valid_items_len;
-    return lst_to_return;
-} /* TODO: Not walked through. Not tested. Do I allocate memory for an entire list of items or just item pointers? */
-
-/**
- * @brief Checks if str_to_find is contained in original
- * @param original str, checks if it contains str_to_find
- * @param str_to_find str, checks if it is contained in original
- * @return Returns 1 if str_to_find is contained in original. Otherwise returns 0
- */
-int str_contains_str_test(const char* original, const char* str_to_find)
-{
-    int i = 0,
-        i_query = 0;
-
-    char c = original[i],
-         c_query = str_to_find[i_query];
-
-    while (c != '\0')
-    {
-        if (c == c_query) i_query++;
-        else if (c_query == '\0') return 1;
-        else i_query = 0;
-
-        i++;
-        c_query = str_to_find[i_query];
-        c = original[i];
-    }
-
-    if (c_query == '\0') return 1;
-    else return 0;
-} /* TODO: Not walked through. Limited testing. */
-
-/*
- * I do not understand this function from the name of it. If my goal is to find the cheapest item, then why do I have an item parameter?
- * If the goal is to find an item, like this item parameter, then it would be highly unlikely for  it to be there.
- * If it is meant to search for the item name, and then find the item, it's doable, but item parameter is overkill opposed to str parameter.
- */ /* TODO: Find the true meaning of 'find_cheapest_item_in_store' */
-Item_Type* find_cheapest_item_in_store(Store_Type *store, char* query)
-{
-    return NULL;
-}
-
 int count_spaces(const char* string)
 {
-    int count = 0,
-        i = 0;
+    int i = 0;
+    int space_count = 0;
     char c = string[i];
     while (c != '\0')
     {
-        if (c == ' ') ++count;
-        ++i;
-        c = string[i];
+        if (c == ' ') space_count++;
+        c = string[++i];
     }
-    return count;
+    return space_count;
 }
 
-int tok_char_count(const char* string, int word_index)
+/**
+ * @brief Frees the query, without freeing the items themselves, as they will be freed by another function
+ * @param query_result the query result to be freed
+ */
+void free_query(Item_Type** query_result)
 {
-    int sep_count = 0,
-        i = 0;
-    char c = string[i];
-    while (c != '\0')
+    free(query_result);
+}
+
+/**
+ * @brief Creates a list of words from a sentence. This wordlist is separated by spaces
+ * @param sent the sentence to be split
+ * @param length_output the length of the array of words
+ * @return Returns an array of words that are contained within 'sent'
+ */
+char** create_wordlist(const char* sent, size_t* length_output)
+{
+    /* Create a copy of sent */
+    int sent_len = (int) strlen(sent);
+    char tmp[sent_len + 1];
+    strcpy(tmp, sent);
+
+    /* Tokenize the copy of sent. This will be added to an array of words 'query_wordlist' */
+    char* query_token = strtok(tmp, " ");
+    int query_words = count_spaces(sent) + 1;
+    char** query_wordlist = (char**) malloc(query_words * sizeof(char*));
+    int k = 0;
+    /* As long as query_token isn't NULL we know it isn't done, so allocate each word and append to the list */
+    while (query_token != NULL)
     {
-        // Make sure we're only looking at the correct word.
-        if (c == ' ') ++sep_count;
-        if (sep_count < word_index)
-        else if (sep_count > word_index) break;
-
-        ++i;
-        c = string[i];
+        int word_len = (int)strlen(query_token);
+        query_wordlist[k] = (char*) malloc((word_len + 1) * sizeof(char));
+        strcpy(query_wordlist[k], query_token);
+        query_token = strtok(NULL, " ");
+        ++k;
     }
 
-    return  i;
+    /* Assign return values and return the wordlist */
+    *length_output = k;
+    return query_wordlist;
 }
 
-char** tokenize(const char* string, int* words_length_output)
+/**
+ * @brief Frees a wordlist by simply freeing the name then the list itself
+ * @param wordlist the wordlist to be freed
+ * @param len the length of the wordlist to be freed
+ */
+void free_wordlist(char** wordlist, size_t len)
 {
-    int space_count = count_spaces(string);
-    char** word_arr = (char**) malloc((space_count + 1) * sizeof(char*));
+    /* Simply free the words and then the array */
+    for (int i = 0; i < len; ++i) free(wordlist[i]);
+    free(wordlist);
+}
 
-    for (int i = 0; i < space_count + 1; ++i) {
-        printf("%d", tok_char_count(string, i));
+/**
+ * @brief Finds items in an array of items by the query. Any item containing any word in query will be returned.
+ * @param query the words to search for
+ * @param items the list of items to search in
+ * @param size the size of this list of items
+ * @param size_output a pointer to the variable that should hold the size of the given array of results
+ * @return Returns an array of matching products.
+ */
+Item_Type** find_items(const char* query, Item_Type** items, size_t size, size_t* size_output)
+{
+    /* Creates an array big enough to hold all possible matches. (Only exists for function lifetime) */
+    Item_Type* matches_arr[size];
+    /* To keep track of the amount of matches in matches_arr. */
+    size_t matches = 0;
+
+    /* Make a query_wordlist of the query. Separates each word by ' ' and creates an array of words. */
+    size_t query_wordlist_len;
+    char** query_wordlist = create_wordlist(query, &query_wordlist_len);
+
+    /*
+     * For the size of all words, go ahead and make a wordlist of each product's name, and if any word matches any word
+     * of the query wordlist, then a match is found and break out asap and proceed to the next product, when the
+     * wordlist is freed.
+     */
+    for (int i = 0; i < size; ++i) {
+        /* Make a wordlist of the name string. */
+        size_t name_wordlist_len;
+        char** name_wordlist = create_wordlist(items[i]->name, &name_wordlist_len);
+
+        /* Find a match in the two wordlists. */
+        for (int k = 0; k < name_wordlist_len; ++k) {
+            int match_found = 0;
+            for (int j = 0; j < query_wordlist_len; ++j) {
+                if (strcmp(name_wordlist[k], query_wordlist[j]) == 0) {
+                    matches_arr[matches] = items[i];
+                    matches++;
+                    match_found = 1;
+                    break;
+                }
+            }
+            if (match_found == 1) break;
+        }
+
+        /* Remember to free */
+        free_wordlist(name_wordlist, name_wordlist_len);
     }
+
+    /* Copy the matches from the matches_arr to an appropriately sized array of matches to return */
+    Item_Type** items_to_return = (Item_Type**) malloc(matches * sizeof(Item_Type*));
+    for (int i = 0; i < matches; ++i) {
+        items_to_return[i] = matches_arr[i];
+    }
+
+    /* Free the wordlist of the query */
+    free_wordlist(query_wordlist, query_wordlist_len);
+
+    /* Assign the return values and return the list with matches. */
+    *size_output = matches;
+    return items_to_return;
 }
