@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.g106.Main.logger;
 
-public class Json_Handler {
+public class JsonHandler {
     public static final String output_file_path = "C:\\Users\\Mikkel\\CLionProjects\\Automatic-bargain-hunting\\data-generator\\salling-api\\data-bilka.json";
     public static JSONArray output_json = new JSONArray();
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();

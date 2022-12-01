@@ -1,20 +1,18 @@
-package com.g106;
+package com.g106.network.apiDrivers;
 
-import com.g106.network.Chrome_Driver;
+import com.g106.network.ChromeDriver;
 import com.g106.util.ItemData.PricePrUnit;
 import com.g106.util.ItemData.Item;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static com.g106.Main.logger;
 
-public class SallingApiDriver extends Chrome_Driver {
-    HashMap<String, String> failed = new HashMap<>();
-
+public class SallingApiDriver extends ChromeDriver {
+    @Override
     public List<Item> getProductDataFromPage(String url)  {
         webDriver.get(url);
         logger.info("Connecting to: " + url);
@@ -57,24 +55,10 @@ public class SallingApiDriver extends Chrome_Driver {
                 item.price_pr_unit = pPU;
                 items.add(item);
             } catch (Exception e) {
-                failed.put(item.name, url);
+                failed.put(item.name, new String[]{url, e.getLocalizedMessage()});
                 //logger.error("Error getting product, data collected:\n" + item.toString());
             }
         }
         return items;
-    }
-
-    private void useButton(int timeWaitIncrement, String className) {
-        int increment = 0;
-        try {
-            while(true) {
-                WebElement button = webDriver.findElement(By.className(className));
-                button.click();
-                Thread.sleep(500 + increment);
-                increment += timeWaitIncrement;
-            }
-        } catch (Exception e) {
-            logger.info("No more buttons");
-        }
     }
 }

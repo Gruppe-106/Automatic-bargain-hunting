@@ -14,10 +14,10 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
-import static com.g106.util.Json_Handler.*;
+import static com.g106.util.JsonHandler.*;
 import static com.g106.Main.logger;
 
-public class Api_Handler {
+public class ApiHandler {
     public static final String rema_json = "C:\\Users\\Mikkel\\CLionProjects\\Automatic-bargain-hunting\\data\\rema-1000.json";
     public static final String apiUrl = "https://api.sallinggroup.com";
     public static final String suggestion_subject = "/v1-beta/product-suggestions/relevant-products?query=";
