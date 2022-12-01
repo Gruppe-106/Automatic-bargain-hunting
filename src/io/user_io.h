@@ -9,7 +9,8 @@ typedef struct Input_Item {
 
 
 Input_Item* create_new_input_item(char* name);
-void append_input_item_node(Input_Item** list, char* input);
-void user_driver();
+void append_input_item_node(Input_Item* list, char* input);
+Input_Item* user_driver();
+void free_grocery_list(Input_Item* grocery_list);
 
 #endif //AUTOMATIC_BARGAIN_HUNTING_USER_IO_H
