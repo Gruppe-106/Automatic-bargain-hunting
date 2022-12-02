@@ -9,7 +9,8 @@ set(SOURCES
         search/search.c             search/search.h
         util/node_handler.c         util/node_handler.h
         util/string_utility.c       util/string_utility.h
-        util/unit_type_conversion.c util/unit_type_conversion.h)
+        util/unit_type_conversion.c util/unit_type_conversion.h
+        util/store_utility.c        util/store_utility.h)
 
 add_executable(${PROJECT_NAME} main.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)

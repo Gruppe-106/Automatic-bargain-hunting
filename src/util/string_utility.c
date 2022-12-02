@@ -1,6 +1,10 @@
-#include "string_utility.h"
+/* Standard libraries */
 #include <ctype.h>
 #include <string.h>
+
+/* Custom libries */
+#include "string_utility.h"
+
 #define NOTFOUND -1
 
 /**

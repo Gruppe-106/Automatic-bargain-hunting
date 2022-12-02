@@ -1,6 +1,10 @@
+/* Standard libraries */
+#include <string.h>
+
+/* Custom libraires */
 #include "unit_type_conversion.h"
 #include "string_utility.h"
-#include <string.h>
+
 
 /**
  * Converts a string to a Unit_Type if exist
