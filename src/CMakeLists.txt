@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(Automatic-bargain-hunting-main VERSION 0.1.0)
 
 set(SOURCES
+        data_manager/data_loader.c  data_manager/data_loader.h
         data_manager/data_manager.c data_manager/data_manager.h
         data_manager/rank_stores.c  data_manager/rank_stores.h
         data_manager/sort_stores.c  data_manager/sort_stores.h
