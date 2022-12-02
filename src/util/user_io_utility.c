@@ -12,7 +12,7 @@ int grocery_list_length(Input_Item* grocery_list){
     Input_Item* current = grocery_list;
 
     if(grocery_list != NULL){
-        while(grocery_list->next_input){
+        while(current->next_input != NULL){
             length++;
             current = current->next_input;
         }
@@ -28,9 +28,9 @@ void print_grocery_list(Input_Item* grocery_list){
     if(length == 0){
         puts("Grocery list is empty");
     } else {
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length + 1; i++)
         {
-            printf("%d:  %s", i+1, grocery_list->input);
+            printf("%d:  %s\n", i+1, grocery_list->input);
             grocery_list = grocery_list->next_input;
         }
     }

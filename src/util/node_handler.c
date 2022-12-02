@@ -60,3 +60,27 @@ void free_stores(Store_Type* all_stores) {
         free_store(to_free);
     }
 }
+
+
+/**
+ * @brief Frees the grocery list
+ * 
+ * @param grocery_list the grocery list
+ */
+void free_grocery_list(Input_Item* grocery_list){
+    int length = grocery_list_length(grocery_list);
+
+    Input_Item* next    = grocery_list->next_input;
+    Input_Item* current = grocery_list;
+
+    for (int i = 0; i < length; i++)
+    {
+        free(current->input);
+        free(current);
+        current = next;
+        next = next->next_input;
+    }
+
+}
+
+
