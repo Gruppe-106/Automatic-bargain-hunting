@@ -2,24 +2,22 @@
 #include "data_manager.h"
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 #include <stdbool.h>
 #include "../util/string_utility.h"
 #include "../util/unit_type_conversion.h"
 
 //Prototypes
 Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic);
-Item_Type* create_item_from_salling(JSON_Object *json_item);
-Item_Type* create_item_from_rema(JSON_Object *json_item);
+Item_Type* create_item_from_json(JSON_Object *json_item);
 
 /* ================================================== *
  *       Create and/or update store linked list       *
  * ================================================== */
 
 /**
- * Allocates and assigns a Store_Type with empty and name of param name
+ * Allocates a new store if one with the same name doesn't exist
  * @param name char*, name of store
- * @param all_stores Store_Type ptr, list of all stores
+ * @param all_stores Store_Type ptr, to already store or newly created
  */
 Store_Type* create_and_add_store(const char* name, Store_Type** all_stores) {
     //Loop through all_stores nodes until an empty is found or one with same name is found
@@ -58,6 +56,12 @@ Store_Type* create_and_add_store(const char* name, Store_Type** all_stores) {
     return store;
 }
 
+/**
+ * @brief Updates a stores items list to a new size
+ * @param store Store_Type ptr, ptr to the store to resize items in
+ * @param product_amount size_t, amount of new items to be allocated
+ * @return items ptr
+ */
 Item_Type** allocate_or_reallocate_items(Store_Type* store, size_t product_amount) {
     Item_Type **items;
     if (store->item_amount == 0) {
@@ -76,19 +80,19 @@ Item_Type** allocate_or_reallocate_items(Store_Type* store, size_t product_amoun
 
 /**
  * @brief Converts a JSON object to the Store_Type & assigns it to current list of all stores \n
- * Should only be used for json from Rema-1000
+ * Should only be used for json with a single store
  * @param json json to convert
  * @param all_stores Store_type ptr, all stores can be NULL
  */
-void json_to_store_rema(JSON_Value *json, Store_Type** all_stores) {
-    //Add or get the ptr of store Rema-1000
-    Store_Type* rema = create_and_add_store("rema-1000", all_stores);
+void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) {
+    //Add or get the ptr of store
+    Store_Type* rema = create_and_add_store(store_name, all_stores);
 
     //Get the product array & the amount of product_list from the json
     JSON_Array *product_list = json_value_get_array (json);
     size_t product_amount = json_array_get_count (product_list);
 
-    //Get the current last last_index of items in the Rema Store_Type
+    //Get the current last last_index of items in the Store_Type
     size_t last_index = rema->item_amount;
 
     Item_Type** items = allocate_or_reallocate_items(rema, product_amount);
@@ -96,7 +100,7 @@ void json_to_store_rema(JSON_Value *json, Store_Type** all_stores) {
         //Get next product in the json array
         JSON_Object *cur_item = json_array_get_object(product_list, i);
         //Create item
-        Item_Type* item = create_item_from_rema(cur_item);
+        Item_Type* item = create_item_from_json(cur_item);
 
         //Add item to the items list, if not NULL
         if (item != NULL) {
@@ -105,81 +109,6 @@ void json_to_store_rema(JSON_Value *json, Store_Type** all_stores) {
     }
     //Update the Store_Type items list
     rema->items = items;
-}
-
-/**
- * @brief Converts a JSON object to the Store_Type & assigns it to current list of all stores\n
- * Should only be used for json from Salling Clearances
- * @param json json to convert
- * @param all_stores Store_type ptr, all stores can be NULL
- */
-void json_to_stores_salling_clearances(JSON_Value *json, Store_Type** all_stores) {
-    //Get first layer of the JSON
-    JSON_Array *clearances = json_value_get_array (json);
-    size_t clearances_size = json_array_get_count (clearances);
-
-    for (int i = 0; i < clearances_size; ++i) {
-        JSON_Object *current_clearances = json_array_get_object(clearances, i);
-        //Get product list and the amount of products
-        JSON_Array *product_list   = json_object_get_array(current_clearances, "clearances");
-        size_t      product_amount = json_array_get_count(product_list);
-        //Get brand name of store
-        JSON_Object *store_list    = json_object_get_object(current_clearances, "store");
-        char*        name          = (char*) json_object_get_string(store_list, "brand");
-
-        //Get or create store if it doesn't exist
-        Store_Type* store = create_and_add_store(name, all_stores);
-        if (store != NULL) {
-            size_t last_index = store->item_amount;
-            //Allocate or reallocate space for new items and get back last_index of new item
-            Item_Type **items = allocate_or_reallocate_items(store, product_amount);
-
-            //Loop through all new items and add them to list of items
-            for (int j = 0; j < product_amount; ++j) {
-                //Get current item from JSON
-                JSON_Object *json_item    = json_array_get_object(product_list, j);
-                //Create an item based on that data
-                Item_Type *item = create_item_from_salling(json_item);
-                //If item is not null add it to the list
-                if (item != NULL) {
-                    items[j + last_index] = item;
-                }
-            }
-            //Reassign pointer to items list to the store
-            store->items = items;
-        }
-    }
-}
-
-/**
- * @brief Injection point should take in a json and the list of all store \n
- * This function should be all you need to call from this file \n
- * This function should dynamically allocate store and items as needed
- * @param json json to convert
- * @param all_stores Store_type ptr, all stores can be NULL
- * @param type Valid_Stores_Type, Enum of a valid store
- */
-void update_stores(JSON_Value *json, Store_Type** all_stores, Valid_Stores_Enum type) {
-    // Check if JSON is Not Null
-    if (json == NULL) {
-        printf("[updates_stores] JSON is a NullPointerReference");
-        exit(EXIT_FAILURE);
-    }
-
-    //Call json to store converter depending on type of store
-    switch (type) {
-        case SALLING_CLEARANCES:
-            json_to_stores_salling_clearances(json, all_stores);
-            break;
-        case REMA:
-            json_to_store_rema(json, all_stores);
-            break;
-        default:
-            return;
-    }
-
-    //Free JSON from memory
-    json_value_free(json);
 }
 
 /* ================================================== *
@@ -212,33 +141,11 @@ Item_Type* create_item(char* name, double price, double unit_size, Unit_Type uni
 }
 
 /**
- * Creates a Item_Type ptr from a Salling JSON
+ * Creates a Item_Type ptr from a JSON
  * @param json_item JSON_Object ptr, JSON item to get data from
  * @return Item_Type ptr
  */
-Item_Type* create_item_from_salling(JSON_Object *json_item) {
-    if (json_item == NULL) return NULL;
-    //Get the two JSON Objects that's within the JSON item object
-    JSON_Object *item_offer   = json_object_get_object(json_item, "offer");
-    JSON_Object *item_product = json_object_get_object(json_item, "product");
-
-    //Get all useful parameters of the JSON item
-    char     *name      = (char*) json_object_get_string(item_product, "description");
-    double    price     = json_object_get_number(item_offer, "newPrice");
-    double    unit_size = json_object_get_number(item_offer, "stock");
-    Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(item_offer, "stockUnit"));
-    _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
-
-    //Create item and return the ptr
-    return create_item(name, price, unit_size, unit, organic);
-}
-
-/**
- * Creates a Item_Type ptr from a Rema JSON
- * @param json_item JSON_Object ptr, JSON item to get data from
- * @return Item_Type ptr
- */
-Item_Type* create_item_from_rema(JSON_Object *json_item) {
+Item_Type* create_item_from_json(JSON_Object *json_item) {
     if (json_item == NULL) return NULL;
 
     //Get all useful parameters of the JSON item
@@ -250,20 +157,4 @@ Item_Type* create_item_from_rema(JSON_Object *json_item) {
 
     //Create item and return the ptr
     return create_item(name, price, unit_size, unit, organic);
-}
-
-/**
- * @brief Prints a stores items
- * @param store Store_Type*, store to print
- */
-void print_store(Store_Type* store) {
-    Item_Type **items = store->items;
-    for (int i = 0; i < store->item_amount; ++i) {
-        Item_Type *item = items[i];
-        printf("======= %s - %d =======\n", store->name, i + 1);
-        printf("Item: %s\n", item->name);
-        printf("Price: %.2lf kr.\n", item->price);
-        printf("Organic: %s\n", item->organic == 1 ? "yes" : "no");
-        printf("Amount %.2lf %s\n\n", item->unit_size, item->unit != -1 ? unit_type_to_str(item->unit) : "NAN");
-    }
 }
