@@ -1,6 +1,9 @@
+/* Standard libraries */
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Custom libraries */
 #include "rank_stores.h"
-#include "stdio.h"
-#include "stdlib.h"
 
 /**
  * Get total price for one store and update the ptr total_price

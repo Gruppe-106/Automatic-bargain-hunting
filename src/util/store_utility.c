@@ -1,7 +1,13 @@
-#include "store_utility.h"
-#include "stdio.h"
-#include "stdlib.h"
+
+
+/* Standard libraires */
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Custom libraires */
+#include "./store_utility.h"
 #include "unit_type_conversion.h"
+
 
 int amount_of_stores(Store_Type *store){
     int length = 0;
