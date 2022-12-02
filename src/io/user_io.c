@@ -8,13 +8,12 @@
 /* Custom libraries */
 #include "user_io.h"
 #include "../util/string_utility.h"
-#include "../data_manager/data_manager.h"
 #include "../util/user_io_utility.h"
-
+#include "../util/node_handler.h"
 
 /**
  * @brief Create a new input item struct
- * 
+ *
  * @param name name of item
  * @return Input_Item struct
  */
@@ -22,7 +21,7 @@ Input_Item* create_new_input_item(char* name){
 
     Input_Item* new_item = (Input_Item*) malloc(sizeof(Input_Item));
     new_item->next_input = NULL;
-    char *item_name      = (char*) malloc(sizeof(char)*(strlen(name)+1));
+    new_item->input      = (char*) malloc(sizeof(char)*(strlen(name)+1));
 
     str_to_lower(&name);
     memcpy(new_item->input, name, strlen(name) + 1);
@@ -58,22 +57,20 @@ Input_Item* user_driver()
 {
     _Bool flag = false;
     char* name;
-    Input_Item *grocery_list;
+    Input_Item *grocery_list = NULL;
+
     puts("Enter grocery list");
     while(!flag){
         printf ("Enter item > ");
-        scanf  ("%s", &name);
+        scanf  ("%s", name);
         str_to_lower(&name);
 
         if( strcmp(name, "find") == 0 ){
-            /* RETURN MAIN FUNCTION HERE */
-            print_grocery_list(grocery_list);
-            return grocery_list;
             flag = true;
         }else
         if( strcmp(name, "quit") == 0 ) {
-            flag = true;
-            break;
+            free_grocery_list(grocery_list);
+            exit(EXIT_SUCCESS);
         } else {
 
             if(grocery_list == NULL){
@@ -85,29 +82,5 @@ Input_Item* user_driver()
         }
     }
 
-    free_grocery_list(grocery_list);
+    return grocery_list;
 }
-
-
-/**
- * @brief Frees the grocery list
- * 
- * @param grocery_list the grocery list
- */
-void free_grocery_list(Input_Item* grocery_list){
-    int length = grocery_list_length(grocery_list);
-
-    Input_Item* next    = grocery_list->next_input;
-    Input_Item* current = grocery_list;
-
-    for (int i = 0; i < length; i++)
-    {
-        free(current->input);
-        free(current);
-        current = next;
-        next = next->next_input;
-    }
-
-}
-
-
