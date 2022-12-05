@@ -8,20 +8,15 @@
 
 int main(void) {
     Store_Type *all_stores = load_all_data();
-    all_stores = sort_store_items(all_stores);
-    /* Input_Item *grocery_list = user_driver(); */
+    sort_stores_items(&all_stores);
+    Input_Item *items_to_find = input_grocery_list();
 
-    size_t len;
-    Item_Type **items_found = find_items("fedt oeko minimaelk", all_stores->items, all_stores->item_amount, &len);
+    size_t length;
+    Store_Result_Type **results = search_stores(items_to_find, all_stores, &length);
 
-    print_items(items_found, len);
-    free_query(items_found);
-
+    print_results(results, length);
+    free_results(results, length);
     free_stores(all_stores);
-    /*
-    print_grocery_list(grocery_list);
-    free_grocery_list(grocery_list);
-    */
 
     return 0;
 }

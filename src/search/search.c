@@ -1,6 +1,9 @@
 #include "search.h"
 #include <stdlib.h>
 #include <string.h>
+#include "../io/user_io.h"
+#include "../util/user_io_utility.h"
+#include <stdio.h>
 
 /* Prototypes */
 int count_spaces(const char* string);
@@ -100,9 +103,8 @@ Item_Type** find_items(const char* query, Item_Type** items, size_t size, size_t
     char** query_wordlist = create_wordlist(query, &query_wordlist_len);
 
     /*
-     * For the size of all words, go ahead and make a wordlist of each product's name, and if any word matches any word
-     * of the query wordlist, then a match is found and break out asap and proceed to the next product, when the
-     * wordlist is freed.
+     * For the size of all words, go ahead and make a wordlist of each product's name, and all words match
+     * then a match is found and proceed to the next product, when the wordlist is freed
      */
     for (int i = 0; i < size; ++i) {
         /* Make a wordlist of the name string. */
@@ -144,4 +146,110 @@ Item_Type** find_items(const char* query, Item_Type** items, size_t size, size_t
     /* Assign the return values and return the list with matches. */
     *size_output = matches;
     return items_to_return;
+}
+
+/**
+ * @brief Creates a query for each of the Input_Items. All data is held in Store_Result_Type.
+ * @param query_items Items to search for.
+ * @param store The store to search in.
+ * @return Returns all matching items from this store.
+ */
+Store_Result_Type *search_store(Input_Item *query_items, Store_Type* store)
+{
+    Store_Result_Type *result_query = (Store_Result_Type*) malloc(sizeof(Store_Result_Type));
+    size_t name_len = strlen(store->name);
+    result_query->store = (char*) malloc(sizeof(char) * (name_len + 1));
+    memcpy(result_query->store, store->name, name_len + 1);
+
+    int queries = grocery_list_length(query_items);
+    result_query->results_len = queries + 1;
+    result_query->results = (Query_Result_Type**) malloc(queries * sizeof(Query_Result_Type*));
+
+    int i = 0;
+    Input_Item *current = query_items;
+    while (current != NULL)
+    {
+        result_query->results[i] = (Query_Result_Type*) malloc(sizeof(Query_Result_Type));
+        size_t query_name_len = strlen(current->input);
+        result_query->results[i]->query = (char*) malloc(sizeof(char) * (query_name_len + 1));
+        memcpy(result_query->results[i]->query, current->input, query_name_len + 1);
+        result_query->results[i]->items_result = find_items(
+                result_query->results[i]->query,
+                store->items, store->item_amount,
+                &result_query->results[i]->items_len
+                );
+        ++i;
+        current = current->next_input;
+    }
+
+    return result_query;
+}
+
+/**
+ * @brief Creates a query for each of the Input_Items for every store. All data is held in an array of Store_Result_Type pointers.
+ * @param query_items Items to searc for.
+ * @param all_stores The store to search in.
+ * @param results_len The length of the output array containing query data.
+ * @return Returns an array containing query data for each store.
+ */
+Store_Result_Type **search_stores(Input_Item *query_items, Store_Type* all_stores, size_t *results_len)
+{
+    int i = 0;
+    Store_Type *current_store = all_stores;
+    while (current_store != NULL)
+    {
+        current_store = current_store->next_node;
+        i++;
+    }
+    Store_Result_Type **return_store_queries = (Store_Result_Type**) malloc(sizeof(Store_Result_Type*) * (i + 1));
+
+    current_store = all_stores;
+    int j = 0;
+    while (current_store != NULL)
+    {
+        return_store_queries[j] = search_store(query_items, current_store);
+        current_store = current_store->next_node;
+        j++;
+    }
+
+    *results_len = j;
+    return return_store_queries;
+}
+
+/**
+ * @brief Prints all results from queries.
+ * @param store_res The queries, created by search_stores.
+ * @param store_size The size of the array that holds all query data.
+ */
+void print_results(Store_Result_Type** store_res, size_t store_size)
+{
+    for (int l = 0; l < store_size; ++l) {
+        printf("STORE NAME: %s\n", store_res[l]->store);
+        for (int i = 0; i < store_res[l]->results_len; ++i) {
+            printf("QUERY: %s\n", store_res[l]->results[i]->query);
+            for (int j = 0; j < store_res[l]->results[i]->items_len; ++j) {
+                printf("%d: '%s' = %lf\n", j + 1, store_res[l]->results[i]->items_result[j]->name, store_res[l]->results[i]->items_result[j]->price);
+            }
+        }
+        printf("\n\n");
+    }
+}
+
+/**
+ * @brief Frees all the query data contained in the array.
+ * @param store_res Array of all query data.
+ * @param store_size The size of the array containing query data.
+ */
+void free_results(Store_Result_Type** store_res, size_t store_size)
+{
+    for (int i = 0; i < store_size; ++i) {
+        for (int j = 0; j < store_res[i]->results_len; ++j) {
+            free(store_res[i]->results[j]->query);
+            free(store_res[i]->results[j]->items_result);
+            free(store_res[i]->results[j]);
+        }
+        free(store_res[i]->results);
+        free(store_res[i]->store);
+    }
+    free(store_res);
 }
