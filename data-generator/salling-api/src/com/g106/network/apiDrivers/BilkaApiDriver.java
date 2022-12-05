@@ -29,7 +29,7 @@ public class BilkaApiDriver extends ChromeDriver {
         for (WebElement productElement : allProductElements) {
             Item item = new Item();
             try {
-                item.name = productElement.findElement(By.className("name")).getText().toLowerCase();
+                item.setName(productElement.findElement(By.className("name")).getText().toLowerCase());
 
                 WebElement priceElement = productElement.findElement(By.className("product-price"));
                 List<WebElement> priceElementSpans = priceElement.findElements(By.tagName("span"));
@@ -45,7 +45,7 @@ public class BilkaApiDriver extends ChromeDriver {
                 try {
                     String brand = descriptionElement.findElement(By.tagName("strong")).getText();
                     if (!brand.contains("/")) {
-                        item.brand = brand;
+                        item.setBrand(brand);
                     }
                 } catch (Exception e) { /**/ }
 
@@ -54,13 +54,12 @@ public class BilkaApiDriver extends ChromeDriver {
 
                 int length = under_list.length;
                 item.unit_size = Float.parseFloat(under_list[length - 3]);
-                item.unit_type = under_list[length - 2].toLowerCase();
+                item.setUnit_type(under_list[length - 2].toLowerCase());
 
                 String[] pricePrUnit = under_list[length - 1].split("/");
-                PricePrUnit pPU = new PricePrUnit();
-                pPU.price = Float.parseFloat(pricePrUnit[0].replace(".", "").replace(",", "."));
-                pPU.unit = pricePrUnit[1].replace(".", "").toLowerCase();
-                item.price_pr_unit = pPU;
+                item.setPrice_pr_unit(
+                        Float.parseFloat(pricePrUnit[0].replace(".", "").replace(",", ".")),
+                        pricePrUnit[1].replace(".", "").toLowerCase());
                 items.add(item);
             } catch (Exception e) {
                 failed.put(item.name, new String[]{url, e.getLocalizedMessage()});

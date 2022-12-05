@@ -38,15 +38,16 @@ public class CoopApiDriver extends ChromeDriver {
                 scrollToElement(productElement);
                 this.sleep(10);
 
-                item.name = productElement.findElement(By.className("c-product-tile__title")).getText();
+                item.setName(productElement.findElement(By.className("c-product-tile__title")).getText());
+
                 List<WebElement> priceElements = productElement.findElement(By.className("price-wrap")).findElements(By.tagName("span"));
                 item.price = Float.parseFloat(priceElements.get(0).getText() + "." + priceElements.get(1).getText());
 
                 String[] pricePrUnitStringList = productElement.findElement(By.className("text-11")).getText().replace("kr. pr. ", "").split(" ");
-                PricePrUnit pricePrUnit = new PricePrUnit();
-                pricePrUnit.price = Float.parseFloat(pricePrUnitStringList[0].replace(",-", "").replace(".", "").replace(",", "."));
-                pricePrUnit.unit =  pricePrUnitStringList[1];
-                item.price_pr_unit = pricePrUnit;
+                item.setPrice_pr_unit(
+                        Float.parseFloat(pricePrUnitStringList[0].replace(",-", "").replace(".", "").replace(",", ".")),
+                        pricePrUnitStringList[1]
+                );
 
                 String[] unitStringList = productElement.findElement(By.className("product-text-truncate")).getText().split(", ");
                 String lastContaining = "";
@@ -55,13 +56,13 @@ public class CoopApiDriver extends ChromeDriver {
                     if (string.contains(item.price_pr_unit.unit)) {
                         lastContaining = string;
                     } else if (count == 0) {
-                        item.brand = string;
+                        item.setBrand(string);
                     }
                     count++;
                 }
                 String[] lastContainingList = lastContaining.split(" ");
                 item.unit_size = Float.parseFloat(lastContainingList[0].replace(",-", "").replace(".", "").replace(",", "."));
-                item.unit_type = lastContainingList[1];
+                item.setUnit_type(lastContainingList[1]);
 
                 items.add(item);
             } catch (Exception e) {

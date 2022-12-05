@@ -31,7 +31,7 @@ public class FoetexApiDriver extends ChromeDriver {
         for (WebElement productElement : allProductElements) {
             Item item = new Item();
             try {
-                item.name = productElement.findElement(By.className("mb-1")).getText().toLowerCase();
+                item.setName(productElement.findElement(By.className("mb-1")).getText().toLowerCase());
 
                 String priceElement = productElement.findElement(By.className("JKUot")).getText();
                 item.price = Float.parseFloat(new StringBuffer(priceElement).insert(priceElement.length()-2, ".").toString());
@@ -40,25 +40,25 @@ public class FoetexApiDriver extends ChromeDriver {
                 String[] under_list = weightElement.split("/");
 
                 if (under_list.length > 1) {
-                    item.brand = under_list[1];
+                    item.setBrand(under_list[1]);
                 }
 
                 under_list = weightElement.split(" ");
 
                 if (under_list[1].equalsIgnoreCase("x")) {
                     item.unit_size = Float.parseFloat(under_list[0].replace(".", "").replace(",", ".")) * Float.parseFloat(under_list[2].replace(".", "").replace(",", "."));
-                    item.unit_type = under_list[3].toLowerCase();
+                    item.setUnit_type(under_list[3].toLowerCase());
                 } else {
                     item.unit_size = Float.parseFloat(under_list[0].replace(".", "").replace(",", "."));
-                    item.unit_type = under_list[1].toLowerCase();
+                    item.setUnit_type(under_list[1].toLowerCase());
                 }
 
                 List<WebElement> pricePrElement = productElement.findElements(By.className("pr-1"));
                 String[] pricePrList = pricePrElement.get(0).getText().split(" ");
-                PricePrUnit pPU = new PricePrUnit();
-                pPU.price = Float.parseFloat(pricePrList[2].replace(".", "").replace(",", "."));
-                pPU.unit =  pricePrList[1];
-                item.price_pr_unit = pPU;
+                item.setPrice_pr_unit(
+                        Float.parseFloat(pricePrList[2].replace(".", "").replace(",", ".")),
+                        pricePrList[1]
+                );
                 items.add(item);
             } catch (Exception e) {
                 failed.put(item.name, new String[]{url, e.getLocalizedMessage()});

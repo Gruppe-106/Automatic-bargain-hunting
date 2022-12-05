@@ -3,8 +3,11 @@ package com.g106;
 import com.g106.multithread.threads.MultiThreadBilka;
 import com.g106.multithread.threads.MultiThreadCoop;
 import com.g106.multithread.threads.MultiThreadFoetex;
+import com.g106.multithread.threads.MultiThreadRema;
+import com.g106.network.apiDrivers.RemaApiDriver;
 import com.g106.queries.CoopQueries;
 import com.g106.queries.FoetexQueries;
+import com.g106.queries.RemaQueries;
 import com.g106.util.ItemData.Item;
 import com.g106.util.Logger;
 
@@ -19,9 +22,10 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("Starting to fetch product data");
-        getCoopData();
-        getFoetexData();
-        getBilkaData();
+        //getCoopData();
+        //getFoetexData();
+        //getBilkaData();
+        getRemaData();
     }
 
     private static void getCoopData() {
@@ -37,5 +41,10 @@ public class Main {
     private static void getBilkaData() {
         items = (new MultiThreadBilka()).createAndRunThreads(334, 10);
         saveListToFile(items, "C:\\Users\\Mikkel\\CLionProjects\\Automatic-bargain-hunting\\data-generator\\salling-api\\bilka.json");
+    }
+
+    private static void getRemaData() {
+        items = (new MultiThreadRema()).createAndRunThreads(RemaQueries.queries.size() - 1, 10);
+        saveListToFile(items, "C:\\Users\\Mikkel\\CLionProjects\\Automatic-bargain-hunting\\data-generator\\salling-api\\rema-1000.json");
     }
 }

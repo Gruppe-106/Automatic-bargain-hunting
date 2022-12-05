@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,8 +18,6 @@ import java.util.List;
 import static com.g106.Main.logger;
 
 public class JsonHandler {
-    public static final String output_file_path = "C:\\Users\\Mikkel\\CLionProjects\\Automatic-bargain-hunting\\data-generator\\salling-api\\data-bilka.json";
-    public static JSONArray output_json = new JSONArray();
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static boolean saveJsonToFile(String string, String pathString) {
@@ -40,11 +39,6 @@ public class JsonHandler {
         return saveJsonToFile(listToJson(list), pathString);
     }
 
-    public static void saveOutputJsonToFile() {
-        String string = gson.toJson(output_json);
-        saveJsonToFile(string, output_file_path);
-    }
-
     public static JSONArray fileToJson(String file_path) {
         Path path = Paths.get(file_path);
         BufferedReader reader;
@@ -63,15 +57,6 @@ public class JsonHandler {
             return (JSONArray) jsonParser.parse(jsonString);
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public static void appendToOutputJson(JSONArray json) {
-        if(json == null) return;
-        for (Object item : json) {
-            if (!output_json.contains(item)) {
-                output_json.add(item);
-            }
         }
     }
 }

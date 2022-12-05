@@ -19,7 +19,7 @@ Item_Type* create_item_from_json(JSON_Object *json_item);
  * @param name char*, name of store
  * @param all_stores Store_Type ptr, to already store or newly created
  */
-Store_Type* create_and_add_store(const char* name, Store_Type** all_stores) {
+Store_Type* create_or_get_store(const char* name, Store_Type** all_stores) {
     //Loop through all_stores nodes until an empty is found or one with same name is found
     Store_Type *next = *all_stores;
     if (next != NULL) {
@@ -86,16 +86,16 @@ Item_Type** allocate_or_reallocate_items(Store_Type* store, size_t product_amoun
  */
 void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) {
     //Add or get the ptr of store
-    Store_Type* rema = create_and_add_store(store_name, all_stores);
+    Store_Type* store = create_or_get_store(store_name, all_stores);
 
     //Get the product array & the amount of product_list from the json
     JSON_Array *product_list = json_value_get_array (json);
     size_t product_amount = json_array_get_count (product_list);
 
     //Get the current last last_index of items in the Store_Type
-    size_t last_index = rema->item_amount;
+    size_t last_index = store->item_amount;
 
-    Item_Type** items = allocate_or_reallocate_items(rema, product_amount);
+    Item_Type** items = allocate_or_reallocate_items(store, product_amount);
     for (int i = 0; i < product_amount; ++i) {
         //Get next product in the json array
         JSON_Object *cur_item = json_array_get_object(product_list, i);
@@ -108,7 +108,7 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) 
         }
     }
     //Update the Store_Type items list
-    rema->items = items;
+    store->items = items;
 }
 
 /* ================================================== *
@@ -149,7 +149,9 @@ Item_Type* create_item_from_json(JSON_Object *json_item) {
     if (json_item == NULL) return NULL;
 
     //Get all useful parameters of the JSON item
-    char     *name      = (char*) json_object_get_string(json_item, "name");
+    char* name          = (char*) json_object_get_string(json_item, "brand");
+    strcat(name, (char*) json_object_get_string(json_item, "name"));
+
     double    price     = json_object_get_number(json_item, "price");
     double    unit_size = json_object_get_number(json_item, "unit_size");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(json_item, "unit_type"));

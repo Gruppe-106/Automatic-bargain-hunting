@@ -34,7 +34,8 @@ public class MultiThread {
             int perThread = amountQueries / totalThreads;
             int lastEnd = 0;
             for (int i = 0; i < totalThreads; i++) {
-                threads.add(executorService.submit(new CallableThreadGetItems(lastEnd, (lastEnd + perThread))));
+                int end = Math.min((lastEnd + perThread), amountQueries);
+                threads.add(executorService.submit(new CallableThreadGetItems(lastEnd, end)));
                 lastEnd = lastEnd + perThread + 1;
             }
             executorService.shutdown();
