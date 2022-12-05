@@ -1,0 +1,6 @@
+#ifndef AUTOMATIC_BARGAIN_HUNTING_DATA_LOADER_H
+#define AUTOMATIC_BARGAIN_HUNTING_DATA_LOADER_H
+#include "data_manager.h"
+
+Store_Type* load_all_data();
+#endif //AUTOMATIC_BARGAIN_HUNTING_DATA_LOADER_H

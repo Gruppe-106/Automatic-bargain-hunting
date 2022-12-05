@@ -4,6 +4,7 @@
 
 /* Custom libraries */
 #include "node_handler.h"
+#include "user_io_utility.h"
 
 /* ================================================== *
  *      De-allocation of store and members within     *

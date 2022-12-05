@@ -20,7 +20,7 @@ void parse_search()
     /* Create a store from JSON file and sort the store */
     JSON_Value* json = json_parse_file("C:\\Users\\45513\\CLionProjects\\Automatic-bargain-hunting\\data\\rema-1000.json");
     Store_Type* store = NULL;
-    update_stores(json, &store, REMA);
+    update_stores(json, &store, "REMA");
     store = sort_store_items(store);
 
     /* Make a query and return the items that match a word in the query. This should be freed with 'free_query'. */

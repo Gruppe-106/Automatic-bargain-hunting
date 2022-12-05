@@ -6,7 +6,7 @@
 
 /* Custom libraires */
 #include "./store_utility.h"
-
+#include "unit_type_conversion.h"
 
 
 int amount_of_stores(Store_Type *store){
@@ -19,7 +19,6 @@ int amount_of_stores(Store_Type *store){
     }
     return length;
 }
-
 
 /**
  * @brief Prints a stores items
