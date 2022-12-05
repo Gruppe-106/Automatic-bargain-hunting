@@ -37,7 +37,13 @@ public class FoetexApiDriver extends ChromeDriver {
                 item.price = Float.parseFloat(new StringBuffer(priceElement).insert(priceElement.length()-2, ".").toString());
 
                 String weightElement = productElement.findElement(By.className("mb-2")).getText();
-                String[] under_list = weightElement.split(" ");
+                String[] under_list = weightElement.split("/");
+
+                if (under_list.length > 1) {
+                    item.brand = under_list[1];
+                }
+
+                under_list = weightElement.split(" ");
 
                 if (under_list[1].equalsIgnoreCase("x")) {
                     item.unit_size = Float.parseFloat(under_list[0].replace(".", "").replace(",", ".")) * Float.parseFloat(under_list[2].replace(".", "").replace(",", "."));
@@ -46,7 +52,6 @@ public class FoetexApiDriver extends ChromeDriver {
                     item.unit_size = Float.parseFloat(under_list[0].replace(".", "").replace(",", "."));
                     item.unit_type = under_list[1].toLowerCase();
                 }
-
 
                 List<WebElement> pricePrElement = productElement.findElements(By.className("pr-1"));
                 String[] pricePrList = pricePrElement.get(0).getText().split(" ");

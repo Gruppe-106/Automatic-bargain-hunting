@@ -26,8 +26,7 @@ public class MultiThread {
         }
     }
 
-    public List<Item> createAndRunThreads(List<String> queries, int totalThreads) {
-        int amountQueries = queries.size() - 1;
+    public List<Item> createAndRunThreads(int amountQueries, int totalThreads) {
         List<Item> items = new ArrayList<>();
         List<Future<List<Item>>> threads = new ArrayList<>();
         ExecutorService executorService = Executors.newCachedThreadPool();

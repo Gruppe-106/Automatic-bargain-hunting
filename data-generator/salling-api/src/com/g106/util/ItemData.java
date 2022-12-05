@@ -18,6 +18,7 @@ public class ItemData {
 
     public static class Item {
         public String name;
+        public String brand;
         public Float price;
         public PricePrUnit price_pr_unit;
         public Float unit_size;
@@ -25,6 +26,7 @@ public class ItemData {
 
         public Item() {
             this.name = "";
+            this.brand = "";
             this.price = 0f;
             this.price_pr_unit = new PricePrUnit();
             this.unit_size = 0f;
@@ -33,6 +35,7 @@ public class ItemData {
 
         public String toString() {
             return  "Name: " + this.name + "\n" +
+                    "Brand: " + this.brand + "\n" +
                     "Price: " + this.price + "\n" +
                      price_pr_unit.toString() + "\n" +
                     "Size: " + this.unit_size + " " + this.unit_type;

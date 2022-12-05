@@ -50,10 +50,14 @@ public class CoopApiDriver extends ChromeDriver {
 
                 String[] unitStringList = productElement.findElement(By.className("product-text-truncate")).getText().split(", ");
                 String lastContaining = "";
+                int count = 0;
                 for (String string: unitStringList) {
                     if (string.contains(item.price_pr_unit.unit)) {
                         lastContaining = string;
+                    } else if (count == 0) {
+                        item.brand = string;
                     }
+                    count++;
                 }
                 String[] lastContainingList = lastContaining.split(" ");
                 item.unit_size = Float.parseFloat(lastContainingList[0].replace(",-", "").replace(".", "").replace(",", "."));
