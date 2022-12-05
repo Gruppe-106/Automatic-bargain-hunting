@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(test-1 VERSION 0.1.0)
 
 set(SOURCES
+        ../src/data_manager/data_loader.c  ../src/data_manager/data_loader.h
         ../src/data_manager/data_manager.c ../src/data_manager/data_manager.h
         ../src/data_manager/rank_stores.c  ../src/data_manager/rank_stores.h
         ../src/data_manager/sort_stores.c  ../src/data_manager/sort_stores.h
@@ -10,6 +11,8 @@ set(SOURCES
         ../src/util/node_handler.c         ../src/util/node_handler.h
         ../src/util/string_utility.c       ../src/util/string_utility.h
         ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h
+        ../src/util/store_utility.c        ../src/util/store_utility.h
+        ../src/util/user_io_utility.c      ../src/util/user_io_utility.h
         random_testcases.c                 random_testcases.h
         )
 
