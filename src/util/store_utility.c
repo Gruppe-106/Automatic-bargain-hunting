@@ -35,3 +35,14 @@ void print_store(Store_Type* store) {
         printf("Amount %.2lf %s\n\n", item->unit_size, item->unit != -1 ? unit_type_to_str(item->unit) : "NAN");
     }
 }
+
+void print_items(Item_Type **items, size_t items_len) {
+    for (int i = 0; i < items_len; ++i) {
+        Item_Type *item = items[i];
+        printf("======= %s - %d =======\n", "store->name", i + 1);
+        printf("Item: %s\n", item->name);
+        printf("Price: %.2lf kr.\n", item->price);
+        printf("Organic: %s\n", item->organic == 1 ? "yes" : "no");
+        printf("Amount %.2lf %s\n\n", item->unit_size, item->unit != -1 ? unit_type_to_str(item->unit) : "NAN");
+    }
+}

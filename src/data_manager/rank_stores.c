@@ -28,7 +28,7 @@ void get_total_for_store(Store_Type* store){
  * Uses get_total_for_store to get total for all stores in all stores linked list
  * @param all_stores Store_Type ptr, ptr to all store linked list
  */
-void rank_all_stores(Store_Type* all_stores){
+void rank_all_stores(Store_Type* all_stores){ /* TODO: Fix */
     double current_total = 0;
 
     if(!all_stores){

@@ -110,17 +110,22 @@ Item_Type** find_items(const char* query, Item_Type** items, size_t size, size_t
         char** name_wordlist = create_wordlist(items[i]->name, &name_wordlist_len);
 
         /* Find a match in the two wordlists. */
-        for (int k = 0; k < name_wordlist_len; ++k) {
-            int match_found = 0;
-            for (int j = 0; j < query_wordlist_len; ++j) {
-                if (strcmp(name_wordlist[k], query_wordlist[j]) == 0) {
-                    matches_arr[matches] = items[i];
-                    matches++;
+        int match_found = 0;
+        for (int k = 0; k < query_wordlist_len; ++k) {
+            match_found = 0;
+            for (int j = 0; j < name_wordlist_len; ++j) {
+                if (strcmp(name_wordlist[j], query_wordlist[k]) == 0) {
                     match_found = 1;
                     break;
                 }
             }
-            if (match_found == 1) break;
+            if (match_found == 1) continue;
+            else break;
+        }
+        if (match_found == 1)
+        {
+            matches_arr[matches] = items[i];
+            matches++;
         }
 
         /* Remember to free */
