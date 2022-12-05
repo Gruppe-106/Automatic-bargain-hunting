@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.g106.Main.logger;
 
-public class SallingApiDriver extends ChromeDriver {
+public class BilkaApiDriver extends ChromeDriver {
     @Override
     public List<Item> getProductDataFromPage(String url)  {
         webDriver.get(url);
@@ -41,7 +41,15 @@ public class SallingApiDriver extends ChromeDriver {
                 else price = price_int + "." + price_dec;
                 item.price = Float.parseFloat(price);
 
-                String under_text = productElement.findElement(By.className("description")).getText();
+                WebElement descriptionElement = productElement.findElement(By.className("description"));
+                try {
+                    String brand = descriptionElement.findElement(By.tagName("strong")).getText();
+                    if (!brand.contains("/")) {
+                        item.brand = brand;
+                    }
+                } catch (Exception e) { /**/ }
+
+                String under_text = descriptionElement.getText();
                 String[] under_list = under_text.split(" ");
 
                 int length = under_list.length;

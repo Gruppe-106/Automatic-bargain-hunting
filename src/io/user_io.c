@@ -17,11 +17,13 @@
  * @param name name of item
  * @return Input_Item struct
  */
-Input_Item* create_new_input_item(char* name){
+Input_Item *create_new_input_item(char *name, int quantity)
+{
 
-    Input_Item* new_item = (Input_Item*) malloc(sizeof(Input_Item));
+    Input_Item *new_item = (Input_Item *)malloc(sizeof(Input_Item));
     new_item->next_input = NULL;
-    new_item->input      = (char*) malloc(sizeof(char)*(strlen(name)+1));
+    new_item->input = (char *)malloc(sizeof(char) * (strlen(name) + 1));
+    new_item->quantity = quantity;
 
     str_to_lower(&name);
     memcpy(new_item->input, name, strlen(name) + 1);
@@ -34,18 +36,17 @@ Input_Item* create_new_input_item(char* name){
  * @param list Input_Item ptr, ptr to list to append too
  * @param input char*, the given input from user
  */
-void append_input_item_node(Input_Item* input_item, char* input){
-    int length           = grocery_list_length(input_item);
-    Input_Item* new_item = create_new_input_item(input);
+void append_input_item_node(Input_Item *input_list, char *input, int quantity)
+{
+    int length = grocery_list_length(input_list);
+    Input_Item *new_item = create_new_input_item(input, quantity);
 
-    for (int  i = 0; i < length; i++)
+    for (int i = 0; i < length; i++)
     {
-        input_item = input_item->next_input;
+        input_list = input_list->next_input;
     }
 
-    input_item->next_input = new_item;
-
-   
+    input_list->next_input = new_item;
 };
 
 /**
@@ -53,34 +54,73 @@ void append_input_item_node(Input_Item* input_item, char* input){
  * User input format: "something" enter "something" enter .... done enter
  * @return Input_Item ptr, linked list of all inputs
  */
-Input_Item* user_driver()
+Input_Item *input_grocery_list()
 {
     _Bool flag = false;
-    char* name;
+    char name[100];
     Input_Item *grocery_list = NULL;
 
     puts("Enter grocery list");
-    while(!flag){
-        printf ("Enter item > ");
-        scanf  ("%s", name);
-        str_to_lower(&name);
+    while (!flag)
+    {
+        printf("Enter item > ");
+        fgets(name, 100,stdin);
 
-        if( strcmp(name, "find") == 0 ){
+        /* Removes leading newlines*/
+        if ((strlen(name) > 0) && (name[strlen (name) - 1] == '\n'))
+            name[strlen (name) - 1] = '\0';
+
+
+        if (strcmp(name, "find") == 0)
+        {
             flag = true;
-        }else
-        if( strcmp(name, "quit") == 0 ) {
+        }
+        else if (strcmp(name, "quit") == 0)
+        {
             free_grocery_list(grocery_list);
             exit(EXIT_SUCCESS);
-        } else {
-
-            if(grocery_list == NULL){
-                grocery_list = create_new_input_item(name);
-            } else {
-                append_input_item_node(grocery_list, name);
-            }
-
+        }
+        else
+        {
+            read_item_string(name, &grocery_list); /* Reads the input and creates a new item */
         }
     }
 
     return grocery_list;
+}
+
+/**
+ * @brief Reads a given item_string
+ * 
+ * @param string The itemstring to read
+ * @param grocery_list The grocerylist
+ */
+void read_item_string(char *string, Input_Item **grocery_list)
+{
+    if (str_contains_str(string, ":", false) != -1)
+    {
+        char delimiter[1] = ":";
+        char *name   = strtok(string,delimiter);
+        int quantity = atoi(strtok(NULL,delimiter)); /* TODO: use strtol */
+
+        if (*grocery_list == NULL)
+        {
+            *grocery_list = create_new_input_item(name,quantity);
+        }
+        else
+        {
+            append_input_item_node(*grocery_list, name, quantity);
+        }
+    }
+    else
+    {
+        if (*grocery_list == NULL)
+        {
+            *grocery_list = create_new_input_item(string,1);
+        }
+        else
+        {
+            append_input_item_node(*grocery_list, string,1);
+        }
+    }
 }

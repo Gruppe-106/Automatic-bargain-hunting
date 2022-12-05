@@ -21,6 +21,21 @@ Store_Type *sort_store_items(Store_Type *store)
 }
 
 /**
+ * @brief Sorts all stores by reference.
+ * @param all_stores Pointer to the first store node.
+ */
+void sort_stores_items(Store_Type **all_stores)
+{
+    Store_Type *current_store = *all_stores;
+
+    while (current_store)
+    {
+        current_store = sort_store_items(current_store);
+        current_store = current_store->next_node;
+    }
+}
+
+/**
  * Comparator function for qsort()
  * @param p &
  * @param q A const void pointer that can hold address of any const type and can be type-casted to any const type
