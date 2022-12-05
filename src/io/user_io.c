@@ -56,16 +56,16 @@ void append_input_item_node(Input_Item* input_item, char* input){
 Input_Item* user_driver()
 {
     _Bool flag = false;
-    char* name;
+    char name[100];
     Input_Item *grocery_list = NULL;
 
     puts("Enter grocery list");
     while(!flag){
         printf ("Enter item > ");
-        scanf  ("%s", name);
-        str_to_lower(&name);
+        scanf  ("%s", &name);
 
         if( strcmp(name, "find") == 0 ){
+            return grocery_list;
             flag = true;
         }else
         if( strcmp(name, "quit") == 0 ) {
