@@ -2410,7 +2410,7 @@
   },
   {
     "name": "oeko. jordskokker",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 1.4,
     "price_pr_unit": {
       "price": 14.0,
@@ -2432,7 +2432,7 @@
   },
   {
     "name": "oeko. pastinakker",
-    "brand": "\" vej selv \" danmark kl.1",
+    "brand": "vej selv  danmark kl.1",
     "price": 1.75,
     "price_pr_unit": {
       "price": 14.0,
@@ -2443,7 +2443,7 @@
   },
   {
     "name": "oeko. guleroedder",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 1.05,
     "price_pr_unit": {
       "price": 14.0,
@@ -2454,7 +2454,7 @@
   },
   {
     "name": "oeko. roedbeder",
-    "brand": "\" vej selv \" danmark kl.1",
+    "brand": "vej selv  danmark kl.1",
     "price": 1.4,
     "price_pr_unit": {
       "price": 14.0,
@@ -2465,7 +2465,7 @@
   },
   {
     "name": "oeko. persillerod",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 1.4,
     "price_pr_unit": {
       "price": 14.0,
@@ -2498,7 +2498,7 @@
   },
   {
     "name": "oeko. farvede roedder",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 1.05,
     "price_pr_unit": {
       "price": 14.0,
@@ -2509,7 +2509,7 @@
   },
   {
     "name": "oeko. farvede beder",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 1.4,
     "price_pr_unit": {
       "price": 14.0,
@@ -2520,7 +2520,7 @@
   },
   {
     "name": "danske selleri",
-    "brand": "\" vej selv \" danmark kl. 1",
+    "brand": "vej selv  danmark kl. 1",
     "price": 15.0,
     "price_pr_unit": {
       "price": 15.0,
@@ -2608,7 +2608,7 @@
   },
   {
     "name": "hvidkaal",
-    "brand": "\"vej selv\" danmark kl. 1",
+    "brand": "vej selv danmark kl. 1",
     "price": 6.5,
     "price_pr_unit": {
       "price": 6.5,
@@ -2674,7 +2674,7 @@
   },
   {
     "name": "roedkaal",
-    "brand": "\"vej selv\" danmark kl.1",
+    "brand": "vej selv danmark kl.1",
     "price": 6.5,
     "price_pr_unit": {
       "price": 6.5,
@@ -2850,7 +2850,7 @@
   },
   {
     "name": "loese kartofler",
-    "brand": "\" vej selv\" danmark kl.1",
+    "brand": "vej selv danmark kl.1",
     "price": 1.05,
     "price_pr_unit": {
       "price": 15.0,
@@ -22133,7 +22133,8 @@
   },
   {
     "name": "folieballon",
-    "brand": "\"hurra\" 40 cm",
+    "brand": "hurra 40 cm",
+    
     "price": 15.0,
     "price_pr_unit": {
       "price": 15.0,
