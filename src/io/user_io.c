@@ -65,13 +65,14 @@ Input_Item *input_grocery_list()
     {
         printf("Enter item > ");
         fgets(name, 100,stdin);
+
+        /* Removes leading newlines*/
         if ((strlen(name) > 0) && (name[strlen (name) - 1] == '\n'))
             name[strlen (name) - 1] = '\0';
 
 
         if (strcmp(name, "find") == 0)
         {
-            print_grocery_list(grocery_list);
             flag = true;
         }
         else if (strcmp(name, "quit") == 0)
@@ -81,13 +82,19 @@ Input_Item *input_grocery_list()
         }
         else
         {
-            read_item_string(name, &grocery_list);
+            read_item_string(name, &grocery_list); /* Reads the input and creates a new item */
         }
     }
 
     return grocery_list;
 }
 
+/**
+ * @brief Reads a given item_string
+ * 
+ * @param string The itemstring to read
+ * @param grocery_list The grocerylist
+ */
 void read_item_string(char *string, Input_Item **grocery_list)
 {
     if (str_contains_str(string, ":", false) != -1)
