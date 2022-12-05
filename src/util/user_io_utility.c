@@ -30,7 +30,7 @@ void print_grocery_list(Input_Item* grocery_list){
     } else {
         for (int i = 0; i < length + 1; i++)
         {
-            printf("%d:  %s\n", i+1, grocery_list->input);
+            printf("Item %d:  Name: %s Amount: %d \n", i+1, grocery_list->input, grocery_list->quantity);
             grocery_list = grocery_list->next_input;
         }
     }
