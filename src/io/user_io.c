@@ -56,12 +56,13 @@ void append_input_item_node(Input_Item *input_list, char *input, int quantity)
  */
 Input_Item *input_grocery_list()
 {
-    _Bool flag = false;
-    char name[100];
+    _Bool flag = true;
+    _Bool quit = false;
+    char *name = (char*)malloc(sizeof(char)*100);
     Input_Item *grocery_list = NULL;
 
     puts("Enter grocery list");
-    while (!flag)
+    while (flag)
     {
         printf("Enter item > ");
         fgets(name, 100,stdin);
@@ -78,12 +79,12 @@ Input_Item *input_grocery_list()
                 puts("No items has been entered");
                 continue;
             }
-            flag = true;
+            flag = false;
         }
         else if (strcmp(name, "quit") == 0)
         {
-            free_grocery_list(grocery_list);
-            exit(EXIT_SUCCESS);
+            flag = false;
+            quit = true;
         }
         else
         {
@@ -91,8 +92,16 @@ Input_Item *input_grocery_list()
         }
     }
 
-    return grocery_list;
+    if(quit){
+        free(name);
+        free_grocery_list(grocery_list);
+        exit(EXIT_SUCCESS);
+    } else {
+        return grocery_list;
+    }
+
 }
+
 
 /**
  * @brief Reads a given item_string
