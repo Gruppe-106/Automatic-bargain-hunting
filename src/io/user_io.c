@@ -79,7 +79,6 @@ Input_Item *input_grocery_list()
                 puts("No items has been entered");
                 continue;
             }
-            print_grocery_list(grocery_list);
             flag = false;
         }
         else if (strcmp(name, "quit") == 0)
