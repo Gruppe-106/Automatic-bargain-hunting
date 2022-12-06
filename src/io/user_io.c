@@ -56,13 +56,13 @@ void append_input_item_node(Input_Item *input_list, char *input, int quantity)
  */
 Input_Item *input_grocery_list()
 {
-    _Bool flag = false;
+    _Bool flag = true;
     _Bool quit = false;
     char *name = (char*)malloc(sizeof(char)*100);
     Input_Item *grocery_list = NULL;
 
     puts("Enter grocery list");
-    while (!flag)
+    while (flag)
     {
         printf("Enter item > ");
         fgets(name, 100,stdin);
@@ -80,11 +80,11 @@ Input_Item *input_grocery_list()
                 continue;
             }
             print_grocery_list(grocery_list);
-            flag = true;
+            flag = false;
         }
         else if (strcmp(name, "quit") == 0)
         {
-            flag = true;
+            flag = false;
             quit = true;
         }
         else
