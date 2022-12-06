@@ -7,7 +7,7 @@
 #include "../util/unit_type_conversion.h"
 
 //Prototypes
-Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic);
+Item_Type* create_item(char* name, char* brand, double price, double unit_size, Unit_Type unit, _Bool organic);
 Item_Type* create_item_from_json(JSON_Object *json_item);
 
 /* ================================================== *
@@ -124,18 +124,22 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) 
  * @param organic _Bool, is the item organic, or not
  * @return Memory allocated item, containing all parameters.
  */
-Item_Type* create_item(char* name, double price, double unit_size, Unit_Type unit, _Bool organic) {
+Item_Type* create_item(char* name, char* brand, double price, double unit_size, Unit_Type unit, _Bool organic) {
     //Allocate item and name and assign all parameters
     Item_Type* item  = (Item_Type*)malloc(sizeof(Item_Type));
-    item->name       = (char*) malloc(strlen(name) * (sizeof(char)+1));
+    item->name       = (char*) malloc((strlen(name) + strlen(brand)) * (sizeof(char)+1));
     item->price      = price;
     item->unit_size  = unit_size;
     item->unit       = unit;
     item->organic    = organic;
 
     //Convert to lowercase and copy string using memcpy
+    char brand_name[1000];
+    str_to_lower(&brand);
     str_to_lower(&name);
-    memcpy(item->name, name, strlen(name) + 1);
+    strcpy(brand_name, brand);
+    strcat(brand_name, name);
+    memcpy(item->name, brand_name, strlen(name) + 1);
 
     return item;
 }
@@ -149,14 +153,13 @@ Item_Type* create_item_from_json(JSON_Object *json_item) {
     if (json_item == NULL) return NULL;
 
     //Get all useful parameters of the JSON item
-    char* name          = (char*) json_object_get_string(json_item, "brand");
-    strcat(name, (char*) json_object_get_string(json_item, "name"));
-
+    char* brand          = (char*) json_object_get_string(json_item, "brand");
+    char* name           = (char*) json_object_get_string(json_item, "name");
     double    price     = json_object_get_number(json_item, "price");
     double    unit_size = json_object_get_number(json_item, "unit_size");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(json_item, "unit_type"));
     _Bool     organic   = str_contains_str((char *) name, "oeko", false) != -1;
 
     //Create item and return the ptr
-    return create_item(name, price, unit_size, unit, organic);
+    return create_item(name, brand, price, unit_size, unit, organic);
 }
