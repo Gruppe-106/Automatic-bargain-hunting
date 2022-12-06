@@ -134,13 +134,12 @@ Item_Type* create_item(char* name, char* brand, double price, double unit_size, 
     item->organic    = organic;
 
     //Convert to lowercase and copy string using memcpy
-    char brand_name[1000];
-    str_to_lower(&brand);
-    str_to_lower(&name);
+    char *brand_name = (char*) malloc((strlen(brand) + strlen(name)) * (sizeof(char) + 1));
     strcpy(brand_name, brand);
     strcat(brand_name, name);
+    str_to_lower(&brand_name);
     memcpy(item->name, brand_name, strlen(name) + 1);
-
+    free(brand_name);
     return item;
 }
 
