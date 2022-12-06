@@ -127,19 +127,25 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) 
 Item_Type* create_item(char* name, char* brand, double price, double unit_size, Unit_Type unit, _Bool organic) {
     //Allocate item and name and assign all parameters
     Item_Type* item  = (Item_Type*)malloc(sizeof(Item_Type));
-    item->name       = (char*) malloc((strlen(name) + strlen(brand)) * (sizeof(char)+1));
+    item->name       = (char*) malloc((strlen(name) + strlen(brand)) * (sizeof(char) + 1));
     item->price      = price;
     item->unit_size  = unit_size;
     item->unit       = unit;
     item->organic    = organic;
 
     //Convert to lowercase and copy string using memcpy
-    char *brand_name = (char*) malloc((strlen(brand) + strlen(name)) * (sizeof(char) + 1));
-    strcpy(brand_name, brand);
-    strcat(brand_name, name);
+    char *brand_name = (char*) malloc((strlen(brand) + strlen(name)) * (sizeof(char) + 4));
+    strcpy(brand_name, name);
+    if (strlen(brand_name) > 0) {
+        strcat(brand_name, " - ");
+        strcat(brand_name, brand);
+    }
+
     str_to_lower(&brand_name);
     memcpy(item->name, brand_name, strlen(name) + 1);
+
     free(brand_name);
+
     return item;
 }
 
@@ -152,8 +158,8 @@ Item_Type* create_item_from_json(JSON_Object *json_item) {
     if (json_item == NULL) return NULL;
 
     //Get all useful parameters of the JSON item
-    char* brand          = (char*) json_object_get_string(json_item, "brand");
-    char* name           = (char*) json_object_get_string(json_item, "name");
+    char     *brand     = (char*) json_object_get_string(json_item, "brand");
+    char     *name      = (char*) json_object_get_string(json_item, "name");
     double    price     = json_object_get_number(json_item, "price");
     double    unit_size = json_object_get_number(json_item, "unit_size");
     Unit_Type unit      = str_to_unit_type((char *) json_object_get_string(json_item, "unit_type"));
