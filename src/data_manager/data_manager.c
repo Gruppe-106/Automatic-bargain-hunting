@@ -19,7 +19,7 @@ Item_Type* create_item_from_json(JSON_Object *json_item);
  * @param name char*, name of store
  * @param all_stores Store_Type ptr, to already store or newly created
  */
-Store_Type* create_or_get_store(const char* name, Store_Type** all_stores) {
+Store_Type* create_or_get_store(char* name, Store_Type** all_stores) {
     //Loop through all_stores nodes until an empty is found or one with same name is found
     Store_Type *next = *all_stores;
     if (next != NULL) {
@@ -37,8 +37,9 @@ Store_Type* create_or_get_store(const char* name, Store_Type** all_stores) {
     Store_Type* store = (Store_Type*) malloc(sizeof(Store_Type));
 
     //Allocate and assign name
-    store->name = (char*) malloc((strlen(name) + 1) * sizeof(char));
-    memcpy(store->name, name, strlen(name));
+    size_t name_size = strlen(name) + 1;
+    store->name = (char*) malloc(name_size * sizeof(char));
+    memcpy(store->name, name, strlen(name) + 1);
 
     //Set rest to empty values
     store->next_node   = NULL;
@@ -128,16 +129,16 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) 
 Item_Type* create_item(char* name, char* brand, double price, double unit_size, Unit_Type unit, _Bool organic) {
     //Allocate item and name and assign all parameters
     Item_Type* item  = (Item_Type*)malloc(sizeof(Item_Type));
-    item->name       = (char*) malloc((strlen(name) + strlen(brand)) * (sizeof(char) + 1));
+    item->name       = (char*) malloc((strlen(name) + strlen(brand) + 1) * (sizeof(char)));
     item->price      = price;
     item->unit_size  = unit_size;
     item->unit       = unit;
     item->organic    = organic;
 
     //Convert to lowercase and copy string using memcpy
-    char *brand_name = (char*) malloc((strlen(brand) + strlen(name)) * (sizeof(char) + 4));
+    char *brand_name = (char*) malloc((strlen(brand) + strlen(name) + 4) * (sizeof(char)));
     strcpy(brand_name, name);
-    if (strlen(brand_name) > 0) {
+    if (strlen(brand) > 0) {
         strcat(brand_name, " - ");
         strcat(brand_name, brand);
     }
