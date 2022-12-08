@@ -142,7 +142,7 @@ Item_Type* create_item(char* name, char* brand, double price, double unit_size, 
     }
 
     str_to_lower(&brand_name);
-    memcpy(item->name, brand_name, strlen(name) + 1);
+    memcpy(item->name, brand_name, strlen(brand_name) + 1);
 
     free(brand_name);
 
