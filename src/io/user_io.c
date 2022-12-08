@@ -41,7 +41,7 @@ void append_input_item_node(Input_Item *input_list, char *input, int quantity)
     int length = grocery_list_length(input_list);
     Input_Item *new_item = create_new_input_item(input, quantity);
 
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length - 1; i++)
     {
         input_list = input_list->next_input;
     }

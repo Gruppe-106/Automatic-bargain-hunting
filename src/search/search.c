@@ -208,7 +208,7 @@ Store_Result_Type *allocate_and_assign_results(Input_Item *query_items, const St
     memcpy(result_query->store, store->name, name_len + 1);
 
     int queries = grocery_list_length(query_items);
-    result_query->results_len = queries + 1;
+    result_query->results_len = queries;
     result_query->results = (Query_Result_Type**) malloc(queries * sizeof(Query_Result_Type*));
     return result_query;
 }
@@ -266,7 +266,7 @@ void print_results(Store_Result_Type** store_res, size_t store_size)
         for (int i = 0; i < store_res[l]->results_len; ++i) {
             printf("QUERY: %s\n", store_res[l]->results[i]->query);
             for (int j = 0; j < store_res[l]->results[i]->items_len; ++j) {
-                printf("%d: '%s' = %lf\n", j + 1, store_res[l]->results[i]->items_result[j]->name, store_res[l]->results[i]->items_result[j]->price);
+                printf("%d: \'%s\' = %lf\n", j + 1, store_res[l]->results[i]->items_result[j]->name, store_res[l]->results[i]->items_result[j]->price);
             }
         }
         printf("\n\n");
@@ -286,7 +286,6 @@ void free_results(Store_Result_Type** store_res, size_t store_size)
             free(store_res[i]->results[j]->items_result);
             free(store_res[i]->results[j]);
         }
-        free(store_res[i]->results);
         free(store_res[i]->store);
     }
     free(store_res);

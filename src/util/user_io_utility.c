@@ -11,11 +11,10 @@ int grocery_list_length(Input_Item* grocery_list){
 
     Input_Item* current = grocery_list;
 
-    if(grocery_list != NULL){
-        while(current->next_input != NULL){
-            length++;
-            current = current->next_input;
-        }
+    while (current != NULL)
+    {
+        length++;
+        current = current->next_input;
     }
     return length;
 }
