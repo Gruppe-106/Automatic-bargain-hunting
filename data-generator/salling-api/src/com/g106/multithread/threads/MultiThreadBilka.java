@@ -9,6 +9,8 @@ import com.g106.util.ItemData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.g106.Main.logger;
+
 public class MultiThreadBilka extends MultiThread {
     final String baseUrl = "https://www.bilkatogo.dk/s?query=%2a&page=";
     @Override
@@ -16,7 +18,11 @@ public class MultiThreadBilka extends MultiThread {
         BilkaApiDriver driver = new BilkaApiDriver();
         List<ItemData.Item> list = new ArrayList<>();
         for (int i = start; i <= end; i++) {
-            list.addAll(driver.getProductDataFromPage(baseUrl + i));
+            try {
+                list.addAll(driver.getProductDataFromPage(baseUrl + i));
+            } catch (Exception e) {
+                logger.error(e.getLocalizedMessage());
+            }
         }
         driver.quit();
         return list;

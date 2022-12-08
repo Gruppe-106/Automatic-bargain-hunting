@@ -1,5 +1,7 @@
 package com.g106.util;
 
+import java.util.Locale;
+
 public class ItemData {
 
     public static class PricePrUnit {
@@ -31,6 +33,42 @@ public class ItemData {
             this.price_pr_unit = new PricePrUnit();
             this.unit_size = 0f;
             this.unit_type = "";
+        }
+
+        public void setPrice_pr_unit(float price, String unit) {
+            this.price_pr_unit.unit = asAscii(unit);
+            this.price_pr_unit.price = price;
+        }
+
+        public void setUnit_type(String unit_type) {
+            this.unit_type = asAscii(unit_type);
+        }
+
+        public void setBrand(String brand) {
+            this.brand = asAscii(brand);
+        }
+
+        public void setName(String name) {
+            this.name = asAscii(name);
+        }
+
+        private String asAscii(String string) {
+            return string.toLowerCase(Locale.ROOT)
+                    .replace("æ", "ae")
+                    .replace("ø", "oe")
+                    .replace("å", "aa")
+                    .replace("ä", "a")
+                    .replace("ë", "e")
+                    .replace("ö", "o")
+                    .replace("ü", "u")
+                    .replace("ï", "i")
+                    .replace("ÿ", "y")
+                    .replace("é", "e")
+                    .replace("á", "a")
+                    .replace("í", "i")
+                    .replace("ó", "o")
+                    .replace("ú", "u")
+                    .replace("&", "og");
         }
 
         public String toString() {

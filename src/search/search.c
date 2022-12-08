@@ -11,6 +11,12 @@ char** create_wordlist(const char* sent, size_t* length_output);
 void free_wordlist(char** wordlist, size_t len);
 
 /* Definitions */
+int get_store_len(Store_Type *all_stores);
+
+Store_Result_Type *allocate_and_assign_results(Input_Item *query_items, const Store_Type *store);
+
+void allocate_and_assign_result(Store_Type *store, Store_Result_Type *results, int i, const Input_Item *current_query);
+
 /**
  * @brief Simply counts spaces
  * @param string the string in which spaces need to be counted
@@ -156,6 +162,46 @@ Item_Type** find_items(const char* query, Item_Type** items, size_t size, size_t
  */
 Store_Result_Type *search_store(Input_Item *query_items, Store_Type* store)
 {
+    Store_Result_Type *results = allocate_and_assign_results(query_items, store);
+
+    int i = 0;
+    Input_Item *current = query_items;
+    while (current != NULL)
+    {
+        allocate_and_assign_result(store, results, i, current);
+        ++i;
+        current = current->next_input;
+    }
+
+    return results;
+}
+
+/**
+ * @brief Allocates and assigns results[i] to the proper name, and finds the items.
+ * @param store The store in which to search.
+ * @param results The array in which to store the query result.
+ * @param i The index in the array the query should be stored.
+ * @param current_query The current query string.
+ */
+void allocate_and_assign_result(Store_Type *store, Store_Result_Type *results, int i, const Input_Item *current_query) {
+    results->results[i] = (Query_Result_Type*) malloc(sizeof(Query_Result_Type));
+    size_t query_name_len = strlen(current_query->input);
+    results->results[i]->query = (char*) malloc(sizeof(char) * (query_name_len + 1));
+    memcpy(results->results[i]->query, current_query->input, query_name_len + 1);
+    results->results[i]->items_result = find_items(
+            results->results[i]->query,
+            store->items, store->item_amount,
+            &results->results[i]->items_len
+    );
+}
+
+/**
+ * @brief Allocates a Store_Result_Type struct, such that it can contain the name of it, and the query results, as well as the length of these.
+ * @param query_items
+ * @param store
+ * @return
+ */
+Store_Result_Type *allocate_and_assign_results(Input_Item *query_items, const Store_Type *store) {
     Store_Result_Type *result_query = (Store_Result_Type*) malloc(sizeof(Store_Result_Type));
     size_t name_len = strlen(store->name);
     result_query->store = (char*) malloc(sizeof(char) * (name_len + 1));
@@ -164,24 +210,6 @@ Store_Result_Type *search_store(Input_Item *query_items, Store_Type* store)
     int queries = grocery_list_length(query_items);
     result_query->results_len = queries + 1;
     result_query->results = (Query_Result_Type**) malloc(queries * sizeof(Query_Result_Type*));
-
-    int i = 0;
-    Input_Item *current = query_items;
-    while (current != NULL)
-    {
-        result_query->results[i] = (Query_Result_Type*) malloc(sizeof(Query_Result_Type));
-        size_t query_name_len = strlen(current->input);
-        result_query->results[i]->query = (char*) malloc(sizeof(char) * (query_name_len + 1));
-        memcpy(result_query->results[i]->query, current->input, query_name_len + 1);
-        result_query->results[i]->items_result = find_items(
-                result_query->results[i]->query,
-                store->items, store->item_amount,
-                &result_query->results[i]->items_len
-                );
-        ++i;
-        current = current->next_input;
-    }
-
     return result_query;
 }
 
@@ -189,31 +217,41 @@ Store_Result_Type *search_store(Input_Item *query_items, Store_Type* store)
  * @brief Creates a query for each of the Input_Items for every store. All data is held in an array of Store_Result_Type pointers.
  * @param query_items Items to searc for.
  * @param all_stores The store to search in.
- * @param results_len The length of the output array containing query data.
+ * @param results_len_output The length of the output array containing query data.
  * @return Returns an array containing query data for each store.
  */
-Store_Result_Type **search_stores(Input_Item *query_items, Store_Type* all_stores, size_t *results_len)
+Store_Result_Type **search_stores(Input_Item *query_items, Store_Type* all_stores, size_t *results_len_output)
 {
+    int stores_len = get_store_len(all_stores);
+    Store_Result_Type **return_store_queries = (Store_Result_Type**) malloc(sizeof(Store_Result_Type*) * stores_len);
+
+    Store_Type *current_store = all_stores;
     int i = 0;
+    while (current_store != NULL)
+    {
+        return_store_queries[i] = search_store(query_items, current_store);
+        current_store = current_store->next_node;
+        i++;
+    }
+
+    *results_len_output = i;
+    return return_store_queries;
+}
+
+/**
+ * @brief Gets the length of the node.
+ * @param all_stores The first store node in the linked list.
+ * @return Returns the length of the linked list.
+ */
+int get_store_len(Store_Type *all_stores) {
+    int stores_len = 0;
     Store_Type *current_store = all_stores;
     while (current_store != NULL)
     {
         current_store = current_store->next_node;
-        i++;
+        stores_len++;
     }
-    Store_Result_Type **return_store_queries = (Store_Result_Type**) malloc(sizeof(Store_Result_Type*) * (i + 1));
-
-    current_store = all_stores;
-    int j = 0;
-    while (current_store != NULL)
-    {
-        return_store_queries[j] = search_store(query_items, current_store);
-        current_store = current_store->next_node;
-        j++;
-    }
-
-    *results_len = j;
-    return return_store_queries;
+    return stores_len;
 }
 
 /**
