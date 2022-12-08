@@ -274,7 +274,7 @@ int get_store_len(Store_Type *all_stores)
  * @param store_res The queries, created by search_stores.
  * @param store_size The size of the array that holds all query data.
  */
-void print_results(Store_Result_Type** store_res, size_t store_size)
+void print_search_data(Store_Result_Type** store_res, size_t store_size)
 {
     for (int l = 0; l < store_size; ++l) {
         printf("STORE NAME: %s\n", store_res[l]->store);
@@ -309,6 +309,25 @@ void free_results(Store_Result_Type** store_res, size_t store_size)
 void sort_results(Store_Result_Type ***stores, size_t length)
 {
     qsort(*stores, length, sizeof(Store_Result_Type*), comparator_sort_results);
+}
+
+void print_results(size_t length, Store_Result_Type *const *results)
+{
+    for (int i = 0; i < length; ++i) {
+        printf("STORE: %s\n", results[i]->store);
+        printf("Total Grocery List Price: %lf\n", results[i]->price_of_groceries);
+        printf("Total Missing Items: %d\n", results[i]->missing_items);
+        if (results[i]->missing_items)
+        {
+            for (int j = 0; j < results[i]->results_len; ++j) {
+                if (results[i]->results[j]->items_len == 0)
+                {
+                    printf("Did not find any items from this query: %s\n", results[i]->results[j]->query);
+                }
+            }
+        }
+        printf("\n");
+    }
 }
 
 int comparator_sort_results(const void *pt1, const void *pt2)

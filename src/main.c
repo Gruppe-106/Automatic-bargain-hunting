@@ -15,16 +15,12 @@ int main(void) {
     size_t length;
     Store_Result_Type **results = search_stores(items_to_find, all_stores, &length);
 
-
-    print_results(results, length);
     sort_results(&results, length);
-    for (int i = 0; i < length; ++i) {
-        printf("STORE: %s\n", results[i]->store);
-        printf("Total Grocery List Price: %lf\n", results[i]->price_of_groceries);
-        printf("Total Missing Items: %d\n\n", results[i]->missing_items);
-    }
+    print_results(length, results);
 
     free_results(results, length);
     free_stores(all_stores);
     return 0;
 }
+
+
