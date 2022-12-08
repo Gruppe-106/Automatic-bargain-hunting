@@ -109,6 +109,7 @@ void update_stores(JSON_Value *json, Store_Type** all_stores, char* store_name) 
     }
     //Update the Store_Type items list
     store->items = items;
+    free(json);
 }
 
 /* ================================================== *
