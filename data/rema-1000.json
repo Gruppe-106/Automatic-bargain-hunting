@@ -3113,7 +3113,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. oksekoed 8-12%",
+    "name": "hakket oksekoed 8-12%",
     "brand": "rema 1000",
     "price": 46.95,
     "price_pr_unit": {
@@ -3124,7 +3124,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. grisekoed 8-12%",
+    "name": "hakket grisekoed 8-12%",
     "brand": "dansk gris",
     "price": 37.95,
     "price_pr_unit": {
@@ -3135,7 +3135,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. gris og kalv 8-12%",
+    "name": "hakket gris og kalv 8-12%",
     "brand": "dansk",
     "price": 39.95,
     "price_pr_unit": {
@@ -3146,7 +3146,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. oksekoed 15-18%",
+    "name": "hakket oksekoed 15-18%",
     "brand": "rema 1000",
     "price": 44.95,
     "price_pr_unit": {
@@ -3157,7 +3157,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk oksekoed 4-7%",
+    "name": "hakket oksekoed 4-7%",
     "brand": "rema 1000",
     "price": 39.0,
     "price_pr_unit": {
@@ -3168,7 +3168,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. okse 8-12%",
+    "name": "hakket okse 8-12%",
     "brand": "friland, oekologisk",
     "price": 49.95,
     "price_pr_unit": {
@@ -3190,7 +3190,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk.grisekoed 8-12%",
+    "name": "hakket grisekoed 8-12%",
     "brand": "frilandsgris",
     "price": 34.95,
     "price_pr_unit": {
@@ -3201,7 +3201,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk gris og kalv 4-7%",
+    "name": "hakket gris og kalv 4-7%",
     "brand": "dansk",
     "price": 30.0,
     "price_pr_unit": {
@@ -3212,7 +3212,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. okse m/groentsager",
+    "name": "hakket okse m/groentsager",
     "brand": "rema 1000",
     "price": 37.95,
     "price_pr_unit": {
@@ -3223,7 +3223,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. kyllingekoed 4-7%",
+    "name": "hakket kyllingekoed 4-7%",
     "brand": "dansk",
     "price": 30.0,
     "price_pr_unit": {
@@ -3234,7 +3234,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. kyllingekoed 7-10%",
+    "name": "hakket kyllingekoed 7-10%",
     "brand": "rema 1000",
     "price": 37.95,
     "price_pr_unit": {
@@ -3245,7 +3245,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "oeko. hk. gris og okse",
+    "name": "oeko. hakket gris og okse",
     "brand": "friland - dansk",
     "price": 49.95,
     "price_pr_unit": {
@@ -3256,7 +3256,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. oksekoed 4-7%",
+    "name": "hakket oksekoed 4-7%",
     "brand": "friland, oekologisk",
     "price": 49.95,
     "price_pr_unit": {
@@ -3278,7 +3278,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. oksekoed 8-12%",
+    "name": "hakket oksekoed 8-12%",
     "brand": "rema 1000",
     "price": 93.9,
     "price_pr_unit": {
@@ -3289,7 +3289,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. skinkekoed 4-7%",
+    "name": "hakket skinkekoed 4-7%",
     "brand": "frilandsgris",
     "price": 30.0,
     "price_pr_unit": {
@@ -3300,7 +3300,7 @@
     "unit_type": "gr"
   },
   {
-    "name": "hk. boeffer m/bacon",
+    "name": "hakket boeffer m/bacon",
     "brand": "ret nemt",
     "price": 25.0,
     "price_pr_unit": {
