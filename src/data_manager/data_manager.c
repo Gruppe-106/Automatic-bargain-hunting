@@ -137,12 +137,11 @@ Item_Type* create_item(char* name, char* brand, double price, double unit_size, 
     char *brand_name = (char*) malloc((strlen(brand) + strlen(name) + 4) * (sizeof(char)));
     strcpy(brand_name, name);
     if (strlen(brand) > 0) {
-        item->name       = (char*) malloc((strlen(name) + strlen(brand) + 4) * (sizeof(char)));
         strcat(brand_name, " - ");
         strcat(brand_name, brand);
     }
 
-    item->name       = (char*) malloc((strlen(name) + strlen(brand_name) + 1) * (sizeof(char)));
+    item->name = (char*) malloc((strlen(name) + strlen(brand_name) + 1) * (sizeof(char)));
 
     str_to_lower(&brand_name);
     memcpy(item->name, brand_name, strlen(brand_name) + 1);
