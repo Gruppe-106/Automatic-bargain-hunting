@@ -22,5 +22,3 @@ int main(void) {
     free_stores(all_stores);
     return 0;
 }
-
-

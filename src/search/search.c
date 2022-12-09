@@ -316,8 +316,16 @@ void print_results(size_t length, Store_Result_Type *const *results)
     for (int i = 0; i < length; ++i) {
         printf("STORE: %s\n", results[i]->store);
         printf("Total Grocery List Price: %lf\n", results[i]->price_of_groceries);
+        for (int j = 0; j < results[i]->results_len; ++j) {
+            if (results[i]->results[j]->items_len > 0)
+            {
+                printf("Item '%s':\n", results[i]->results[j]->query);
+                printf("\tName: %s\n", results[i]->results[j]->items_result[0]->name);
+                printf("\tPrice: %.2lf\n", results[i]->results[j]->items_result[0]->price);
+            }
+        }
         printf("Total Missing Items: %d\n", results[i]->missing_items);
-        if (results[i]->missing_items)
+        if (results[i]->missing_items > 0)
         {
             for (int j = 0; j < results[i]->results_len; ++j) {
                 if (results[i]->results[j]->items_len == 0)
@@ -327,6 +335,11 @@ void print_results(size_t length, Store_Result_Type *const *results)
             }
         }
         printf("\n");
+    }
+
+    printf("Cheapest stores:\n");
+    for (int i = 0; i < length; ++i) {
+        printf("%d: %s\n", i + 1, results[i]->store);
     }
 }
 

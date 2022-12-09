@@ -16,6 +16,7 @@ typedef struct {
     int missing_items;
     double price_of_groceries;
 } Store_Result_Type;
+
 void print_results(size_t length, Store_Result_Type *const *results);
 void sort_results(Store_Result_Type ***stores, size_t length);
 void print_search_data(Store_Result_Type** store_res, size_t store_size);

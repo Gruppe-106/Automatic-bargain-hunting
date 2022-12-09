@@ -12,9 +12,10 @@ set(SOURCES
         util/string_utility.c       util/string_utility.h
         util/unit_type_conversion.c util/unit_type_conversion.h
         util/store_utility.c        util/store_utility.h
-        util/user_io_utility.c      util/user_io_utility.h)
+        util/user_io_utility.c)
 
 add_executable(${PROJECT_NAME} main.c ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC parson)
 target_link_directories(${PROJECT_NAME} PRIVATE  parson)
 target_link_libraries(${PROJECT_NAME} parson)
+
