@@ -14,6 +14,7 @@ int main(void) {
 
     size_t length;
     Store_Result_Type **results = search_stores(items_to_find, all_stores, &length);
+    free_grocery_list(items_to_find);
 
     sort_results(&results, length);
     print_results(length, results);
