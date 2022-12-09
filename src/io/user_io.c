@@ -64,7 +64,7 @@ Input_Item *input_grocery_list()
     puts("Enter grocery list");
     while (flag)
     {
-        printf("Enter item > ");
+        printf("Enter item >");
         fgets(name, 100,stdin);
         str_to_lower(&name);
 
