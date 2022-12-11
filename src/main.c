@@ -6,11 +6,12 @@
 #include "util/user_io_utility.h"
 #include "util/node_handler.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(void) {
     Store_Type *all_stores = load_all_data();
     sort_stores_items(&all_stores);
-    Input_Item *items_to_find = input_grocery_list();
+    Input_Item *items_to_find = input_grocery_list(false);
 
     size_t length;
     Store_Result_Type **results = search_stores(items_to_find, all_stores, &length);
