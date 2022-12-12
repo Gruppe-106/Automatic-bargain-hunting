@@ -75,7 +75,6 @@ Input_Item *input_grocery_list(_Bool test_mode)
             memcpy(name,"test",sizeof("test")+1);
         }
 
-
         /* Removes leading newlines*/
         if ((strlen(name) > 0) && (name[strlen (name) - 1] == '\n'))
             name[strlen (name) - 1] = '\0';

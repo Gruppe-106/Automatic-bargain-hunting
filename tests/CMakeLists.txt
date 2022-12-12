@@ -51,8 +51,9 @@ add_test(Grocery_list_length grocery_list_length)
 
 add_executable(user_io io/user_io.c ${SOURCES})
 add_executable(data_manager data_manager/data_manager.c ${SOURCES})
-add_executable(search search/search.c ${SOURCES})
-add_executable(main main/main.c)
+add_executable(search search/search_store.c ${SOURCES})
+add_executable(find_items search/find_items.c ${SOURCES})
+add_executable(main main/main.c ${SOURCES})
 
 target_include_directories(user_io PUBLIC parson)
 target_link_directories(user_io PRIVATE  parson)
@@ -70,9 +71,14 @@ target_include_directories(main PUBLIC parson)
 target_link_directories(main PRIVATE  parson)
 target_link_libraries(main parson)
 
+target_include_directories(find_items PUBLIC parson)
+target_link_directories(find_items PRIVATE  parson)
+target_link_libraries(find_items parson)
+
 add_test(User_io user_io)
 add_test(Data_manager data_manager)
 add_test(Search search)
+add_test(Find_items find_items)
 add_test(Main main)
 
 
