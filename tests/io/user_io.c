@@ -1,46 +1,61 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <assert.h>
 #include "../../src/io/user_io.h"
 #include "../../src/util/user_io_utility.h"
 #include "../../src/util/node_handler.h"
 
-int main(void){
-    Input_Item *test_case = input_grocery_list(true);
-    Input_Item *current = test_case;
-    _Bool flag = true;
-    int length = grocery_list_length(test_case);
 
-    puts("User_io test");
+void test_input_grocery_list()
+{
+    char* no_input = "!find\n";
+    FILE *input_file = fopen("input.txt", "w");
+    fputs(no_input, input_file);
+    fclose(input_file);
+
+    input_file = freopen("input.txt", "r", stdin);
+
+    Input_Item *grocery_list = input_grocery_list();
+    fclose(input_file);
+
+    remove("input.txt");
+    free_grocery_list(grocery_list);
+
+    assert(grocery_list == NULL);
 
 
-    if(length != 10){
-        printf("Expected a length of 10 got %d",length);
-        flag = false;
-    } else {
-        for (int i = 0; i < 10; ++i) {
-            if(strcmp(current->input,"test") != 0){
-                printf("Expected input to be test got %s",current->input);
-                flag = false;
-                break;
+    char *input = "mealk\nbananer\n!find\n";
 
-            } else if(current->quantity != 1){
-                printf("Expected a quantity of 1 got %d",current->quantity);
-                flag = false;
-                break;
-            } else {
-                printf("test case %d: Expected input to be test got %s, expected a quantity of 1 got %d\n",i+1,current->input,current->quantity);
-                current = current->next_input;
-            }
-        }
-    }
+    input_file = fopen("input.txt", "w");
+    fputs(input, input_file);
+    fclose(input_file);
 
-    free_grocery_list(test_case);
-    if(!flag){
-        return EXIT_FAILURE;
-    } else {
-        return EXIT_SUCCESS;
-    }
+    // open the input file for reading and redirect the standard input stream to it
+    input_file = freopen("input.txt", "r", stdin);
 
+
+    // call the input_grocery_list function
+    grocery_list = input_grocery_list();
+    fclose(input_file);
+
+    // check the output
+    assert(grocery_list != NULL);
+    assert(grocery_list->next_input != NULL);
+    assert(strcmp(grocery_list->input, "mealk") == 0);
+    assert(strcmp(grocery_list->next_input->input, "bananer") == 0);
+
+    remove("input.txt");
+    free_grocery_list(grocery_list);
+}
+
+
+int main() {
+    // Run unit tests
+    test_input_grocery_list();
+
+    // If all tests pass, return success
+    return EXIT_SUCCESS;
 }

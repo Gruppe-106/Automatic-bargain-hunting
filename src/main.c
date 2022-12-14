@@ -11,7 +11,7 @@
 int main(void) {
     Store_Type *all_stores = load_all_data();
     sort_stores_items(&all_stores);
-    Input_Item *items_to_find = input_grocery_list(false);
+    Input_Item *items_to_find = input_grocery_list();
 
     size_t length;
     Store_Result_Type **results = search_stores(items_to_find, all_stores, &length);

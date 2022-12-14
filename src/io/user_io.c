@@ -54,41 +54,31 @@ void append_input_item_node(Input_Item *input_list, char *input, int quantity)
  * User input format: "something" enter "something" enter .... done enter
  * @return Input_Item ptr, linked list of all inputs
  */
-Input_Item *input_grocery_list(_Bool test_mode)
+Input_Item *input_grocery_list()
 {
     _Bool flag = true;
     _Bool quit = false;
-    int test_item = 0;
     char *name = (char*)malloc(sizeof(char)*100);
     Input_Item *grocery_list = NULL;
 
-    if(!test_mode){
-        puts("Enter grocery list");
-    }
+    puts("Enter grocery list");
     while (flag)
     {
-        if(!test_mode){
             printf("Enter item >");
             fgets(name, 100,stdin);
             str_to_lower(&name);
-        } else {
-            memcpy(name,"test",sizeof("test")+1);
-        }
+
 
         /* Removes leading newlines*/
         if ((strlen(name) > 0) && (name[strlen (name) - 1] == '\n'))
             name[strlen (name) - 1] = '\0';
 
 
-        if (strcmp(name, "find") == 0 || test_item == 10)
+        if (strcmp(name, "!find") == 0)
         {
-            if(grocery_list_length(grocery_list) == 0){
-                puts("No items has been entered");
-                continue;
-            }
             flag = false;
         }
-        else if (strcmp(name, "quit") == 0)
+        else if (strcmp(name, "!quit") == 0)
         {
             flag = false;
             quit = true;
@@ -96,9 +86,6 @@ Input_Item *input_grocery_list(_Bool test_mode)
         else
         {
             read_item_string(name, &grocery_list); /* Reads the input and creates a new item */
-            if(test_mode){
-                test_item++;
-            }
         }
     }
 
