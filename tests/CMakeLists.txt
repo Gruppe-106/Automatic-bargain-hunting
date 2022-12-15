@@ -13,26 +13,34 @@ set(SOURCES
         ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h
         ../src/util/store_utility.c        ../src/util/store_utility.h
         ../src/util/user_io_utility.c      ../src/util/user_io_utility.h
-        util/string_utility/str_to_lower.c util/string_utility/str_contains_str.c
-        util/unit_type_conversions/str_to_unit_type.c
         )
 
-add_executable(str_to_lower util/string_utility/str_to_lower.c  ../src/util/string_utility.c ../src/util/string_utility.h)
-add_executable(str_contains_str util/string_utility/str_contains_str.c ../src/util/string_utility.c ../src/util/string_utility.h)
 
-add_executable(str_to_unit_type
-        util/unit_type_conversions/str_to_unit_type.c
-        ../src/util/unit_type_conversion.c ../src/util/unit_type_conversion.h
-        ../src/data_manager/data_manager.c ../src/data_manager/data_manager.h
-        ../src/util/string_utility.c       ../src/util/string_utility.h)
+add_executable(user_io io/user_io.c ${SOURCES})
+add_executable(data_manager data_manager/data_manager.c ${SOURCES})
+add_executable(search search/search_store.c ${SOURCES})
+add_executable(find_items search/find_items.c ${SOURCES})
 
-add_test(Str_to_lower str_to_lower)
-add_test(Str_contains_str str_contains_str)
+target_include_directories(user_io PUBLIC parson)
+target_link_directories(user_io PRIVATE  parson)
+target_link_libraries(user_io parson)
 
-add_test(Str_to_unit_type str_to_unit_type)
+target_include_directories(data_manager PUBLIC parson)
+target_link_directories(data_manager PRIVATE  parson)
+target_link_libraries(data_manager parson)
+
+target_include_directories(search PUBLIC parson)
+target_link_directories(search PRIVATE  parson)
+target_link_libraries(search parson)
+
+target_include_directories(find_items PUBLIC parson)
+target_link_directories(find_items PRIVATE  parson)
+target_link_libraries(find_items parson)
+
+add_test(User_io user_io)
+add_test(Data_manager data_manager)
+add_test(Find_items find_items)
+add_test(Search search)
 
 
 
-target_include_directories(str_to_unit_type PUBLIC parson)
-target_link_directories(str_to_unit_type PRIVATE  parson)
-target_link_libraries(str_to_unit_type parson)

@@ -64,24 +64,21 @@ Input_Item *input_grocery_list()
     puts("Enter grocery list");
     while (flag)
     {
-        printf("Enter item >");
-        fgets(name, 100,stdin);
-        str_to_lower(&name);
+            printf("Enter item >");
+            fgets(name, 100,stdin);
+            str_to_lower(&name);
+
 
         /* Removes leading newlines*/
         if ((strlen(name) > 0) && (name[strlen (name) - 1] == '\n'))
             name[strlen (name) - 1] = '\0';
 
 
-        if (strcmp(name, "find") == 0)
+        if (strcmp(name, "!find") == 0)
         {
-            if(grocery_list_length(grocery_list) == 0){
-                puts("No items has been entered");
-                continue;
-            }
             flag = false;
         }
-        else if (strcmp(name, "quit") == 0)
+        else if (strcmp(name, "!quit") == 0)
         {
             flag = false;
             quit = true;
