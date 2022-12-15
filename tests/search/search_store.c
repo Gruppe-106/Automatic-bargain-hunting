@@ -20,6 +20,34 @@ typedef struct {
 
 #define NUM_OF_STORES 10
 
+void free_test_memory(Store_Result_Type **results, size_t results_len) {
+    for (int i = 0; i < results_len; ++i) {
+        free(results[i]);
+    }
+    free(results);
+}
+
+void free_test_input_item_list(Input_Item *query_items) {
+    Input_Item *current_item = query_items;
+    while (current_item != NULL) {
+        Input_Item *next_item = current_item->next_input;
+        free(current_item);
+        current_item = next_item;
+    }
+}
+
+void free_test_stores(Store_Type *all_stores) {
+    Store_Type *current_store = all_stores;
+    while (current_store != NULL) {
+        Store_Type *next_store = current_store->next_node;
+        for (int i = 0; i < current_store->item_amount; i++) {
+            free(current_store->items[i]);
+        }
+        free(current_store->items);
+        free(current_store);
+        current_store = next_store;
+    }
+}
 
 void generate_random_items(Store_Type *store) {
     srand(time(0));
@@ -30,27 +58,13 @@ void generate_random_items(Store_Type *store) {
     for (int i = 0; i < num_items; i++) {
         Item_Type *new_item = (Item_Type*)malloc(sizeof(Item_Type));
         new_item->name = item_names[rand() % num_items];
+        new_item->unit = EACH;
+        new_item->unit_size = 10.0;
         new_item->price = (rand() % 100) / 10.0;
         store->items[i] = new_item;
     }
 }
 
-void free_test_store(Store_Type *store) {
-    free(store->name); // Free the memory allocated for the store name
-    for (int i = 0; i < store->item_amount; i++) {
-        free(store->items[i]->name); // Free the memory allocated for the item name
-        free(store->items[i]); // Free the memory allocated for the item
-    }
-    free(store->items); // Free the memory allocated for the array of items
-    free(store); // Free the memory allocated for the store
-}
-
-void free_test_store_array(Store_Type **store_array, int num_stores) {
-    for (int i = 0; i < num_stores; i++) {
-        free_store(store_array[i]); // Free the memory allocated for each store
-    }
-    free(store_array); // Free the memory allocated for the array of stores
-}
 
 void test_search_stores() {
     // Create a list of input items
@@ -78,7 +92,7 @@ void test_search_stores() {
     assert(results_len == 3);
 
     for (int i = 0; i < results_len; ++i) {
-        assert(results[i]->price_of_groceries != 0);
+        assert(results[i]->price_of_groceries >= 0);
         assert(results[i]->missing_items >= 0);
 
     }
@@ -87,11 +101,9 @@ void test_search_stores() {
     assert(strcmp(results[1]->store,"bilka")== 0);
     assert(strcmp(results[2]->store,"lidl")== 0);
 
-    free_results(results,3);
-    free_stores(all_stores);
-    free_grocery_list(query_items);
-
-
+    free_test_memory(results,3);
+    free_test_input_item_list(query_items);
+    free_test_stores(all_stores);
 }
 
 int main(void){
