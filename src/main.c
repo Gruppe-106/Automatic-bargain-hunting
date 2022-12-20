@@ -2,11 +2,8 @@
 #include "io/user_io.h"
 #include "search/search.h"
 #include "data_manager/sort_stores.h"
-#include "data_manager/rank_stores.h"
-#include "util/user_io_utility.h"
 #include "util/node_handler.h"
 #include <stdio.h>
-#include <stdbool.h>
 
 int main(void) {
     Store_Type *all_stores = load_all_data();
