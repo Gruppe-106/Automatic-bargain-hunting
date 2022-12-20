@@ -6,10 +6,10 @@
 #include "../../src/data_manager/data_manager.h"
 #include "../../src/search/search.h"
 
+void test_find_items()
+{
 
-void test_find_items(){
-
-    const char* query = "mealk";
+    const char *query = "mealk";
 
     Item_Type item1 = {"aeble", 1, 1, EACH, 0};
     Item_Type item2 = {"mealk", 2, 1, EACH, 0};
@@ -22,12 +22,12 @@ void test_find_items(){
     Item_Type item9 = {"mealk", 9, 1, LITER, 0};
     Item_Type item10 = {"spand", 10, 1, LITER, 0};
 
-    Item_Type* items[] = {&item1, &item2, &item3, &item4, &item5, &item6, &item7, &item8, &item9, &item10};
+    Item_Type *items[] = {&item1, &item2, &item3, &item4, &item5, &item6, &item7, &item8, &item9, &item10};
 
     size_t size = 10;
 
     size_t result_size;
-    Item_Type** result = find_items(query, items, size, &result_size);
+    Item_Type **result = find_items(query, items, size, &result_size);
 
     assert(result_size == 2);
 
@@ -35,12 +35,10 @@ void test_find_items(){
     {
         assert(strcmp(result[i]->name, query) == 0);
     }
-
 }
 
-
-int main(void){
-     test_find_items();
-
+int main(void)
+{
+    test_find_items();
     return EXIT_SUCCESS;
 }
