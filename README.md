@@ -1,6 +1,6 @@
 # Automatic Bargain Hunting
 This repository is part of a project for the Computer Science Group 106 at Aalborg University.
-The code produced for the project can be found in the src folder, structure of this folder can be seen below.
+The code produced for the project can be found in the src & test folder, structure of src can be seen below. Other directories are not part of the final product.
 ## Structure
 ### ../src
 ```
