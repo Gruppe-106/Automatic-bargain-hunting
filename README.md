@@ -1,21 +1,22 @@
 # Automatic Bargain Hunting
+This repository is part of a project for the Computer Science Group 106 at Aalborg University.
+The code produced for the project can be found in the src folder, structure of this folder can be seen below.
 ## Structure
 ### ../src
 ```
 data_manager/
-    rank_stores.c       //Used to ranke stores depending on prices -Andreas
-    data_manager.c      //Convert json object to our own data structure and categoriziation -Mikkel
-    sort_stores.c       //Sorts stores lists of items by price for faster searching - Christian
+    data_loader.c/.h        // Loads JSON and parses them to data_manager.c
+    data_manager.c/.h       // Convert json object to our own data structure and categoriziation
+    sort_stores.c/.h        // Sorts stores lists of items by price for faster searching
 search/
-   search.c             //Search by store, item and/or categorice etc. - Mads
-ui/
-    UserIO.c            //User input/output handler - Zeki || Simon
+   search.c                 // Search by store, item and/or categorice etc.
+IO/
+    UserIO.c                // User input/output handler
 util/
-    node_handler.c
-    store_utility.c
-    string_utility.c
-    unit_type_conversion.c
-main.c                  //Injection point, should not contain general algorithms
+    node_handler.c          // Helper functions for a linked list for the store type in data_manager.h
+    string_utility.c        // String helper functions 
+    unit_type_conversion.c  // Helper functions for converting and homogonising unit type within Item_Type
+main.c                      // Injection point
 ```
 ## Data structure
 ```
@@ -27,44 +28,21 @@ typedef enum {
     ...
 } Unit_Type
 
-struct item {
+typedef struct item {
     char* name;
     double price;
     double unit_size;
     Unit_Type unit;
     _Bool organic;
-}
+} Item_Type;
 ```
 ### Data storage
 ```
-Main data storage
-All stores =
-    struct store {
-        char* name;
-        Item_Type** items;
-        size_t item_amount;
-        double total_price;
-        struct store* next_node;
-    }
-```
-## Examples
-cmake is stupid right now and wont build the folder with data. Therefore GCC is needed
-First check if already installed
-```
-gcc -v
-```
-### Installing GCC
-Goto https://www.mingw-w64.org/downloads/ and install the latest version
-### Building
-```
-gcc -g -w -Wall examples/example_{num}.c -o example_{num} -lm
-```
-### Running
-In root open CMD and run
-```
-example_{num}.exe "./data/salling.json"
-```
-### Notes
-```
-As c uses acii character we need a solution for æ ø å.
+typedef struct store {
+    char* name;
+    Item_Type** items;
+    size_t item_amount;
+    double total_price;
+    struct store* next_node;
+} Store_Type;
 ```
