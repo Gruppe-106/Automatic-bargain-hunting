@@ -1,8 +1,8 @@
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <assert.h>
 #include "../../libs/parson/parson.h"
 #include "../../src/data_manager/data_manager.h"
 #include "../../src/util/unit_type_conversion.h"
@@ -54,36 +54,18 @@ JSON_Value* create_random_test_json(int amount) {
 
 _Bool compare_object_to_item(Item_Type* item, JSON_Object* jsonObject) {
     char* name = (char*) json_object_dotget_string(jsonObject, "name");
-    if (str_contains_str(item->name, name, false) == -1) {
-        printf("Expected: %s, got: %s\n", name, item->name);
-        return EXIT_FAILURE;
-    }
+    assert(str_contains_str(item->name, name, false) != -1);
 
     double jsonPrice = json_object_dotget_number(jsonObject, "price");
-    if (item->price != jsonPrice) {
-        printf("Expected: %lf, got: %lf\n", jsonPrice, item->price);
-        return EXIT_FAILURE;
-    }
+    assert(item->price == jsonPrice);
 
     double jsonUnitSize = json_object_dotget_number(jsonObject, "unit_size");
-    if (item->unit_size != jsonUnitSize) {
-        printf("Expected: %lf, got: %lf\n", jsonUnitSize, item->unit_size);
-        return EXIT_FAILURE;
-    }
+    assert(item->unit_size == jsonUnitSize);
 
     Unit_Type jsonUnitType = str_to_unit_type((char*) json_object_dotget_string(jsonObject, "unit_type"));
-    if (item->unit != jsonUnitType) {
-        printf("Expected: %u, got: %u\n", jsonUnitType, item->unit);
-        return EXIT_FAILURE;
-    }
+    assert(item->unit == jsonUnitType);
 
-    if(str_contains_str(name, "oeko", false) != -1 && item->organic != true) {
-        printf("Expected: true, got: false\n");
-        return EXIT_FAILURE;
-    } else if(str_contains_str(name, "oeko", false) == 1 && item->organic == true) {
-        printf("Expected: false, got: true\n");
-        return EXIT_FAILURE;
-    }
+    assert(str_contains_str(name, "oeko", false) == -1 && item->organic == false);
 
     return EXIT_SUCCESS;
 }
