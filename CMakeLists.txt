@@ -6,7 +6,6 @@ enable_testing()
 
 # TODO: library inclutions
 add_subdirectory(examples)
-add_subdirectory(randomly_generated_testcases)
 add_subdirectory(src)
 add_subdirectory(libs/parson)
 add_subdirectory(tests)
